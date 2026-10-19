@@ -1,0 +1,16 @@
+Tell me the duration of the <<<ENTITY>>> in line <<<LINE_NUMBER>>>?
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+[History of chat]
+<<<hos>>>
+
+Output format: 'n' days
+e.g.) 1-2 days, 2 days...etc..
+
+Just provide only the duration, without any message. Provide the duration within output format.
+Output:

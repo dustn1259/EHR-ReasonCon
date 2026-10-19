@@ -1,0 +1,41 @@
+Please find and extract entities in the clinical note that are related to the items in the given list.
+
+Output format:
+Line number #. entity - [item1, item2,...] - [associated value]
+Line number #. entity2 - [item4] - [associated value]
+
+Example Task)
+
+Item list to check (example):
+[Temperature, Non Invasive Blood Pressure systolic, Non Invasive Blood Pressure diastolic, Abdomen, Lisinopril]
+
+Previously extracted entity list: 
+format) [entity, line number, associated value, the form in which the entity is recorded in the EHR]
+[['Lisinopril', '10', '', ['Lisinopril']],
+ ['Temperature', '11', '101', ['Temperature']]]
+
+Example Clinical note)
+10: The patient developed hypertension, was prescribed Lisinopril, 
+11: and their BP improved to 130/85 mmHg
+12: Temperature was 101
+
+Output: 
+Line number 10. hypertension- [Non Invasive Blood Pressure systolic, Non Invasive Blood Pressure diastolic] - []
+Line number 11. BP - [ Non Invasive Blood Pressure systolic] - [130]
+Line number 12. BP - [ Non Invasive Blood Pressure diastolic] - [85]
+
+*Do not extract Lisinopril and Temperature, as they have already been extracted.
+
+Let's do the task!
+
+LIST to check:
+[<<<CHECKED LIST>>>]
+
+<REMEMBER>
+- Do not extract any entities that were previously extracted.
+- Previously extracted entity list: 
+format) [entity, line number, associated value, the form in which the entity is recorded in the EHR]
+<<<LAST_EXTRACTED>>>
+
+Clinical Note:
+<<<CLINICAL NOTE>>>

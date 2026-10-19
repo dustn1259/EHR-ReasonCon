@@ -1,0 +1,18 @@
+Criteria for Determining the Time of Occurrence of an Entity
+Read the given Nursing note and select one of the following three criteria to determine when the specific entity '<<ENTITY>>' (line <<<LINE>>>) occurred.
+Remember, Dates are generally written in nursing notes in the [**mm-dd**] style
+
+Nursing Note)
+<<<NURSING_NOTE>>>
+
+(A) Occurred on the day of Admission
+- This is the case where the entity's time of occurrence is the same as the patient's admission date.
+- The word "admission" or an equivalent term must be explicitly stated in the clinical record.
+(B) Occurred on a specific date/time
+- This is the case where the entity's time of occurrence is clearly recorded with a specific date and time.
+- The date and time information in the format "yyyy-mm-dd" or "yyyy-mm-dd hh:mm:ss" must be explicitly stated in the clinical record. (e.g., 2024-10-23 or 2024-10-23 15:30:00)
+(C) Neither of the above two cases
+- This applies to all cases where the entity's time of occurrence does not correspond to (A) the day of admission or (B) a specific date/time.
+
+Give me only the answer, without any other text!
+Answer: A, B, or C

@@ -1,0 +1,134 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+[Answer Format]
+QuestionNumber.
+Reason:
+Answer:
+QuestionNumber.
+Reason:
+Answer:
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like “treatment or test was performed at a certain time” are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Question1. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+Note) Statements like “treatment or test was performed at a certain time” are considered the startdate. 
+[Cases where the answer should be "Yes"]
+1. If there is a date, a duration, or a phrase that allows you to infer a time frame, answer "Yes."
+2. If the timing of the entity can be clearly inferred based on the context of the surrounding paragraphs(Block separated by new lines) in the note.
+Examples:
+“Shortness of breath occurred on postoperative day 3”
+“Recurrent hypotension observed after February 3rd”
+“Discharge medications”
+In other words, answer "Yes" only when the entity is temporally linked to another event or date mentioned in the note, allowing you to infer its timing.
+
+[Cases where the answer should be "No"]
+1. The entity is mentioned in isolation, without any indication of start time, end time, duration, or temporal clues.
+2. It appears to have occurred during hospitalization, but there is no way to determine when. There’s no way to know the exact date.
+3.  Only information from the note should be used for inference; relying on prior knowledge for inference is strictly prohibited.
+Examples:
+“Cheif complaint: fever”
+{fever:}
+Correct Answer: No. There is no inferable time information
+-> Reason why this is correct: There is no time information, we just know chief complaint is fever.
+
+Reason for choose: [You must find evidence from within the note content itself not your knowledge or asumption.]
+Answer choices:
+1. Yes. There is inferable time information.
+2. No. There is no inferable time information. Only information from the note should be used for inference; relying on prior knowledge for inference is strictly prohibited.
+→ If the answer is No, stop here! Do not answer Question2.
+
+Question2. Was the entity (<<<ENTITY>>>) clearly stated or contextually inferable to have occurred over a specific period (range) of time?
+Answer "1. A time range can be inferred" if any of the following apply:
+1. Both a start date and an end date are explicitly mentioned, indicating the entity occurred over a specific period.
+2. A start date and a duration (e.g., “for X days”) are given, allowing the end date to be calculated.
+3. An end date and a duration are given, allowing the start date to be calculated.
+4. Specific dates are not given, but from the context it is clear that the entity occurred between two events (A and B) or within a defined timeframe.
+Example1: Given entity: temperature 
+Paragraph 1) [02-03] vancomycin treated ...(omited)...
+Paragraph 2) Patient's temperature recorded as 100.4 ...(omited)...
+Paragraph 3) [02-05] Blood cultures negative
+Answer: 1. A time range can be inferred. 
+Reason: The recorded temperature of 100.4 occurred after vancomycin treatment was started on 02-03, and a blood culture result was documented on 02-05. Therefore, it is reasonable to infer that the fever occurred sometime between these two events. Although no specific date is provided for the temperature itself, the context clearly places it between event A (02-03) and event B (02-05).
+➡️ This corresponds to Case 4: "Specific dates are not given, but from the context it is clear that the entity occurred between two events (A and B) or within a defined timeframe."
+
+Example2: Given entity: temperature
+Physicial Exam on Admission:
+temperature 99.9
+Answer: 2. Only a single time point is clear
+Reason: The temperature is only mentioned at the time of admission, and there is no information about whether it persisted afterward. Since it is clearly documented at only a single point in time, no time range can be inferred.
+
+Answer choices:
+1. A time range can be inferred.
+2. Only a single time point is clear.
+→ If you choose Answer 1, proceed to Question 3 (skip Questions 4 and 5).
+→ If you choose Answer 2, proceed to Question 4 (skip Question 3).
+* Do not answer any questions that should be skipped based on your previous selection. If you do, your answers will be considered incorrect!! 
+
+Question3. (short Answer) If any of the following are stated or clearly inferred in the Clinical Note, fill in the appropriate fields below.
+🔹 Possible Cases:
+1. Both startdate and enddate are explicitly stated.
+2. Startdate and n-days are stated, allowing you to precisely calculate the enddate.
+3. Enddate and n-days are stated, allowing you to precisely calculate the startdate.
+4. No exact date or duration is given, but from context, it is clear the event occurred between two reference points (e.g., between Feb 3 and Feb 5).
+Important Rules:
+1. Only fill in n-days if the text clearly says something like "for 3 days".
+2. Do not estimate or infer values unless allowed in Case 4
+3. All dates must fall within the patient’s hospitalization period.
+4. Leave any field blank if the required information is not available or not permitted by rules above.
+5. In Case 4, since the event is understood to have occurred between two specific reference points, both date_start and date_end must be filled in.
+
+Example: Given entity: temperature 
+Paragraph 1) Posterative day 1 vancomycin treated ...(omited)...
+Paragraph 2) Patient's temperature recorded as 100.4 ...(omited)...
+Paragraph 3) Posterative day 7 Blood cultures negative
+✅ date_start - Posterative day 1
+✅ date_end - Posterative day 7
+✅ n-days - 
+Reason: No exact date or duration is given, but from context, it is clear that the event occurred sometime between postoperative day 1 and postoperative day 7.
+*Both date_start and date_end are mandatory and must be submitted together. Omission of either will be regarded as a failure to comprehend the instructions, resulting in the disqualification of not only the relevant response but the entirety of the answers submitted.
+Answer:
+date_start- [Mandatory response field- The date when the event began (either explicitly stated or inferred based on contextual reference point A)]
+date_end- [Mandatory response field- The date when the event ended (either explicitly stated or inferred based on contextual reference point B)]
+duration_days- [Write the n-day, Only fill in n-days if the text clearly says something like "for 3 days".]
+
+Question4. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, which of the following three categories does it fall into?
+Category 1: No end date is mentioned. Only the start date of a treatment is specified.
+Statements like “treatment or test was performed at a certain time” are also included in this case.
+Category 2: No start date is given, only an end point is mentioned (e.g., we know when a treatment was discontinued).
+Category 4: Neither a specific start nor end date is provided — only that the treatment was performed for a certain number of days (e.g., "treated for 3 days").
+Answer format:
+1. Category 1
+2. Category 2
+3. Category 3
+→ If the answer is Category 1, proceed to Question 5.
+→ If the answer is Category 2 or 3, stop here! 
+
+Question5. Is the date of the treatment specified in the 'yyyy-mm-dd(hh:mm:ss)' format? 
+Answer choices:
+1. Yes. (Only if it appears in the exact yyyy-mm-dd, mm-dd or yyyy-mm-dd hh:mm:ss format itself in the note)
+2. No.  (All cases where the date associated with an entity is not in the yyyy-mm-dd format, such as discharge medications, physical exams on admission, or relative time references like POD#N or HOD#N)
+→ If the answer is No, must proceed to Question 6. 
+→ If the answer is Yes, stop here! 
+* If your answer to question 5 is "NO" but you don't proceed question 6, then everything you've said from number 1 up to now is incorrect.
+
+Question6. Determine what reference point the date of the <<<ENTITY>>> event corresponds to. Choose from the following options:
+- If the event occurred on or is relative to the admission date, respond with: adm
+- If the event occurred on or is relative to the discharge date, respond with: dis
+- If the event occurred on or is relative to the yesterday, respond with: yesterday
+- If the event occurred on postoperative day N, respond with: pod#N (e.g., postoperative day 3 → pod#3)
+- If the event occurred on hospital day N, respond with: hod#N (e.g., hospital day 5 → hod#5)
+- If the event includes a time-of-day expression such as "morning," "night," "noon," or "midnight", respond with: tod
+- If the event does not match any of the above, respond with: n/a
+Note) Only information from the note should be used for inference; relying on prior knowledge or general practice for inference is strictly prohibited.
+Answer: [Choose one option: adm, dis, yesterday, pod#N, hod#N, tod, n/a]

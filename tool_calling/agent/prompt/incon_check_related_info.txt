@@ -1,0 +1,19 @@
+The following shows a clinical note and information about an event, as well as the search results for items in the database.
+From this clinical note, identify the meaning of the event, then find items in the database search results that are similar to it, and output the five most relevant items, separated by ";;".
+
+Line number: <<line_number>>, Candidate entity: <<candidate_entity>>, Related information: <<candidate_value>>
+
+Clinical Note 
+<<clinical_note>>
+
+Search Results
+<<search_result>>
+
+
+Output example)
+Reason: The given entity, BP, is an abbreviation for blood pressure, and the related items are "Arterial BP [Systolic]" and "NBP [Systolic]".
+Items: Arterial BP [Systolic];;NBP [Systolic]
+
+Output format)
+Reason:
+Items:

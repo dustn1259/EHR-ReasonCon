@@ -1,0 +1,27 @@
+What is the <<<start_or_end>>> date (+time) of the <<<ENTITY>>> in line <<<LINE_NUMBER>>>?
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+Choose Option:
+1. <<<start_or_end>>> : after YYYY-MM-DD
+e.g.,. <<<start_or_end>>> after 2020-11-11
+2. <<<start_or_end>>> : from YYYY-MM-DD(HH:MM:SS) to YYYY-MM-DD(HH:MM:SS)
+e.g.,. <<<start_or_end>>> after 2020-11-11 but <<<start_or_end>>> before 2022-11-13
+3. <<<start_or_end>>> : exact date( YYYY-MM-DD(HH:MM:SS))
+e.g.,. <<<start_or_end>>> admission date.
+
+Output Format Example:
+If the note says “Patient discoutinued on 2022-11-11”, then output:
+end 2022-11-11
+Only return the selected output format with date/time (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS). Do not include any explanation, extra text, or quotes.
+Refer to Temporal Event Extraction for this.
+
+[History of chat]
+<<<hos>>>
+
+Just give me the option you choose. Use Temporal Event Extraction and provide the time in the YYYY-MM-DD(HH:MM:SS) format as output. (When temporal expressions are presented in HH:MM or HH:MM:SS format (e.g., 02:15PM), convert them to 24-hour time format (e.g., 14:15:00) for consistency.)
+Output:

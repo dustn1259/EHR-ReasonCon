@@ -1,0 +1,32 @@
+Read the clinical note and and give the specific time information.
+
+Output format:
+Format 1) YYYY-MM-DD HH times of day 
+Format 2) YYYY-MM-DD HH:MM:SS times of day
+
+Example of Output format)
+2025-11-11 night
+2025-11-11 13:00:00 morning
+
+Rules you must follow:
+1. The date must be written in the yyyy-mm-dd format.
+    e.g.,) admission morning -> yyyy-mm-dd morning
+2. If the exact date (yyyy-mm-dd) is unknown, write only the times of day.
+3. The times of day is mandatory and cannot be omitted.
+4. Do not use any format other than the two formats shown above.
+5. Do not include any other messages, explanations, or text in the output. Only follow the output format exactly.
+
+Clinical Note:
+<<<CLINICAL NOTE>>>
+
+ENTITY: line number <<<LINE_NUMBER>>> : <<<ENTITY>>> 
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+* Time analysis 
+<<<TIME_ANALYSIS>>>
+
+*The "tod" mentioned in the Time Analysis section indicates that the corresponding entity always includes a times of day in its time information.
+Refer to the <Temporal Event Extraction> and Time Analysis sections, and output the correct answer.
+Output:

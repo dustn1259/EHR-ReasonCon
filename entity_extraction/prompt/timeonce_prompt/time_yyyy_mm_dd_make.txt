@@ -1,0 +1,34 @@
+What is the date or range (+time) of the <<<ENTITY>>> in line <<<LINE_NUMBER>>>?
+HOD is based on the date of admission, while POD is based on the date of surgery (operation).
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+[Target Event]
+Line number: <<<Line_number>>>
+Entity: <<<ENTITY>>>
+
+[Extracted Time Related Information]
+<<FIRST_OUTPUT>>
+ 
+
+Choose Option:
+1. after YYYY-MM-DD
+e.g., after 2020-11-11
+2. before YYYY-MM-DD
+e.g., before 2020-11-11
+3. between YYYY-MM-DD(HH:MM:SS) and YYYY-MM-DD(HH:MM:SS)
+e.g., between 2022-11-11 and 2022-11-13
+4. cannot infer the exact dates
+
+Output Format Example:
+If the note says "Patient discoutinued on 2022-11-11", then output:
+2022-11-11
+Only return the selected output format with date/time (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS). Do not include any explanation, extra text, or quotes.
+Refer to Temporal Event Extraction for this.
+
+Use Temporal Event Extraction and provide the time in the YYYY-MM-DD(HH:MM:SS) format as output. (When temporal expressions are presented in HH:MM or HH:MM:SS format (e.g., 02:15PM), convert them to 24-hour time format (e.g., 14:15:00) for consistency.)
+Output:

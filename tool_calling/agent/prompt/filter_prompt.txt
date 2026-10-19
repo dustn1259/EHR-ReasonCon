@@ -1,0 +1,14 @@
+Query) The size of the table is too large, so I have summarized the unique values for each column as shown below. 
+Please let me know the name of the column you want information from, along with the corresponding targets (separated by ;;) for that column.
+Column: [contents] format is used, with the given information provided for each column. (e.g., If the column is "LABEL" and items are "WBC", "RBC", "Heart Rate", then LABEL: ['WBC', 'RBC', 'Heart Rate'] will be given.)
+
+For example, if you want to get the results for those whose LABEL is one of WBC, RBC, or White Blood Cell, you can present the results like this.
+Reason: [Reason why you want to check WBC;;RBC;;White Blood Cell]
+Column: LABEL
+Target: WBC;;RBC;;White Blood Cell
+<<COLUMNS>>
+---
+Output format)
+Reason: [Reason why you want to check them]
+Column: [The name of the column you want to retrieve information from. ex) LABEL]
+Target: [The target you want to find in that column. ex) WBC;;RBC;;White Blood Cell]

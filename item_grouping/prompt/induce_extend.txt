@@ -1,0 +1,25 @@
+Task: You are extending a clinical ontology for the items recorded in the MIMIC-III database. Below is the current list of <<<LEVEL>>> categories, then a new batch of items. Decide whether the current categories are sufficient.
+
+<<<SCOPE>>>
+
+Current <<<LEVEL>>> categories:
+<<<CATEGORIES>>>
+
+Input format: each line is one recorded item name, optionally followed by ` : [examples of its recorded values]`.
+(The value list is weak context only. Categorize by what the item clinically IS, not by the shape of its values.)
+
+Guidelines:
+1. Propose a NEW category only when several items in this batch have no reasonable home in the current list. A single odd item is not enough -- it belongs in the catch-all.
+2. Do not propose a category that overlaps or duplicates an existing one, even under a different name.
+3. Do not rename, split, or restructure existing categories.
+4. Name each new category with a short clinical noun phrase.
+5. If every item fits the current categories, output exactly: NONE
+
+Output Format:
+Return one new category per line, in this exact format and nothing else:
+- category name | one-sentence definition of what belongs here | example items from this batch that need it
+
+Items:
+<<<INPUT>>>
+
+Output:

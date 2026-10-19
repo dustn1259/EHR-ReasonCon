@@ -1,0 +1,94 @@
+In the given Clinical Note, use a pre-defined list of "entities and their representative associated values" as the "answer key".
+If there is statistical or semantic similarity, extract the corresponding entity from the clinical note.
+Attach to each extracted entity the representative values (e.g., dose, measurement and unit, procedure site, etc.) that most frequently co-occur across many patient records.
+
+Explanation based on examples of pre-defined "entities and their representative associated values":
+Potassium Chloride:	['2', '7', '10', '5', '8', '50', '4']
+-> [Entity identification] In patient A’s EHR record, "Potassium Chloride" was mentioned. 
+-> [Associated value extraction] Analysis of the entire patient database shows that the values/doses most frequently recorded together with Potassium Chloride are '2', '7', '10', '5', '8', '50', '4'.
+=> [Interpretation] For this drug, numeric values or doses are recorded in the EHR.
+
+Pheresis Catheter: ['Left Femoral.', 'Right IJ']
+-> [Entity identification] In patient A’s EHR record, a procedure for "Pheresis Catheter" was confirmed.
+-> [Associated value extraction]  In the entire patient database, the procedure sites most frequently mentioned with Pheresis Catheter are 'Left Femoral' and 'Right IJ'.
+=> [Interpretation] In the EHR table, the procedure site is stored for Pheresis Catheter.
+
+Abdomen Assessment: ['Firm Distended', 'Firm', 'Obese', 'Open', 'Ascites', 'Rebound Tenderness', 'Soft Distended', 'Soft', 'Non-Distended', 'Tender']
+-> [Entity identification] In patient A’s EHR record, a note regarding "Abdomen Assessment" was confirmed.
+-> [Associated value extraction] Across the entire patient database, the evaluation results or states most frequently recorded for "Abdomen Assessment"  are 'Firm Distended', 'Firm', 'Obese', 'Open', 'Ascites', 'Rebound Tenderness', 'Soft Distended', 'Soft', 'Non-Distended', 'Tender'.
+=> [Interpretation] In the EHR, Abdomen Assessment records the patient’s abdominal condition or exam findings. “Soft” and “Non-Distended” are stored as separate items.
+
+* Note: For some entities, there may be no frequently occurring associated values.
+
+Output format)
+clinical note line number. entity in the note (same level as an entity in the EHR table): [associated value1] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+clinical note line number. entity in the note same level as an entity in the EHR table): [associated value2] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+clinical note line number. another entity in the note (same level as an entity in the EHR table): [associated value1] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+
+Task example)
+Pre-defined list of entities and their representative associated values (examples):
+Abdominal X-Ray: []	
+Abdominal Assessment: ['Firm Distended', 'Firm', 'Obese', 'Open', 'Ascites', 'Rebound Tenderness', 'Soft Distended', 'Soft', 'Non-Distended', 'Tender']
+Skin Temperature: ['Hot', 'Warm', 'Cold', 'Cool']	
+Temperature Site: ['Blood', 'Rectal', 'Oral', 'Tympanic']
+Temperature Fahrenheit:	[97.8, 98.0, 98.2, 98.6, 98.4, 97.6, 97.0]
+NBP Alarm Source: ['Systolic', 'Diastolic', 'Mean']
+Red Blood Cells:  ['3.28', '3.34', '3.27', '3.29', '3.37']
+Non Invasive Blood Pressure systolic: [107.0, 108.0, 109.0, 110.0, 111.0, 112.0]
+Non Invasive Blood Pressure diastolic: [54.0, 55.0, 56.0, 57.0, 58.0, 59.0, 60.0]
+Docusate Sodium: ['400', '0.1', '100', '0.25-1', '50']
+Heart Rate: [160.0, 130.0, 100.0, 135.0, 140.0]
+Heart Rhythm: ['V Paced', 'AV Paced', 'ST (Sinus Tachycardia) ', 'SR (Sinus Rhythm)', 'A Paced', 'AF (Atrial Fibrillation)', 'LBBB (Left Bundle Branch Block) ', 'SB (Sinus Bradycardia)', '1st AV (First degree AV Block) ', 'A Flut (Atrial Flutter) ']
+IV Site #1: ['Red', 'Infusing Well', 'Puffy', 'Infiltrate', 'Soft', 'Phlebitic', 'NaN']
+Lisinopril: [20,40,5,10,NaN]
+Muscular Abnormality: ['Contractures', 'Atrophy', 'Comment', 'NaN']
+
+Example Clinical note)
+0. Intravenous fluids were initiated
+1. Vitals: T: 97 BP: 94/49 on 0.06 levophed 
+2. CV: Regular rate and rhythm
+3. Abdomen:  soft, non-tender, non-distended
+4. The patient developed hypertension, was prescribed Lisinopril, and their BP improved to 130/85 mmHg
+5. Musculoskeletal examination was normal.
+
+Output:
+Line number 0. Intravenous fluids: [] - [IV site #1]
+-> Rationale: The initiation of IV can be associated with IV Site #1.
+Line number 1. T: [97] - [Temperature Fahrenheit]
+-> Rationale: In the pre-defined list, the Temperature Fahrenheit entity holds temperature values. The “T” recorded in the note is an abbreviation for temperature and is semantically linked to this entity. Therefore, the numeric value “97” recorded with “T” is extracted as the value for Temperature Fahrenheit.
+Line number 1. BP: [94] - [Non Invasive Blood Pressure systolic]
+-> Rationale: We know from the pre-defined entities that BP is stored as SBP and DBP (non-invasive). Among the BP values, “94” can be associated with the entity Non Invasive Blood Pressure systolic. In the note’s “BP 94/49,” the first number, “94,” represents the systolic blood pressure, so it is extracted as this entity’s value.
+Line number 1. BP: [49] - [Non Invasive Blood Pressure diastolic]
+Line number 2. rate: [regular] - [Heart Rate]
+-> Rationale: Heart Rate is typically recorded as a numeric value, and regularity can be inferred from that context; thus the value is related. Also, from the pre-defined list, the Heart Rate entity is semantically related to the word “rate” in the note, so we extract the entity as “rate.”
+Line number 2. rhythm: [regular] - [Heart Rhythm]
+-> Rationale: The pre-defined Heart Rhythm entity holds rhythm types such as “SR (Sinus Rhythm).” The phrase “Regular … rhythm” in the note directly corresponds to this entity. Since “SR” implies a “regular” state, we extract “regular” as the value.
+Line number 3. Abdomen: [soft] - [Abdominal Assessment]
+-> Rationale: “Abdomen” in the note corresponds to the pre-defined Abdominal Assessment entity. The accompanying term “soft” is one of the valid states for this entity, so it is extracted as a standalone item.
+Line number 3. Abdomen: [non-tender] - [Abdominal Assessment]
+Line number 3. Abdomen: [non-distended] - [Abdominal Assessment]
+Line number 4. hypertension: [] - [Non Invasive Blood Pressure systolic, Non Invasive Blood Pressure diastolic]
+-> Rationale: We extracted “hypertension” as an entity because BP values are stored in an EHR table, which allows inference of hypotension/hypertension states. Based on this relationship, we extract the entity “hypertension,” but since no specific value is specified, the value is left empty.
+Line number 4. Lisinopril: [] - [Lisinopril]
+-> Rationale: The pre-defined list clearly contains the medication entity “Lisinopril.” Since “Lisinopril” appears in the note, we extract this entity; however, no dosage information—the representative associated values in the list—is provided, so the value is left empty.
+Line number 4. BP: [130] - [Non Invasive Blood Pressure systolic]
+Line number 4. BP: [85] - [Non Invasive Blood Pressure diastolic]
+Line number 5. Musculoskeletal examination: [normal] - [Muscular Abnormality]
+-> Rationale:It seems that for 'Muscular Abnormality', either the abnormal value is recorded or it is marked as 'NaN' to indicate absence. Therefore, it appears that a 'normal' finding could also be linked to the 'Musculoskeletal examination'.
+
+Cautioence 1, “levophed” is not extracted because there is no corresponding entry for it in the pre-defined list of entities and representative associated values.
+
+Extract entities from the clinical note based on a predefined list of entities and their representative values.
+
+Pre-defined list of entities and their representative associated values)
+<<<PREDEFINED_VALUES>>>
+
+Clincal Note:
+<<<CLINICAL_NOTE>>>
+
+Output:
+Output format)
+Line number #. entity in the note (same level as an entity in the EHR table): [associated value1] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+Line number #. entity in the note (same level as an entity in the EHR table): [associated value1] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+Line number #. entity in the note (same level as an entity in the EHR table): [associated value1] - [Linking entity1(ehr table), linking entity2(ehr table),...]
+The output must start with the exact word 'Line number' as the very first word (no quotation marks, capital L).

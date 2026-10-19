@@ -1,0 +1,85 @@
+Given a clinical note, please categorize and segment the content into subtexts.
+Note Information)
+- The clinical note provided is a nursing note.
+- The format of a nursing note is typically structured as Patient Information - Assessment - Action - Response.
+
+For each subtext, output only the line number range in the following format:
+Output format)
+- 0~3
+- 4~7
+- 8~10
+
+Example Nursing Note1)
+0:  Patient is a 76yr old female with PMHx significant for IIB pancreatic
+1:  CA, currently on chemotherapy, AS and DM.
+2:  Assessment:
+3:  Pt is now s/p 4units of PRBCs and one unit of platelets.
+4:  Action:
+5:  Monitoring hemodynamic status.
+
+Output)
+- 0~1
+- 2~3
+- 4~5
+
+Example Nursing Note2)
+44   Temperature:
+45   97.8
+46   Arterial BP:
+47   S:
+48   D:
+49   Respiratory rate: 
+50   17 insp/min
+51   Heart Rate: 
+52   80 bpm
+53   Heart rhythm:
+54   SR (Sinus Rhythm)
+55   O2 delivery device:
+56   O2 saturation:
+57   97% %
+58   Pertinent Lab Results:
+59   Sodium:
+60   134 mEq/L
+61   [**2110-5-3**] 05:00 AM
+62   Finger Stick Glucose:
+63   218
+64   [**2110-5-3**] 12:00 PM
+
+Output)
+- 45~57
+- 58~64
+
+Example Nursing Note2)
+10   Hematocrit:
+11   31.2 %
+12   [**2141-2-1**] 02:38 AM
+13   Finger Stick Glucose:
+14   187
+15   [**2141-2-1**] 06:00 PM
+16   Valuables / Signature
+17   Patient valuables: 
+18   Other valuables:
+19   Clothes:  Sent home with:
+20   Wallet / Money:
+21   No money / wallet
+22   Cash / Credit cards sent home with:
+23   Jewelry:
+24   Transferred from: SICU B
+25   Transferred to: [**Hospital Ward Name 790**] 301
+26   Date & time of Transfer:  [**2141-10-22**] 1630
+
+Output)
+- 10~15
+- 16~26 (<- content for 'Valuables / Signature', make it as a single text block)
+
+
+Clinical Note:
+<<<Clinical_Note>>>
+
+⚠️ The clinical note starts at line 0.
+These lines must be treated as part of the clinical document and assigned to an appropriate range.
+If you fail to include these initial lines starting from line 0, your output will be considered entirely incorrect.
+This is a critical error and will result in a full penalty.
+* Ensure that the content for 'Pertinent Lab Results' is created as a single, standalone text block.
+* Ensure that the content for 'Valuables / Signature' is created as a single, standalone text block.
+Output)

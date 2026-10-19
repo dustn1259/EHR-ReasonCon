@@ -1,0 +1,11 @@
+Line number: <<line_number>>, Candidate entity: <<candidate_entity>>, Related information: <<candidate_value>>
+The date (+time) this event likely occurred: <<TIME>>
+
+Clinical Note 
+<<clinical_note>>
+
+Query) What tool do you want to use first? Just choose one (only tool name).
+
+Output format)
+Reason: [The reason for selecting this tool]
+Selected tool: [The name of the tool you selected]

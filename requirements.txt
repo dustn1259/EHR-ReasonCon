@@ -1,0 +1,21 @@
+# pip requirements for the EHR-INSPECTOR release (Python 3.10).
+# Versions pinned to the environment the results were produced with; relax if needed.
+# (entity_extraction/requirements.txt is a full `conda list` freeze kept for reference.)
+
+pandas==2.3.2
+numpy==1.26.4
+scikit-learn==1.7.1               # CountVectorizer in entity_extraction/utils/bm25_search_function.py
+
+# LLM backends
+openai==1.102.0
+google-genai==1.32.0              # Gemini via Vertex AI (GOOGLE_GENAI_USE_VERTEXAI=true + service-account JSON)
+python-dotenv==1.1.1
+
+# string similarity / table formatting used by the tool-calling agent
+textdistance
+strsimpy
+tabulate
+
+# misc
+tqdm==4.67.1
+PyYAML==6.0.2

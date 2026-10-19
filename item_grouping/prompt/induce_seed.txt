@@ -1,0 +1,22 @@
+Task: You are building a clinical ontology for the items recorded in the MIMIC-III database. Propose an initial set of <<<LEVEL>>> categories that would organize the items below.
+
+<<<SCOPE>>>
+
+Input format: each line is one recorded item name, optionally followed by ` : [examples of its recorded values]`.
+(The value list is weak context only. Categorize by what the item clinically IS, not by the shape of its values.)
+
+Guidelines:
+1. Categories must be about clinical meaning (what kind of measurement, substance, or event this is), not about data format or which table it came from.
+2. Aim for <<<TARGET_MIN>>>-<<<TARGET_MAX>>> categories that between them cover everything shown. Prefer few broad categories over many narrow ones.
+3. Categories must be mutually exclusive: an item should have one clearly best home.
+4. Include one catch-all category for administrative, ambiguous, or uninterpretable items.
+5. Name each category with a short clinical noun phrase. No numbering inside the name.
+
+Output Format:
+Return one category per line, in this exact format and nothing else:
+- category name | one-sentence definition of what belongs here
+
+Items:
+<<<INPUT>>>
+
+Output:

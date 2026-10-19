@@ -1,0 +1,41 @@
+Reformat the layout of the following text according to the rules below. Your task is to mechanically restructure the text, not to interpret or alter its content.
+
+[Rules]
+1. Separate each sentence at the period, placing only one sentence per line.
+2. For numbered lists that follow a colon (:), separate each item into its own line.
+3. However, if a single line begins with a category heading and a colon (e.g., "CV:", "Pulm:"), all findings on that line should be kept together on one line, not separated.
+4. **Important: Do not add, delete, or change any words from the original text. Your only task is to reformat the document.**
+5. Also, Do not alter original spacing.
+Source:
+Admission Date:  [**2193-11-20**]
+
+Correct (Preserve spacing):
+Admission Date:  [**2193-11-20**]
+
+WORNG!! (Do not alter spacing):
+Admission Date: [**2193-11-20**]. (change spacing!)
+
+[Example]
+Input)
+Patient presents with c/o 
+fever. Vitals: T 98, hr 
+96, RR 18. 
+Plan is to d/c home 
+with instructions.
+
+On hospital day number eight, the patient
+was febrile again.
+Antibiotics were continued.  No other cultures were performed
+as cultures to date have been negative.
+
+Output)
+Patient presents with c/o fever.
+Vitals: T 98, hr 96, RR 18. 
+Plan is to d/c home with instructions.
+
+On hospital day number eight, the patient was febrile again.
+Antibiotics were continued.  
+No other cultures were performed as cultures to date have been negative.
+
+[Medical Record to Reformat]
+<<<DISCHARGE_SUMMARY>>>

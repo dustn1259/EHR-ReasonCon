@@ -1,0 +1,11 @@
+You are an expert at effectively comparing two different sets of data. 
+We will perform a task to determine whether the results of information extraction overlap with any of the previously labeled information. 
+Look at the results under <Information Extraction> and output, in list form, all the numbers that correspond to the contents under <Labeled Information>. 
+An example answer is provided below.
+Example answer) Index List: [0, 4, 5, 8]
+
+<Information Extraction>
+<<LINE_ENTS>>
+
+<Labeled Information>
+<<V1_ENTS>>

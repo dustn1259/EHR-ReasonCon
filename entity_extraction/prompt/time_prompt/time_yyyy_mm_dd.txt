@@ -1,0 +1,17 @@
+When did <<<ENTITY>>> occur, as stated in line <<<LINE_NUMBER>>>?
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+[History of chat]
+<<<hos>>>
+
+Respond with the date only, using this format:
+- If no specific time is given: YYYY-MM-DD
+- If a specific time is given: YYYY-MM-DD HH:MM:SS
+Do not include any other text. (When temporal expressions are presented in HH:MM or HH:MM:SS format (e.g., 02:15PM), convert them to 24-hour time format (e.g., 14:15:00) for consistency.)
+
+Answer:

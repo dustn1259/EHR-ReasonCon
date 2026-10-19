@@ -1,0 +1,36 @@
+# secrets
+.env
+*.json
+!entity_extraction/utils/asset/*.yaml
+!tool_calling/predefined_mapping.json
+
+# runtime-generated intermediates / outputs
+entity_extraction/output/*
+!entity_extraction/output/.gitkeep
+tool_calling/agent/result/*
+!tool_calling/agent/result/.gitkeep
+item_grouping/output/*
+!item_grouping/output/.gitkeep
+# eval run artifacts (regenerated each run; judge_res holds patient-derived reasoning)
+tool_calling/agent/*.pkl
+# run-coordination file — rewritten each run with the current (MIMIC) HADM_ID; never commit it
+tool_calling/current_hadm_id.txt
+
+# per-patient SQLite DBs — MIMIC-derived; auto-built on first use by item_search_tool.ensure_patient_db
+tool_calling/new_final_db/
+
+# MIMIC-derived dataset — download from PhysioNet, do NOT commit to public GitHub.
+# Holds notes, gold labels, and patient_data/{hadm}/ — place the PhysioNet download here.
+EHR_ReasonCon/
+# MIMIC-III v1.4 tables — separate PhysioNet download, place here (or set MIMIC_DIR); never commit
+mimiciii/
+# the PhysioNet archive itself, if left in the repo dir
+*.zip
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# local assistant/editor settings
+.claude/

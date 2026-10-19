@@ -1,0 +1,8 @@
+Based on the nursing notes, tell me when the given entity '<<<ENTITY>>>' (line <<<LINE>>>) occurred. Respond only with YYYY-MM-DD or YYYY-MM-DD HH:MM:SS (24hr). Do not provide any other text.
+Remember, Dates are generally written in nursing notes in the [**mm-dd**] style
+
+Nursing Note)
+<<<NURSING_NOTE>>>
+
+Give me only the answer, without any other text!
+Answer: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS (24hr)

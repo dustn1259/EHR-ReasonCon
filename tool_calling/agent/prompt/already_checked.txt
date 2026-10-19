@@ -1,0 +1,19 @@
+I designed a framework that extracts events from clinical notes and checks whether these events are consistent with the tables in the EHR. However, since the same event can be extracted in different forms, it is necessary to check whether there are duplicate events. Below is a description of the current target for consistency checking, along with the clinical note containing the target to be checked. Underneath that, there are five events that have already been checked.
+
+Your task is: if any of these existing events contain content that is almost the same as the current event to be checked, output "yes"; if not, output "no".
+[Line number: <<line_number>>, Candidate entity: <<candidate_entity>>, Related information: <<candidate_value>>]
+
+[Clinical Note]
+<<clinical_note>>
+
+[5 events that have already been checked]
+<<already_events>>
+
+Task: If the given event has content that is almost identical to any of [5 events that have already been checked], output "yes"; if not and it is a new event, output "no".
+Output example)
+Reason: The answer to the given entity "Soft" is yes because an examination for "Abd: Soft" has already been conducted.
+Result: yes
+
+Output format)
+Reason:
+Result: (yes or no) 

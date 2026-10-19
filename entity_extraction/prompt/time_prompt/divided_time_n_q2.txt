@@ -1,0 +1,27 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like "treatment or test was performed at a certain time" are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Question1. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+(Your Answer)
+Reason: <<Q1_REASON>>
+Answer: No.
+
+Question2. 
+
+
+[Answer Format]
+Reason:
+Answer:

@@ -1,0 +1,15 @@
+Extract either a procedure or a diagnosis in the format: [procedure1;; diagnosis1]
+*Return only the list with no additional text. If no procedure or diagnosis is found, return an empty list: []
+;; means separate entity
+Example)
+210:    Discharge Diagnosis:
+211:    ADMITTING DIAGNOSIS:
+212:    ===================
+213:    Acute Pancreatitis,
+214:    Alcohol-related
+215:    Hypertension, Essential (controlled)
+216:    Electrolyte Imbalance – Hypokalemia
+217:    Acute Kidney Injury, likely pre-renal etiology
+Output: [Acute Pancreatitis, Alcohol-related;; Hypertension, Essential (controlled);;Electrolyte Imbalance – Hypokalemia;;Acute Kidney Injury, likely pre-renal etiology]
+
+Let's extract the entities!

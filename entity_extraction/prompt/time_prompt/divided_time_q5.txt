@@ -1,0 +1,36 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like "treatment or test was performed at a certain time" are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Previous Question1. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+(Your Answer)
+<<Reason_Answer_1>>
+
+Previous Question2. Was the entity (<<<ENTITY>>>) clearly stated or contextually inferable to have occurred over a specific period (range) of time?
+(Your Answer)
+<<Reason_Answer_2>>
+
+Previous Question3. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, which of the following three categories does it fall into?
+(Your Answer)
+<<Reason_Answer_3>>
+
+Current Question. Is the date of the treatment specified in the structured date-time format? (e.g., yyyy-mm-dd hh:mm:ss, yy-m-d, yy-mm-dd hh:mm)  
+Answer choices:
+1. Yes. (Only if it appears in the exact yyyy-mm-dd, mm-dd or yyyy-mm-dd hh:mm:ss format itself in the note)
+2. No.  (All cases where the date associated with an entity is not in the yyyy-mm-dd format, such as discharge medications, physical exams on admission, or relative time references like POD#N or HOD#N)
+
+[Answer Format]
+Reason:
+Answer:

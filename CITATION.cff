@@ -1,0 +1,132 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code or the EHR-ReasonCon benchmark, please cite the paper
+  (preferred-citation) and the PhysioNet dataset record (references).
+title: "EHR-INSPECTOR: code for EHR-ReasonCon consistency verification"
+type: software
+repository-code: "https://github.com/dustn1259/EHR-ReasonCon"
+url: "https://arxiv.org/abs/2605.26463"
+authors:
+  - family-names: Kwon
+    given-names: Yeonsu
+  - family-names: Kim
+    given-names: Jiho
+  - family-names: Choi
+    given-names: Junseong
+  - family-names: Rabaey
+    given-names: Paloma
+  - family-names: Kim
+    given-names: Minseo
+  - family-names: Im
+    given-names: Sujeong
+  - family-names: Yang
+    given-names: Jeewon
+  - family-names: Lee
+    given-names: Jun-Min
+  - family-names: Lee
+    given-names: Sangji
+  - family-names: Kim
+    given-names: Jiwon
+  - family-names: Yoon
+    given-names: Hangyul
+  - family-names: Kwon
+    given-names: Hyunwook
+  - family-names: Choi
+    given-names: Edward
+preferred-citation:
+  type: article
+  title: "Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records"
+  authors:
+    - family-names: Kwon
+      given-names: Yeonsu
+    - family-names: Kim
+      given-names: Jiho
+    - family-names: Choi
+      given-names: Junseong
+    - family-names: Rabaey
+      given-names: Paloma
+    - family-names: Kim
+      given-names: Minseo
+    - family-names: Im
+      given-names: Sujeong
+    - family-names: Yang
+      given-names: Jeewon
+    - family-names: Lee
+      given-names: Jun-Min
+    - family-names: Lee
+      given-names: Sangji
+    - family-names: Kim
+      given-names: Jiwon
+    - family-names: Yoon
+      given-names: Hangyul
+    - family-names: Kwon
+      given-names: Hyunwook
+    - family-names: Choi
+      given-names: Edward
+  year: 2026
+  journal: "arXiv preprint"
+  url: "https://arxiv.org/abs/2605.26463"
+  identifiers:
+    - type: other
+      value: "arXiv:2605.26463"
+      description: "arXiv identifier (cs.CL)"
+references:
+  - type: dataset
+    title: "EHR-ReasonCon: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records"
+    version: "1.0.0"
+    year: 2026
+    publisher:
+      name: PhysioNet
+    doi: "10.13026/7m91-3010"
+    url: "https://physionet.org/content/ehr-reasoncon/1.0.0/"
+    authors:
+      - family-names: Kwon
+        given-names: Yeonsu
+      - family-names: Kim
+        given-names: Jiho
+      - family-names: Choi
+        given-names: Junseong
+      - family-names: Rabaey
+        given-names: Paloma
+      - family-names: Kim
+        given-names: Minseo
+      - family-names: Im
+        given-names: Sujeong
+      - family-names: Yang
+        given-names: Jeewon
+      - family-names: Lee
+        given-names: Jun-Min
+      - family-names: Lee
+        given-names: Sangji
+      - family-names: Kim
+        given-names: Jiwon
+      - family-names: Yoon
+        given-names: Hangyul
+      - family-names: Kwon
+        given-names: Hyunwook
+      - family-names: Choi
+        given-names: Edward
+  - type: article
+    title: "PhysioNet as a global platform for biomedical research"
+    year: 2026
+    journal: "Nature Health"
+    doi: "10.1038/s44360-026-00096-z"
+    authors:
+      - family-names: Pollard
+        given-names: Tom
+      - family-names: Moody
+        given-names: Benjamin E.
+      - family-names: Lehman
+        given-names: Li-wei
+      - family-names: Gow
+        given-names: Brian
+      - family-names: Fernandes
+        given-names: Chrystinne
+      - family-names: Xie
+        given-names: Chen
+      - family-names: Johnson
+        given-names: Alistair
+      - family-names: Mark
+        given-names: Roger G.
+      - family-names: Heldt
+        given-names: Thomas

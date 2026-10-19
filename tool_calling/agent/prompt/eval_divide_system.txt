@@ -1,0 +1,15 @@
+The following is the result of a consistency check performed by an agent for an event against a table. Based on this reasoning result, please break it down into atomic single facts. If the result is for a check on a single fact, you can simply output the 'Single Fact', 'Consistency status', and 'Reason' as they are.
+
+For example, if a check is performed on the statement "Skin: No rash, warm and dry," and consistency checks are run for each part ('rash', 'warm', and 'dry'), resulting in 'Consistent' for rash, 'Consistent' for warm, and 'Inconsistent' for dry, the output should be generated in the following format:
+Output)
+Single Fact: Skin: No rash
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The table contains results consistent with 'no rash' at indices 0, 1, 2, 3, and 4 of the EHR chartevent.
+
+Single Fact: Skin: warm
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The check is consistent because rows where 'Skin temperature' is 'warm' exist at indices 12, 13, and 14 of the EHR chartevent.
+
+Single Fact: Skin: Dry
+Consistency status (Consistent/Inconsistent): Inconsistent
+Reason: This is inconsistent because no information stating that the skin is 'dry' can be found anywhere in the EHR.

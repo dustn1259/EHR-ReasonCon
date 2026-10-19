@@ -1,0 +1,68 @@
+Instructions:
+Read the clinical note and answer the question about the entity <<<ENTITY>>> located on line <<<LINE_NUMBER>>>.
+Base your answers only on the information explicitly stated in the note.
+Do not rely on prior medical knowledge, assumptions, or general practices.
+The evidence must be clearly supported by the text itself.
+
+Output format:
+1: Answer
+2: Answer
+...
+
+Clinical Note:
+This note is a core daily record written by nurse in the ICU, used to track a patient’s clinical course, including changes in condition, response to treatment, test results.
+It typically contains the patient’s basic background information (e.g., family history, past medical history prior to admission) as well as a detailed account of significant events or changes that occurred on the day prior to the note’s entry.
+Admission: <<<Admission>>>
+Date of Note Entry (recorded after today rounds): <<<Chartdate>>>
+<<<CLINICAL NOTE>>>
+
+Questions:
+* STRICTLY adhere to the output format provided. Your answer MUST consist only of the numbered list matching the format. Do not include any additional text or explanations outside of this numbered list.
+Focus on entity "<<<ENTITY>>>".
+The sentence window that contains the entity "<<<ENTITY>>>" is: <<<CLINICAL_NOTE_CONTEXT>>>
+
+1. Does the entity "<<<ENTITY>>>" represent a sub-event (i.e., a section header that introduces a category), with no value or description written on the same line? [Yes/No]
+(Guide: if the entity appears as a pure category/section header and no sub-entries or values are provided under it → yes,  otherwise → no)
+
+Definition of a Sub-event (Format))
+Usually written as header: → ends with a colon :
+* "Only the 'header:' format is supported."
+Example format) Nutrition:
+
+Example Clinical note)
+Lines:
+18 Gauge - [**2192-9-16**] 08:34 PM
+Prophylaxis:
+DVT: Boots
+
+- If the entity is "Lines", the appropriate answer is: Yes (the subsection is Lines and no sub-events exist)
+- If the entity is "18 Gauge", the appropriate answer is: No (does not correspond to the sub-event format)
+- If the entity is "Prophylaxis", the appropriate answer is: Yes (the subsection is Prophylaxis and no sub-events exist)
+- If the entity is "DVT", the appropriate answer is: No (Reason: a sub-event Boots exists)
+
+2. Is <<<ENTITY>>> part of the Past Medical History? (e.g., Past medical history and home illness episodes(event occur before admission)) [Yes/No]
+** Note: If “currently” is used, it’s hard to regard the entity as part of the past; only the entity directly linked to “currently” should be considered present.
+Example Note) Patient is a 76yr old female with PMHx significant for IIB pancreatic CA, currently on chemotherapy.
+
+- According to the note, the entity “IIB pancreatic CA” is part of the PMHx, so it should be regarded as past medical history.
+- According to the note, the entity “chemotherapy” is described as “currently,” so it should be considered ongoing at the time the note was written.
+
+3. Is <<<ENTITY>>> an event from a previous hospitalization (e.g., [Hospital 3058])? [Yes/No]
+4. Is <<<ENTITY>>> part of the family's medical history? [Yes/No]
+5. Is <<<ENTITY>>> a future plan? [Yes/No]
+6. Is <<<ENTITY>>> a Diagnosis? [Yes/No]
+(Examples that are NOT diagnoses: Tachycardia, Fever, Hypoxia, Hypotension, Sinus tachycardia, vomitting etc. -> Answer No)
+(Examples that ARE diagnoses: Pneumonia, Diabetes, Heart failure, Atrial fibrillation, etc. -> Answer Yes)
+7. Is <<<ENTITY>>> a Recommendations? [Yes/No]
+* It should say “Recommendation” in the Directly Clinical Note for the answer to be yes.
+8. Is <<<ENTITY>>> occur in ED(Emergency Depertment)? [Yes/No]
+9. Is <<<ENTITY>>> a Department? [Yes/No]
+10. Is the value of <<<ENTITY>>> the baseline? [Yes/No]
+Condition for "Yes": The answer is "Yes" if and only if the text explicitly contains the keyword "baseline" directly associated with the <<<ENTITY>>>.
+- For the text Cr is 10.1, the answer is No. (Reason:the word "baseline" is not present.)
+- For the text Baseline Cr is 10.1, the answer is No. (Reason: the word "baseline" is explicitly present.)
+11. Is <<<ENTITY>>> an event from a previous hospitalization (e.g., [Hospital 3058])? [Yes/No]
+Output format:
+1: Answer (Answer only with Yes or No.)
+2: Answer (Answer only with Yes or No.)
+...

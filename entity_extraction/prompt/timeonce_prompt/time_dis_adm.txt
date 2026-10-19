@@ -1,0 +1,37 @@
+1. Identify the admission date among the following time points, and output the period from the day before to the day after the admission date.
+2. Then, identify the discharge date and output the period from the day before to the day after the discharge date.
+3. Lastly, the period from the day before admission to the day after discharge should be identified.
+(If the date cannot be found, output 'None' for that period.)
+
+
+Example 1)
+<Temporal Event Extraction>
+2025-06-20: Emergency room visit
+2025-06-21: Admission date
+2025-06-22: Surgery
+2025-06-25: Lab test
+2025-06-28: Discharge date
+2025-06-30: Outpatient follow-up
+
+<Answer>
+Admission: 2025-06-20 to 2025-06-22
+Discharge: 2025-06-27 to 2025-06-29
+Whole Range: 2025-06-20 to 2025-06-29
+
+Example 2)
+<Temporal Event Extraction>
+2025-06-20: Emergency room visit
+2025-06-22: Surgery
+2025-06-25: Lab test
+2025-06-28: Discharge date
+2025-06-30: Outpatient follow-up
+
+<Answer>
+Admission: None
+Discharge: 2025-06-27 to 2025-06-29
+Whole Range: None
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+<Answer>

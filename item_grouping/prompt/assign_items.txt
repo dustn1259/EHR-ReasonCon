@@ -1,0 +1,28 @@
+Task: Assign each item recorded in the MIMIC-III database to exactly one <<<LEVEL>>> category from the list below.
+
+<<<SCOPE>>>
+
+<<<LEVEL>>> categories:
+<<<CATEGORIES>>>
+
+Input format: each line is one recorded item name, optionally followed by ` : [examples of its recorded values]`.
+(The value list is weak context only. Classify by what the item clinically IS, not by the shape of its values.)
+
+Output Format:
+Return results in this exact format (no indices; include colon and a space):
+- Given item name1 : category name
+- Given item name2 : category name
+- Given item name3 : category name
+...
+
+Rules:
+1. Classify by item name only. Ignore the value list.
+2. If an item could fit multiple categories, choose the most clinically relevant one.
+3. Copy the item name back verbatim, exactly as given.
+4. Output one line per input item, in the same order, and nothing else.
+5. Use only category names from the list above. If truly uncertain, output Unknown.
+
+Items:
+<<<INPUT>>>
+
+Output:

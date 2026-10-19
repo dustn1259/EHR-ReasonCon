@@ -1,0 +1,49 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like "treatment or test was performed at a certain time" are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Previous Question. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+(Your Answer)
+<<Reason_Answer>>
+
+Current Question. Was the entity (<<<ENTITY>>>) clearly stated or contextually inferable to have occurred over a specific period (range) of time?
+
+Answer choices:
+1. A time range can be inferred.
+2. Only a single time point is clear.
+
+Answer "1. A time range can be inferred" if any of the following apply:
+1. Both a start date and an end date are explicitly mentioned, indicating the entity occurred over a specific period.
+2. A start date and a duration (e.g., “for X days”) are given, allowing the end date to be calculated.
+3. An end date and a duration are given, allowing the start date to be calculated.
+4. Specific dates are not given, but from the context it is clear that the entity occurred between two events (A and B) or within a defined timeframe.
+
+Example1: Given entity: temperature 
+Paragraph 1) [02-03] vancomycin treated ...(omited)...
+Paragraph 2) Patient's temperature recorded as 100.4 ...(omited)...
+Paragraph 3) [02-05] Blood cultures negative
+Answer: 1. A time range can be inferred. 
+Reason: The recorded temperature of 100.4 occurred after vancomycin treatment was started on 02-03, and a blood culture result was documented on 02-05. Therefore, it is reasonable to infer that the fever occurred sometime between these two events. Although no specific date is provided for the temperature itself, the context clearly places it between event A (02-03) and event B (02-05).
+This corresponds to Case 4: "Specific dates are not given, but from the context it is clear that the entity occurred between two events (A and B) or within a defined timeframe."
+
+Example2: Given entity: temperature
+Physicial Exam on Admission:
+temperature 99.9
+Reason: The temperature is only mentioned at the time of admission, and there is no information about whether it persisted afterward. Since it is clearly documented at only a single point in time, no time range can be inferred.
+Answer: 2. Only a single time point is clear
+
+[Answer Format]
+Reason:
+Answer:

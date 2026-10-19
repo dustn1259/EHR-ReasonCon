@@ -1,0 +1,11 @@
+Given the following table, determine whether the specified entity is mentioned within the SHORT_TITLE or LONG_TITLE columns.
+If the entity is found in any row, respond with Consistent. If not, respond with Inconsistent.
+
+Please use the following output format:
+Reason: Brief explanation for your decision.
+Result: [Consistent / Inconsistent]
+Row_id: If the result is Consistent, provide the matching row's index (Row ID).
+
+Given entity: <<<ENTITY>>>
+Table:
+<<<EHR_TABLE>>>

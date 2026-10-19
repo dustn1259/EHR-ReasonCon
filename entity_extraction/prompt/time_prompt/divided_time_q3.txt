@@ -1,0 +1,56 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like "treatment or test was performed at a certain time" are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Previous Question1. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+(Your Answer)
+<<Reason_Answer_1>>
+
+Previous Question2. Was the entity (<<<ENTITY>>>) clearly stated or contextually inferable to have occurred over a specific period (range) of time?
+(Your Answer)
+<<Reason_Answer_2>>
+
+Current Question. (short Answer) If any of the following are stated or clearly inferred in the Clinical Note, fill in the appropriate fields below.
+Possible Cases:
+1. Both startdate and enddate are explicitly stated.
+2. Startdate and n-days are stated, allowing you to precisely calculate the enddate.
+3. Enddate and n-days are stated, allowing you to precisely calculate the startdate.
+4. No exact date or duration is given, but from context, it is clear the event occurred between two reference points (e.g., between Feb 3 and Feb 5).
+Important Rules:
+1. Only fill in n-days if the text clearly says something like "for 3 days".
+2. Do not estimate or infer values unless allowed in Case 4
+3. All dates must fall within the patient’s hospitalization period.
+4. Leave any field blank if the required information is not available or not permitted by rules above.
+5. In Case 4, since the event is understood to have occurred between two specific reference points, both date_start and date_end must be filled in.
+
+Example: 
+Given entity: temperature 
+Paragraph 1) Posterative day 1 vancomycin treated ...(omited)...
+Paragraph 2) Patient's temperature recorded as 100.4 ...(omited)...
+Paragraph 3) Posterative day 7 Blood cultures negative
+date_start - Posterative day 1
+date_end - Posterative day 7
+n-days - 
+Reason: No exact date or duration is given, but from context, it is clear that the event occurred sometime between postoperative day 1 and postoperative day 7.
+*Both date_start and date_end are mandatory and must be submitted together. Omission of either will be regarded as a failure to comprehend the instructions, resulting in the disqualification of not only the relevant response but the entirety of the answers submitted.
+
+[Answer Candidates]
+date_start- [Mandatory response field- The date when the event began (either explicitly stated or inferred based on contextual reference point A)]
+date_end- [Mandatory response field- The date when the event ended (either explicitly stated or inferred based on contextual reference point B)]
+duration_days- [Write the n-day, Only fill in n-days if the text clearly says something like "for 3 days".]
+
+[Answer Format]
+Reason:
+Answer:

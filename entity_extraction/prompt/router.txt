@@ -1,0 +1,21 @@
+The following is a segment (subtext) from a clinical note.
+Determine whether this text is written in a structured format or a narrative format.
+
+Classification Criteria
+[Classify as Structured]The text should be considered structured if it corresponds to any of the following cases:
+* Pertinent result – only lab results listed (test name, value, unit, date/time, etc.)
+* Discharge medication – only discharge medications listed (drug name, dose, route, frequency, etc.)
+* Diagnosis section – only diagnostic information listed (discharge/primary/secondary diagnosis)
+* Procedure section – only procedure or surgery names listed (major/secondary procedure)
+If the text contains only specific information organized as lists or tables, classify it as structured.
+
+[Classify as Narrative]
+If the text does not match the above, and instead contains
+diagnostic reasoning, clinical course, uncertainty, or clinician’s judgment
+expressed in natural language sentences, classify it as narrative.
+* Physical exam section must always be narrative.
+
+Output format: [structured | narrative]
+
+Subtext)
+<<<subtext>>>

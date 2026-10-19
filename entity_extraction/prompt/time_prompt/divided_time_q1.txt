@@ -1,0 +1,50 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note. Please answer each question exactly as required in the specified format.
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is explicit and clearly identifiable temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Question. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any explicit and clearly identifiable temporal information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+Note) Statements like "treatment or test was performed at a certain time" are considered the startdate. 
+
+[Cases where the answer should be "Yes"]
+1. If there is a date, a duration, or a phrase that allows the time to be clearly determined (e.g., start date, end date, or duration), answer "Yes."
+2. If the timing of the entity is explicitly stated or clearly linked to another time-related event in the surrounding context (paragraph blocks separated by new lines), also answer "Yes."
+Examples:
+"Shortness of breath occurred on **postoperative day 3**"
+"Recurrent hypotension observed **after February 3rd**"
+"**Discharge** medications"
+"Physician Exam on **admission**"
+In other words, answer "Yes" only when the entity is clearly and explicitly associated with a time expression in the note that allows its timing to be determined.
+
+[Cases where the answer should be "No"]
+1. The entity is mentioned in isolation, without any indication of start time, end time, duration, or temporal clues.
+2. It seems to have occurred during hospitalization but there is no way to determine when it happened.
+3. Only the information from the note should be used for this determination; using assumptions is strictly prohibited.
+4. Cases where only section names like physical exam or chief complaint are mentioned without any temporal information fall under the "No" category.
+
+Example cases where the answer should be "No":
+1) "Chief complaint: fever"
+{fever:}
+Correct Answer: No. There is no determinable time information.
+-> Reason: Although the note states that "fever" is the chief complaint, it does not provide any information about when the fever started. The phrase "chief complaint" alone does not indicate any specific or clearly determinable time point.
+2) "Physical Exam: 
+Gen: alert
+BP: 120/70"
+{BP: 70}
+Correct Answer: No. There is no determinable time information.
+-> Reason: The note mentions a blood pressure value as part of the physical exam, but it does not indicate when the measurement was taken—whether on admission, during hospitalization, or at discharge. The "Physical Exam" itself does not imply a specific point in time when the examination was conducted.
+
+Reason for choose: [You must find evidence from within the note content itself.]
+Answer choices:
+1. Yes. There is clearly determinable time information.
+2. No. There is no clearly determinable time information.
+
+[Answer Format]
+Reason:
+Answer:

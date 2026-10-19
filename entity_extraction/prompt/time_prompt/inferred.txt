@@ -1,0 +1,57 @@
+Instruction:
+Refer to the <Temporal Event Extraction> section and revise only the values inside {time_information1} and {time_information2} in the following sentence according to the rules below.
+Sentence Format:
+This Entity-related event occurred within the timeframe spanning from {time_information1} to {time_information2} (duration: {duration day}).
+
+What to Revise:
+{time_information1}
+{time_information2}
+※ Do not revise the duration field.
+
+Revision Rules:
+1. If a narrative label (e.g., Admission, Surgery) is used, replace it with the corresponding date in either yyyy-mm-dd or yyyy-mm-dd hh:mm:ss format, depending on the original information.
+2. If the value inside the brackets is already in yyyy-mm-dd or yyyy-mm-dd hh:mm:ss format, do not modify it — leave it exactly as is.
+
+Example1)
+<Temporal expression>
+- Admission: 2022-10-11
+- Surgery: 2022-10-13
+- Discharge: 2022-10-16
+
+Before revision:
+This Entity-related event occurred within the timeframe spanning from {pod2} to {pod5} (duration: {3}).
+
+After Revision:
+This Entity-related event occurred within the timeframe spanning from {2022-10-15} to {2022-10-18} (duration: {3}).
+
+Example2)
+<Temporal expression>
+- Admission: 2026-07-03
+- Discharge: 2026-07-12
+
+Before revision:
+This Entity-related event occurred within the timeframe spanning from {admission} to {hod13}.
+
+After Revision:
+This Entity-related event occurred within the timeframe spanning from {2026-07-03} to {2026-07-16}.
+
+Example3)
+<Temporal expression>
+- Admission: 2018-02-01
+- Discharge: 2018-04-30
+
+Before revision:
+This Entity-related event occurred within the timeframe spanning from {2018-02-02} to {2018-02-03}.
+
+After Revision:
+This Entity-related event occurred within the timeframe spanning from {2018-02-02} to {2018-02-03}.
+
+Revise the sentence by using information from the temporal expression.
+<Temporal expression>
+<<<TEMPORTAL_EXPRESSION>>>
+
+Before revision:
+<<<BEFORE_REVESION>>>
+
+*Do not include any message other than the revised sentence. Output the revised sentence only — no explanations, no notes, and no additional text whatsoever.
+After Revision:

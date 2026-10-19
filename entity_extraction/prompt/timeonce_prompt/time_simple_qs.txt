@@ -1,0 +1,165 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note. Please answer each question exactly as required in the specified format.
+
+Question. Did the event explicitly occur at any of the following time expressions? Please indicate the appropriate number along with your reason.
+The Related Time Expression is the time expression that serves as the basis for selecting the corresponding number. If number 6 is selected, write 'None'. For all other numbers, write time expression that supports the selected number.
+
+1. Time of day expressions such as morning, afternoon, last night, Overnight, NOC, AM, PM, or night
+2. When an event occurs at a time represented in a structured format (e.g., yyyy-mm-dd, mm-dd, m-d, yyyy-mm-dd hh:mm:ss).
+3. Admission, Discharge or Yesterday
+4. Clearly occurred on a specific POD# (Postoperative Day#) or HOD# (Hospital Day#).
+5. Occurred between POD#X and POD#Y or between HOD#X and HOD#Y.
+6. There is no time expression related to the event
+
+
+Example 1)
+[Note]
+0   Discharge Medications:
+1   1. Pantoprazole 40 mg Tablet [Month/Year (2)]:
+2   One (1) Tablet PO DAILY (once daily): preferably in the morning.
+3   Disp: 30 Tablet(s) Refills: 3
+4   2. Metoclopramide 10 mg Tablet [Month/Year (2)]:
+5   One (1) Tablet PO TID (3 times a day): 30 minutes before meals.
+6   Disp: 90 Tablet(s) Refills: 1
+7   3. Hydrocodone-Acetaminophen 5-325 mg Tablet [Month/Year (2)]:
+8   One (1) Tablet PO Q6H (every 6 hours) as needed for pain.
+9   Disp: 60 Tablet(s) Refills: 0
+10  4. Diazepam 2 mg Tablet [Month/Year (2)]:
+11  One (1) Tablet PO Q8H (every 8 hours) as needed for muscle spasms.
+12  Disp: 30 Tablet(s) Refills: 0
+
+[Target]
+Line number: 10
+Entity: Diazepam
+
+[Reason, Related Time Expression, Answer]
+Reason: This section is about discharge medications, so the correct answer is number 3, which is discharge.
+Related Time Expression: Discharge
+Answer: 3
+
+Example 2)
+[Note]
+15  Physical Exam:
+16  T 99.1°F P 102 BP 128/72 R 20 SaO2 97%
+17  Gen – alert, in no acute distress, obese
+18  HEENT – pupils equal, neck supple, no lymphadenopathy
+19  Lungs – breath sounds diminished bilaterally at bases, no rales or wheezing
+20  Heart – regular rhythm, tachycardic, no murmurs
+21  Abd – obese, soft, nontender, no rebound or guarding
+22  Extrem –  edema, no cyanosis or clubbing
+
+[Target]
+Line number: 22
+Entity: edema
+
+[Reason, Related Time Expression, Answer]
+Reason: Since no time-related expression appears, number 6 is the correct answer.
+Related Time Expression: None
+Answer: 6
+
+Example 3)
+[Note]
+20 Brief Hospital Course:
+21 Pulmonary/Infectious Disease –
+22 On hospital day 2, the patient experienced worsening oxygenation, requiring escalation to 
+23 high-flow nasal cannula. An ABG showed mild respiratory acidosis with hypoxemia. He was transferred 
+24 to the ICU for closer monitoring. Repeat imaging showed increasing consolidation and a moderate 
+25 right-sided pleural effusion. Thoracentesis was performed, yielding cloudy, exudative fluid 
+26 consistent with empyema. A chest tube was placed, and drainage was initiated with clinical improvement.
+27 
+28 Antibiotics were continued per culture results, with improvement in inflammatory markers. 
+29 Respiratory therapy assisted with pulmonary hygiene, and the patient's cough and 
+30 sputum production decreased.
+31 On hospital day 8, the patient's hemodynamics stabilized without need for vasopressors. He 
+32 defervesced and his leukocytosis began to downtrend. Chest tube output decreased and remained serous. 
+33 The patient was successfully weaned to nasal cannula and transferred back to the medical floor on hospital day 6.
+
+[Target #1]
+Line number: 22
+Entity: oxygenation
+
+[Reason, Related Time Expression, Answer #1]
+Reason: The oxygenation mentioned in line 22 occurred on the hospital day 2, so it corresponds to number 4.
+Related Time Expression: hospital day 2
+Answer: 4
+
+[Target #2]
+Line number: 26
+Entity: drainage
+
+[Reason, Related Time Expression, Answer #2]
+Reason: The drainage mentioned in line 26 occurred on the hospital day 2, so it corresponds to number 4.
+Related Time Expression: hospital day 2
+Answer: 4
+
+[Target #3]
+Line number: 30
+Entity: sputum production
+
+[Reason, Related Time Expression, Answer #3]
+Reason: The sputum production event mentioned in line 30 occurred before hospital day 8, but it cannot be definitively determined to have happened on hospital day 2. Therefore, it can be considered to have occurred sometime between hospital day 2 and hospital day 8.
+Related Time Expression: between hospital day 2 and hospital day 8
+Answer: 5
+
+Example 4)
+[Note]
+30  Physical Exam on admission:
+31  T 97.8°F P 110 BP 140/75 R 16 SaO2 99%
+32  Gen – awake, oriented ×3, mildly distressed due to discomfort
+33  HEENT – normocephalic, atraumatic, oropharynx clear, no scleral icterus
+34  Lungs – clear to auscultation, mild bibasilar crackles
+35  Heart – tachycardic, regular rhythm, no gallops or rubs
+36  Abd – distended but soft, non-tender, normal bowel sounds
+37  Extrem – 2+ pitting edema bilaterally, pulses present
+
+[Target]
+Line number: 35
+Entity: Heart
+
+[Reason, Related Time Expression, Answer]
+Reason: This physical exam was performed at the time of admission, so the correct answer is admission number 3.
+Related Time Expression: Admission
+Answer: 3
+
+Example 5)
+[Note]
+50 On the morning of admission, the patient experienced acute onset chest pain and shortness
+51 of breath while walking to the bathroom. Initial ECG in the emergency department showed ST
+52 depressions in the lateral leads, and troponin-I was elevated at 3.4 ng/mL. He was taken
+53 emergently for coronary angiography, which revealed a 90% stenosis in the proximal LAD.
+54 A drug-eluting stent was successfully placed without complications.
+
+[Target]
+Line number: 50
+Entity: chest pain
+
+[Reason, Related Time Expression, Answer]
+Reason: The chest pain mentioned in line 50 occurred on the morning of admission, so it corresponds to items 1 and 4.
+Related Time Expression: morning of admission
+Answer: 1, 3
+
+Example 6)
+[Note]
+117: # Chest pain: new since admission. likely musculoskeletal vs
+118: mild reflux. no cardiac hx. symptoms improved after
+119: warm compress and omeprazole PO.
+120: .
+
+[Target]
+Line number: 119
+Entity: omeprazole
+
+[Reason, Related Time Expression, Answer]
+Reason: The expression "new since admission" is present, but there is no specific information about the day omeprazole was administered. Therefore, it corresponds to case 6, and the time related information is None.
+Related Time Expression: None
+Answer: 6
+
+
+[Note]
+<<<CLinical Note>>>
+
+
+[Target]
+Line number: <<<Line_number>>>
+Entity: <<<ENTITY>>>
+
+[Reason, Related Time Expression, Answer]

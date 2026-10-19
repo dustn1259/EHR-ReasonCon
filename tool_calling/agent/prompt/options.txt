@@ -1,0 +1,23 @@
+Query) Based on this result, will you determine the presence of consistency (option 1)? Or do you want to use an additional tool to obtain more information (option 2)?
+
+Important instructions:
+- If **any part** of the information from the note is **missing** or **does not match** the structured data, the result must be classified as **Inconsistent**.
+- If a note contains a **composite phrase**, you must break it down into individual components and evaluate each separately.
+- Consistency should be evaluated **row-wise** — that is, all relevant values from the note must appear **together in the same row** of the structured table.
+- Even if individual values exist separately in other rows, the result is considered **Inconsistent** unless they co-occur in the same row.
+    - However, when verifying events such as Lung sound, BP, or ABG that contain multiple values (items), each value (item) must be verified individually. If each value is recorded in the table, the result is Consistent; if any value is missing, that value should be judged as Inconsistent.
+- If at least one of the values mentioned in the clinical note is present in the structured data, it is considered consistent.
+- Only consider information that is **explicitly stated in the note**.
+- If the event is determined to be inconsistent, check the related items once more. After reviewing all relevant items, if the inconsistency remains, finalize the result as Inconsistent.
+- In a discharge summary, when the term "today" is used to describe an event, the exact point in time referred to by "today" cannot be determined. Therefore, if the event occurred at least once during the entire hospitalization period, it is considered consistent.
+
+---
+Output format)
+If it's option 1:
+Reason: [Reason why you can check consistency]
+Option: 1
+
+If it's option 2:
+Reason: [Reason for choosing the tool]
+Selected tool: [The name of the tool you selected]
+Option: 2

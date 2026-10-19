@@ -1,0 +1,42 @@
+Refer to the <Temporal Event Extraction> and output correct answer
+*POD#N = On postoperative day N 
+
+MUST REMEMBER! When temporal expressions allow revision of POD, output only the yyyy-mm-dd format with no other messages. When revision is not possible, output only "we don't know" with no other messages.
+Any other messages will be invalidated.
+
+Output example1)
+<Temporal expression>
+- Admission: 2022-10-11
+- Surgery: 2022-10-13
+- Discharge: 2022-10-16
+
+Before revision:
+POD#2
+
+After revision:
+2022-10-15
+-> The surgery date is 10-13, and POD2 is 2 days after surgery, so the output should be 2022-10-15.
+
+Output example2)
+<Temporal expression>
+- Admission: 2025-04-19
+- Discharge: 2022-10-16
+
+Before revision:
+POD#7
+
+After revision:
+We don't know
+-> We cannot determine when the surgery was performed through temporal expressions. Therefore, we don't know the date of the POD. In this case, we should answer "we don't know."
+
+<Temporal Event Extraction>
+<<<TEMPORTAL_EXPRESSION>>>
+
+MUST REMEMBER! When temporal expressions allow revision of POD, output only the yyyy-mm-dd format with no other messages. When revision is not possible, output only "we don't know" with no other messages.
+Any other messages will be invalidated.
+
+Before Revision:
+<<<POD_OUTPUT>>>
+
+Do not output reasons. Only say yyyy-mm-dd or we don't know. No other messages are absolutely prohibited!
+After revision:

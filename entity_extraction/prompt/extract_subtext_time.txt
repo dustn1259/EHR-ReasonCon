@@ -1,0 +1,85 @@
+You are given a clinical note that has already been split into predefined line ranges ("note sections").
+
+Your task is to **merge adjacent sections only within the "hospital course" range**, based on the following rules:
+
+### Merge Rules:
+- Only apply merging to sections **within the hospital course line range**.
+- Merging should be based on existing note section boundaries.
+- For each eligible sequence, create up to three merged segments:
+> 💬 *Assume that the hospital course is already split into adjacent sections (e.g., A–B, B–C, C–D) based on predefined note boundaries
+1. Attach the next section (A–C)
+→ Merge sections A–B and B–C to form A–C
+✅ Use this when A–B is the first section in the hospital course
+📍 Purpose: Adds immediate forward context without pulling in previous content
+
+2. Attach both previous and next sections (A–D)
+→ Merge A–B, B–C, and C–D to form A–D
+✅ Use this when B–C is a middle section of the hospital course
+📍 Purpose: Provides full context from both sides of the core content
+
+3. Attach the previous section (B–D)
+→ Merge B–C and C–D to form B–D
+✅ Use this when C–D is the last section in the hospital course
+📍 Purpose: Adds prior context before the ending section, without going further forward
+
+⚠️ Only generate merged segments using the patterns above.
+Do not create all possible combinations.
+Make sure that all merged sections stay fully within the hospital course range.
+
+### Example:
+- If the hospital course spans lines 100–130, and the note was split into:
+  - 100–110
+  - 110–120
+  - 120–130  
+→ Then generate these merged ranges:
+  - 100–120 (attach the next)
+  - 100–130 (attach both sides)
+  - 110–130 (attach the previous)
+
+### Output Instructions:
+First, output the list of merged hospital course sections generated according to the merge rules above.
+Then, produce the final updated list of all note sections based on the following criteria:
+- Retain all original note sections that are outside the hospital course range.
+- Remove all original note sections that fall within the hospital course range.
+- Instead, include only the newly merged hospital course sections in their place.
+- Ensure that all sections in the final list are deduplicated and sorted in ascending order.
+
+### Input Format:
+1. Full clinical note text
+2. Existing list of note sections 
+
+### Output Format:
+- Updated list of all note sections
+
+Let's do it!
+
+Input:
+<<<CLINICAL_NOTE>>>
+
+[Existing list of note sections]
+<<<LLM>>>
+
+Output:
+Let's do step by step! Remember, Merging should be based on existing note section boundaries.
+Always write 'Final Output:' before providing the final result.
+✅ Good Example:
+Original hospital course sections:
+- 47~57
+- 57~67
+- 67~77
+Merged hospital course sections: 
+- 47~77
+Final Output: 
+- 0~10
+- 10~30
+- 47~77
+- 80~90 
+
+❌ Wrong Example(If you respond like this, I’ll have to scrap the entire process because of this answer alone.):
+- 47~77
+👉 Only merged result is shown. Missing original sections and full note section list → ❗INVALID❗
+*Rememer) The most important things for this section is that always return the full updated note section list, not just the modified parts!
+
+Give me final Output!
+Reasoning:
+Final Output(Updated list of all note sections: Always return the full updated note section list, not just the modified parts!): 

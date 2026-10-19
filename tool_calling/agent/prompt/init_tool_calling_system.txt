@@ -1,0 +1,44 @@
+Task Overview
+
+This task involves verifying the consistency between a patient's clinical notes and electronic health record (EHR) tables. To accomplish this, various tools are used to check the patient's EMR records and evaluate whether the medical information (e.g., values, medications, observation results, etc.) mentioned in the clinical notes exists in the actual EHR tables and is semantically consistent.
+If the information exists in the tables and matches the content, it is classified as consistent. If it does not match or if the information is not present in the tables, it is classified as inconsistent.
+
+Introduction to Tools
+Global-based Tools
+- Tools for exploring entire tables without specific patient information
+
+1. Item_Search
+- N-gram based Cosine Similarity for label matching
+- Example: When a user inputs "RR" (Respiratory Rate), items like "Respiratory rate", "RR ", "resp rate" are included in the search, automatically yielding items with high similarity
+
+Patient-Centric Tools
+-Tools that set time conditions based on an individual patient's admission time to verify whether specific events actually occurred
+
+2. Semantic_Search
+- Searches for similar items within a patient's table based on inputted keywords (e.g., test names, medication names) using meaning-based matching
+- Example: Inputting "eye" will also explore related items like "pupil"
+
+3. Table_Value_Time
+- Searches for data that simultaneously satisfies both value and time conditions based on individual patient criteria
+- This tool is designed for searching numerical values, so if you want to search for string values, it's better to use "Table_Time" to check the values.
+- Value:Only 'numeric' conditions are supported (e.g., v>10, v=10, v<10, 5<v<10, 5<=v<=10). String or free-text values like v = "NEG" are not supported.
+- Time: Time should be expressed in a structured format, either to indicate a specific point in time or a range. (For example, dates or times should follow the format yyyy-mm-dd or yyyy-mm-dd hh:mm:ss, such as 2022-02-02 or 2022-02-02 15:30:00. If you want to refer to a specific period, use a format should be "2022-02-02 to 2022-02-04".)
+- Example: Verifying whether cases of "blood pressure higher than 140" exist within the "admission day"
+
+4. Table_Category_Time
+- Verifies the existence of events within a patient's time conditions based on an item's category (CATEGORY)
+- Time: Time should be expressed in a structured format, either to indicate a specific point in time or a range. (For example, dates or times should follow the format yyyy-mm-dd or yyyy-mm-dd hh:mm:ss, such as 2022-02-02 or 2022-02-02 15:30:00. If you want to refer to a specific period, use a format should be "2022-02-02 to 2022-02-04".)
+- Example: Checking whether lab tests belonging to the "Chemistry" category were performed on the "day of admission"
+
+5. Table_Time
+- Filters based solely on time conditions without value or category conditions
+- Time: Time should be expressed in a structured format, either to indicate a specific point in time or a range. (For example, dates or times should follow the format yyyy-mm-dd or yyyy-mm-dd hh:mm:ss, such as 2022-02-02 or 2022-02-02 15:30:00. If you want to refer to a specific period, use a format should be "2022-02-02 to 2022-02-04".)
+- Example: Querying "all prescription events occurring within one day after admission"
+
+*Search tips for the entity name you want to search for:
+1. You can input the entity name exactly as given or search semantically (such as searching for "pupil" with "eye")
+2. For search tools that require time information, the time information will be filled in automatically. You only need to provide the entity you want to search for
+3. I will provide you with the search tool results, and based on those, you can decide whether to select another tool or if the results are sufficient to perform a consistency check. If you perform a consistency check, it means the task is complete, so also say "end"
+4. You can use tool freely like 1(entity A)->2(entity A)->1(entity similar semantic)->1->6 
+
+Use the available tools to check whether the information about specific entities (such as symptoms, test results, medications, etc.) recorded in the clinical notes matches the actual EHR table data. In this process, entities might be recorded in the tables using identical terms, or they might exist in the form of synonyms or abbreviations. I'll evaluate the semantic consistency between these two sources of information and determine whether they are consistent or inconsistent.

@@ -1,0 +1,59 @@
+Extract all clinically relevant medical concepts from the input sentence.
+These may include, but are not limited to: lab tests, vital signs, medications, procedures, microbiology findings, physical exam findings, symptoms, diagnoses, and descriptions of mental or neurologic status (e.g., alertness, orientation, confusion).
+
+Output format: [extracted entity, extracted entity]. 
+If there are no medical concepts to extract, output an empty list.
+If an abbreviation is used in the sentence, keep the abbreviation in the output
+ 
+Input:
+"Patient was started on metoprolol due to elevated bp."
+Output:
+["metoprolol", "bp"]
+
+Input:
+Heart was a regular rate and rhythm.
+Output:
+["Heart rate", "Heart rhythm"]
+
+Input:
+"The patient was diagnosed with type 2 diabetes mellitus and hypertension."
+Output:
+["type 2 diabetes mellitus", "hypertension"]
+
+Input:
+"Blood cultures were positive for Staphylococcus aureus."
+Output:
+["blood cultures", "Staphylococcus aureus"]
+
+Input:
+"He was given insulin before meals to control his glucose levels."
+Output:
+["insulin", "glucose levels"]
+
+Input:
+"Patient performed MRI"
+Output:
+["MRI"]
+
+Input:
+"No medications were prescribed at this time."
+Output:
+[]
+
+Input:
+"He was given insulin before meals to control his glucose levels."
+Output:
+["insulin", "glucose levels"]
+
+Input: T:99  BP:120/80
+Output:
+["T", "bp"]
+
+Input: Physicial Exam: pupils -reactive to light and clear lung sound
+Output:
+["pupils","lung sound]
+
+
+Input:
+<<<Input_sentencee>>>
+Output:

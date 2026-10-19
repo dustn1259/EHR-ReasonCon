@@ -1,0 +1,27 @@
+Task: Classify the item (which is recorded in the <<<TABLE>>> table in the MIMIC-III database) below into the correct subgroup.
+
+Input format: Each line follows: item_name : [<<<VALUE_DESC>>>]
+(The value list contains commonly seen examples only and should not be used for classification)
+
+Subgroup list:
+<<<SUBGROUP_LIST>>>
+
+Output Format:
+Return results in this exact format (no indices; include colon and a space):
+- Given item name1 : subgroup name
+- Given item name2 : subgroup name
+- Given item name3 : subgroup name
+- Given item name4 : subgroup name
+...
+
+Rules:
+1. Classify by item name only. Ignore the value list.
+2. If an item could fit multiple categories, choose the most clinically relevant one.
+3. Copy the item name back verbatim, exactly as given.
+4. Output one line per input item, in the same order, and nothing else.
+5. Use only subgroup names from the list above. If truly uncertain, output Unknown.
+
+Input:
+<<<INPUT>>>
+
+Output:

@@ -1,0 +1,91 @@
+Instructions:
+Read the clinical note and answer the question about the entity <<<ENTITY>>> located on line <<<LINE_NUMBER>>>.
+Base your answers only on the information explicitly stated in the note.
+Do not rely on prior medical knowledge, assumptions, or general practices.
+The evidence must be clearly supported by the text itself.
+
+Output format:
+1: Answer
+2: Answer
+...
+
+Clinical Note:
+Admission: <<<Admission>>>
+Discharge: <<<Chartdate>>>
+<<<CLINICAL NOTE>>>
+
+Questions:
+* STRICTLY adhere to the output format provided. Your answer MUST consist only of the numbered list matching the format. Do not include any additional text or explanations outside of this numbered list.
+Focus on entity "<<<ENTITY>>>".
+1. Is <<<ENTITY>>> a type of test, procedure, or equipment used in imaging studies such as CT, CSG, ECG, EGD, or X-ray? (e.g., portable chest X-ray, ECG, feeding tube) [Yes/No]? [Yes/No]
+2. Did the event of <<<ENTITY>>> occur in the Emergency Room? [Yes/No]
+3. Is <<<ENTITY>>> part of the Past Medical History? (e.g., Past medical history and home illness episodes) [Yes/No]
+4. Is <<<ENTITY>>> an event from a previous hospitalization (e.g., [Hospital 3058])? [Yes/No]
+5. Is <<<ENTITY>>> a future plan, suggestion, or recommendation?  [Yes/No]
+**Important criteria:**
+a. future plan, suggestion, or recommendation [YES]
+ --> Not yet performed → an action that may or may not occur.
+ --> Conditional or optional; leaves room for change.
+ --> Describes anticipated changes or actions, not the current state.
+ --> At the time of documentation, execution is not yet confirmed.
+
+b. Not consider as future plan, suggestion, or recommendation [NO]
+ --> Actions already decided as part of a fixed future schedule or care pathway.
+ --> Actions to be carried out without any option for change.
+ --> Statements in the future tense that serve only as a notification of a confirmed plan.
+
+Example clinical note: Recommendations were to continue with enzyme cycling, consider heparin anticoagulation if it is not contraindicated and BB or AAA agents.
+Entity: Entity: enzyme cycling → NO [Reason: This is an ongoing treatment with an instruction to “continue,” which is a confirmed directive. There is no possibility of change, and it is part of the current care pathway, so it is not a future plan/suggestion.]
+Entity: heparin anticoagulation → YES [Reason: The word “consider” indicates that the treatment has not yet been performed and is under review. The phrase “if it is not contraindicated” makes it conditional, meaning it could be canceled if a contraindication exists. Since it is not confirmed and remains subject to change, it qualifies as a future plan/suggestion.]
+
+Example clinical note: Platelets were low at 70, platelet transfusion was considered. 
+Entity: Platelets → NO [Reason: The platelet count is a laboratory result describing the patient’s current status, not a treatment or plan. It is therefore unrelated to a future plan/suggestion.]\
+Entity: platelet transfusion → NO [Reason: The phrase “was considered” is in the past tense, indicating that the decision had already been made or the discussion had already concluded at an earlier time. This is not an uncertain future plan at the time of documentation, so it does not qualify as a future plan/suggestion.]
+
+Example clinical note: Nitroglycerin for afterload reduction
+Entity: Nitroglycerin → NO [Reason: The use of Nitroglycerin for reduction is already a confirmed plan or action.]
+
+6. Does <<<ENTITY>>> reflect the opinion or preference of the clinician, the patient, the patient's family, or the medical team? [Yes/No]
+Example clinical note: Hopefully this will decrease risk of aspiration.
+Entity: aspiration → YES [Reason: The phrase “Hopefully” expresses an expectation or hope, which is a subjective opinion rather than an objective fact. Aspiration is the subject of that opinion, so it qualifies as opinion/preference.]
+
+Example clinical note: Cardiology was requested to see the patient and evaluate regarding troponin levels and EKG
+Entity: Entity: Cardiology → NO [Reason: This is a factual statement describing a request for a cardiology consult. It does not express a subjective judgment or preference, so it does not qualify as opinion/preference.]
+
+7. Is <<<ENTITY>>> a treatment or medication mentioned as discontinued, but the timing of discontinuation is unclear? [Yes/No]
+Clinical Note: The patient is afebrile, so we decided to discontinue acetaminophen. 
+Entity: {acetaminophen:}
+Reason why yes: Acetaminophen is stated to be discontinued, but the timing of discontinuation is not clearly mentioned (e.g., a specific date like 2025-11-11 or a reference like HOD#4 is missing).
+8. Is <<<ENTITY>>> a Diagnosis? [Yes/No]
+(Examples that are NOT diagnoses: Tachycardia, Fever, Hypoxia, Hypotension, Sinus tachycardia, vomitting etc.)
+(Examples that ARE diagnoses: Pneumonia, Diabetes, Heart failure, Atrial fibrillation, etc.)
+9. Is <<<ENTITY>>> about amout of Total Input? [Yes/No]
+10. Is <<<ENTITY>>> about amout of Total Output? [Yes/No]
+11. Does <<<ENTITY>>> refer to the patient’s refusal of a procedure or treatment? [Yes/No]
+12. Does <<<ENTITY>>> include a medical interpretation summarizing abnormal (or normal) findings in imaging studies (e.g., CT, X-ray)? [Yes/No]
+→ The entity before the colon must indicate a clinical interpretation, not just the name of a test, the name of a tool used for a test (e.g., feed tube) or a treatment plan. 
+Example clinical note: CT shows right upper lobe consolidation and started antibiotics.
+Entity: CT → No [Reason: This is just the name of a test, which is labeled No.]
+Entity: consolidation → Yes [Reason: This is an abnormal imaging finding interpreted from the CT, so it is labeled Yes.]
+Entity: antibiotics → No [Reason: This refers to a follow-up treatment plan(medication), which is labeled No.]
+
+Example clinical note: Echocardiogram was done that showed an ejection fraction of 40%
+Entity: Echocardiogram → No [Reason: This is just the name of a test, which is labeled No.]
+Entity: ejection fraction → No [Reason: This is only a numeric measurement without an imaging interpretation, so it is labeled No.]
+
+13. Is <<<ENTITY>>> an event, condition, or finding that occurred prior to the current hospitalization(from admission <<<Admission>>> to discharge <<<Chartdate>>>) (e.g., home illness episodes) ? [Yes/No]
+
+Example clinical note: The patient recently completed cycle 2 of Alimta chemotherapy.
+Entity: Alimta chemotherapy. → Yes [Reason: The note describes a treatment that was completed in the past, not an event that occurred during the current hospital admission.]
+
+Example clinical note: The baseline CK level was 150.
+Entity: CK → Yes [Reason:  This refers to the patient's baseline level, which is a historical value, not a measurement taken during the current admission.]
+
+Example clinical note: Rash: Pt was found to have rash on presentation
+Entity: Rash → No [Reason: The phrase "on presentation" indicates the rash was discovered at the beginning of the current admission. Therefore, it is a current finding, not a past event.]
+
+Example clinical note: Rash improving on day of discharge.
+Entity: Rash → No [Reason: The rash improved "on the day of discharge," which is the end of the current hospital stay, not an event that occurred prior to admission.]
+
+14. Is <<<ENTITY>>> a test, treatment, or follow-up that was planned to occur after discharge? [Yes/No] 
+Do not mark “Yes” for discharge medications or discharge labs ordered or performed on the day of discharge. Only select “Yes” if the entity reflects something planned after the discharge date (e.g., follow-up imaging, post-discharge clinic visits, etc.).

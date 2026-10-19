@@ -1,0 +1,23 @@
+prompts:
+  time_summary: ./prompt/time_summary.txt
+  extract_subtext: ./prompt/nurse/extract_subtext_nurse.txt
+  extract_subtext_time: ./prompt/extract_subtext_time.txt
+  final_ner: ./prompt/final_ner.txt
+  discharge_summary_scope: ./prompt/scope_discharge_summary.txt
+  time_output_summary: ./prompt/time_output_summary.txt
+  time_question: ./prompt/time_question_new.txt
+  time_simple_qs: ./prompt/timeonce_prompt/time_simple_qs.txt
+  time_cls: ./prompt/timeonce_prompt/time_cls.txt
+  time_adm_dis: ./prompt/timeonce_prompt/time_dis_adm.txt
+  time_structured: ./prompt/timeonce_prompt/time_yyyy_mm_dd.txt
+  time_hodpod_between: ./prompt/timeonce_prompt/time_yyyy_mm_dd_make.txt
+  time_n_days: ./prompt/timeonce_prompt/time_n_days.txt
+  time_q1: ./prompt/time_prompt/divided_time_q1.txt
+  time_y_q2: ./prompt/time_prompt/divided_time_y_q2.txt
+  time_n_q2: ./prompt/time_prompt/divided_time_n_q2.txt
+  time_q3: ./prompt/time_prompt/divided_time_q3.txt
+  time_q4: ./prompt/time_prompt/divided_time_q4.txt
+  time_q5: ./prompt/time_prompt/divided_time_q5.txt
+  time_q6: ./prompt/time_prompt/divided_time_q6.txt
+  diagnosis_procedure_ner_prompt: './prompt/diagnosis_procedure_prompt.txt'
+  d_p_con: './prompt/d_p_con_check.txt'

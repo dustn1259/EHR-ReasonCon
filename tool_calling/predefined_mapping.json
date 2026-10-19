@@ -1,0 +1,666 @@
+{
+ "dilantin": [
+  "phenytoin"
+ ],
+ "avandia": [
+  "rosiglitazone"
+ ],
+ "plavix": [
+  "clopidogrel"
+ ],
+ "viagra": [
+  "sildenafil"
+ ],
+ "macrodantin": [
+  "nitrofurantoin"
+ ],
+ "namenda": [
+  "memantine"
+ ],
+ "aricept": [
+  "donepezil"
+ ],
+ "risperidal": [
+  "risperidone"
+ ],
+ "risperdal": [
+  "risperidone"
+ ],
+ "combivent": [
+  "ipratropium bromide",
+  "albuterol"
+ ],
+ "lipitor": [
+  "atorvastatin"
+ ],
+ "imdur": [
+  "isosorbide mononitrate"
+ ],
+ "protonix": [
+  "pantoprazole"
+ ],
+ "celebrex": [
+  "celecoxib"
+ ],
+ "toprol": [
+  "metoprolol"
+ ],
+ "levophed": [
+  "norepinephrine"
+ ],
+ "percocet": [
+  "oxycodone",
+  "acetaminophen"
+ ],
+ "beconase": [
+  "beclomethasone"
+ ],
+ "colace": [
+  "docusate"
+ ],
+ "lasix": [
+  "furosemide"
+ ],
+ "zantac": [
+  "ranitidine"
+ ],
+ "bactrim": [
+  "trimethoprim",
+  "sulfamethoxazole"
+ ],
+ "tylenol": [
+  "acetaminophen"
+ ],
+ "decadron": [
+  "dexamethasone"
+ ],
+ "solumedrol": [
+  "methylprednisolone"
+ ],
+ "acular eyedrops": [
+  "ketorolac"
+ ],
+ "benadryl": [
+  "diphenhydramine"
+ ],
+ "sarna lotion": [
+  "camphor",
+  "menthol"
+ ],
+ "doxy": [
+  "doxycycline"
+ ],
+ "flagyl": [
+  "metronidazole"
+ ],
+ "atrovent nebs": [
+  "ipratropium bromide"
+ ],
+ "levo/flagyl": [
+  "levofloxacin",
+  "metronidazole"
+ ],
+ "sarna": [
+  "camphor",
+  "menthol"
+ ],
+ "albuterol nebs": [
+  "albuterol"
+ ],
+ "tessla perles": [
+  "benzonatate"
+ ],
+ "taxotere": [
+  "docetaxel"
+ ],
+ "adriamycin": [
+  "doxorubicin"
+ ],
+ "taxol": [
+  "paclitaxel"
+ ],
+ "lovenox": [
+  "enoxaparin"
+ ],
+ "navelbine": [
+  "vinorelbine"
+ ],
+ "compazine": [
+  "prochlorperazine"
+ ],
+ "coumadin": [
+  "warfarin"
+ ],
+ "emend": [
+  "aprepitant"
+ ],
+ "megace": [
+  "megestrol"
+ ],
+ "zofran": [
+  "ondansetron"
+ ],
+ "oxyfast": [
+  "oxycodone"
+ ],
+ "glucotrol": [
+  "glipizide"
+ ],
+ "glucophage": [
+  "metformin"
+ ],
+ "actos": [
+  "pioglitazone"
+ ],
+ "relafen": [
+  "nabumetone"
+ ],
+ "effexor": [
+  "venlafaxine"
+ ],
+ "zestril": [
+  "lisinopril"
+ ],
+ "phoslo": [
+  "calcium acetate"
+ ],
+ "nephrocaps": [
+  "multivitamins"
+ ],
+ "advair": [
+  "fluticasone",
+  "salmeterol"
+ ],
+ "dulcolax": [
+  "bisacodyl"
+ ],
+ "advil": [
+  "ibuprofen"
+ ],
+ "alimta": [
+  "pemetrexed"
+ ],
+ "neosynephrine": [
+  "phenylephrine"
+ ],
+ "gleevec": [
+  "imatinib"
+ ],
+ "synthroid": [
+  "levothyroxine"
+ ],
+ "prozac": [
+  "fluoxetine"
+ ],
+ "restoril": [
+  "temazepam"
+ ],
+ "lopressor": [
+  "metoprolol"
+ ],
+ "toprol xl": [
+  "metoprolol"
+ ],
+ "zaroxolyn": [
+  "metolazone"
+ ],
+ "levoxyl": [
+  "levothyroxine"
+ ],
+ "seroquel": [
+  "quetiapine"
+ ],
+ "lexapro": [
+  "escitalopram"
+ ],
+ "klonopin": [
+  "clonazepam"
+ ],
+ "valium": [
+  "diazepam"
+ ],
+ "ativan": [
+  "lorazepam"
+ ],
+ "dilt": [
+  "diltiazem"
+ ],
+ "zoloft": [
+  "sertraline"
+ ],
+ "norvasc": [
+  "amlodipine"
+ ],
+ "actigal": [
+  "ursodiol"
+ ],
+ "synagis": [
+  "palivizumab"
+ ],
+ "levaquin": [
+  "levofloxacin"
+ ],
+ "integrilin": [
+  "eptifibatide"
+ ],
+ "neurontin": [
+  "gabapentin"
+ ],
+ "diovan": [
+  "valsartan"
+ ],
+ "renagel": [
+  "sevelamer"
+ ],
+ "zocor": [
+  "simvastatin"
+ ],
+ "ambien": [
+  "zolpidem"
+ ],
+ "oxycontin": [
+  "oxycodone"
+ ],
+ "spiriva": [
+  "tiotropium"
+ ],
+ "bactrim ds": [
+  "sulfamethoxazole",
+  "trimethoprim"
+ ],
+ "depakote er": [
+  "divalproex sodium"
+ ],
+ "proscar": [
+  "finasteride"
+ ],
+ "modafanil": [
+  "modafinil"
+ ],
+ "multivitamin": [
+  "multivitamin"
+ ],
+ "restasis": [
+  "cyclosporine"
+ ],
+ "azopt": [
+  "brinzolamide"
+ ],
+ "keppra": [
+  "levetiracetam"
+ ],
+ "cortef": [
+  "hydrocortisone"
+ ],
+ "mucinex": [
+  "guaifenesin"
+ ],
+ "vicodin": [
+  "hydrocodone",
+  "paracetamol"
+ ],
+ "probalan": [
+  "probenecid"
+ ],
+ "paxil": [
+  "paroxetine"
+ ],
+ "keflex": [
+  "cephalexin"
+ ],
+ "abilify": [
+  "aripiprazole"
+ ],
+ "chantix": [
+  "varenicline"
+ ],
+ "darunavir [prezista]": [
+  "darunavir"
+ ],
+ "emtricitabinetenofovir [truvada]": [
+  "emtricitabine",
+  "tenofovir"
+ ],
+ "fluticasone [flovent hfa]": [
+  "fluticasone"
+ ],
+ "ntg": [
+  "nitroglycerin"
+ ],
+ "nitro drip": [
+  "nitroglycerin"
+ ],
+ "integrillin": [
+  "eptifibatide"
+ ],
+ "prilosec": [
+  "omeprazole"
+ ],
+ "flomax": [
+  "tamsulosin"
+ ],
+ "kaletra": [
+  "lopinavir",
+  "ritonavir"
+ ],
+ "mepron": [
+  "atovaquone"
+ ],
+ "pancrease": [
+  "pancrelipase"
+ ],
+ "sporanox": [
+  "itraconazole"
+ ],
+ "claritin": [
+  "loratadine"
+ ],
+ "ms contin": [
+  "morphine"
+ ],
+ "kaopectate": [
+  "bismuth subsalicylate"
+ ],
+ "mycelex": [
+  "clotrimazole"
+ ],
+ "dilaudid": [
+  "hydromorphone"
+ ],
+ "k phos": [
+  "potassium phosphate"
+ ],
+ "norvasource renal": [
+  "parenteral nutrition solution"
+ ],
+ "ntg drip": [
+  "nitroglycerin"
+ ],
+ "zosyn": [
+  "piperacillin",
+  "tazobactam"
+ ],
+ "ddavp": [
+  "desmopressin"
+ ],
+ "vanco": [
+  "vancomycin"
+ ],
+ "bumex": [
+  "bumetanide"
+ ],
+ "atrovent": [
+  "ipratropium"
+ ],
+ "byetta": [
+  "exenatide"
+ ],
+ "flovent": [
+  "fluticasone"
+ ],
+ "testim": [
+  "testosterone"
+ ],
+ "isorbide": [
+  "isosorbide"
+ ],
+ "vanc/zosyn": [
+  "vancomycin/piperacillin",
+  "tazobactam"
+ ],
+ "mirapex": [
+  "pramipexole"
+ ],
+ "lopressor/hydral": [
+  "metoprolol",
+  "hydralazine"
+ ],
+ "sinemet": [
+  "carbidopa",
+  "levodopa"
+ ],
+ "haldol": [
+  "haloperidol"
+ ],
+ "reglan": [
+  "metoclopramide"
+ ],
+ "versed": [
+  "midazolam"
+ ],
+ "neo": [
+  "phenylephrine"
+ ],
+ "caralfate": [
+  "sucralfate"
+ ],
+ "levo": [
+  "levothyroxine"
+ ],
+ "tylenol w/codeine": [
+  "acetaminophen with codeine"
+ ],
+ "dilantin (oral) (phenytoin sodium extended)": [
+  "phenytoin sodium extended"
+ ],
+ "perococt": [
+  "oxycodone",
+  "acetaminophen"
+ ],
+ "clonidine patch": [
+  "clonidine"
+ ],
+ "fentanyl citrate": [
+  "fentanyl"
+ ],
+ "midazolam": [
+  "versed"
+ ],
+ "peridex": [
+  "chlorhexidine gluconate"
+ ],
+ "unasyn": [
+  "ampicillin",
+  "sulbactam"
+ ],
+ "pepcid": [
+  "famotidine"
+ ],
+ "regular insulin": [
+  "insulin"
+ ],
+ "tamiflu": [
+  "oseltamivir"
+ ],
+ "tpa": [
+  "alteplase"
+ ],
+ "levaquin 250 mg": [
+  "levofloxacin"
+ ],
+ "tylenol 650 mg": [
+  "acetaminophen"
+ ],
+ "zoysn": [
+  "piperacillin",
+  "tazobactam"
+ ],
+ "humalog insulin": [
+  "insulin lispro"
+ ],
+ "neosynephine": [
+  "phenylephrine"
+ ],
+ "urojet": [
+  "lidocaine"
+ ],
+ "pyridium": [
+  "phenazopyridine"
+ ],
+ "soma": [
+  "carisoprodol"
+ ],
+ "artificial tear ointment": [
+  "lubricant eye drops"
+ ],
+ "kayexalate": [
+  "sodium polystyrene sulfonate"
+ ],
+ "humira": [
+  "adalimumab"
+ ],
+ "humalog": [
+  "insulin lispro"
+ ],
+ "cozaar": [
+  "losartan"
+ ],
+ "remiron": [
+  "mirtazapine"
+ ],
+ "ventolin": [
+  "albuterol"
+ ],
+ "symbicort": [
+  "budesonide ",
+  " formoterol"
+ ],
+ "albuterolipratropium": [
+  "combivent"
+ ],
+ "aspirin ec": [
+  "aspirin"
+ ],
+ "primidone": [
+  "primidone"
+ ],
+ "mirilax": [
+  "polyethylene glycol 3350"
+ ],
+ "neutraphos": [
+  "potassium phosphate",
+  "sodium phosphate"
+ ],
+ "mucomyst": [
+  "acetylcysteine"
+ ],
+ "adderall": [
+  "amphetamine",
+  "dextroamphetamine"
+ ],
+ "fent": [
+  "fentanyl"
+ ],
+ "augmentin": [
+  "amoxicillin",
+  "clavulanic acid"
+ ],
+ "trental": [
+  "pentoxifylline"
+ ],
+ "lido patch": [
+  "lidocaine"
+ ],
+ "lyrica": [
+  "pregabalin"
+ ],
+ "white count": [
+  "white blood cell"
+ ],
+ "tmax": [
+  "temperature"
+ ],
+ "tcurrent": [
+  "temperature"
+ ],
+ "temp": [
+  "temperature"
+ ],
+ "ca++": [
+  "calcium"
+ ],
+ "mg++": [
+  "magnesium"
+ ],
+ "ca": [
+  "calcium"
+ ],
+ "mg": [
+  "magnesium"
+ ],
+ "vt (set)": [
+  "set tidal volume"
+ ],
+ "wedge pressure": [
+  "pcwp",
+  "pawp"
+ ],
+ "wedge": [
+  "pcwp",
+  "pawp"
+ ],
+ "ck": [
+  "creatinine"
+ ],
+ "warfarin": [
+  "coumadin"
+ ],
+ "zyprexa": [
+  "olanzapine"
+ ],
+ "betoptic": [
+  "betaxolol"
+ ],
+ "metamucil": [
+  "psyllium"
+ ],
+ "motrin liquid": [
+  "ibuprofen"
+ ],
+ "motrin": [
+  "ibuprofen"
+ ],
+ "boots": [
+  "compression device"
+ ],
+ "t current": [
+  "temperature"
+ ],
+ "t max": [
+  "temperature"
+ ],
+ "ve": [
+  "minute volume"
+ ],
+ "fioricet": [
+  "acetaminophen"
+ ],
+ "ctropnt": [
+  "troponin t",
+  "cardiac troponin t"
+ ],
+ "weight": [
+  "daily weight"
+ ],
+ "wgt": [
+  "daily weight",
+  "weight"
+ ],
+ "wgt (current)": [
+  "daily weight",
+  "weight"
+ ],
+ "wgt(current)": [
+  "daily weight",
+  "weight"
+ ],
+ "misoprosrtol": [
+  "cytotec"
+ ],
+ "ps": [
+  "pressure support"
+ ],
+ "sqh": [
+  "heparin"
+ ]
+}

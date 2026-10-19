@@ -1,0 +1,118 @@
+You are given a clinical note and a structured EHR table. Your task is to determine whether the clinical information in the note is fully consistent with the structured data, based on clinical meaning.
+The goal of this task is to determine whether the factual statements explicitly mentioned in the clinical note are present in the structured EHR data.
+Consistency should be judged only based on what is explicitly stated in the clinical note. Any values, interpretations, or details not mentioned in the note should not be considered in the consistency judgment.
+
+Task Rule (Remember Rule):
+1. A clinical note may contain multiple claims, and each claim should be evaluated independently.
+- The default unit of a claim is a single row in the structured EHR table.
+  -> However, for claims involving max values, counts, or aggregated test results, multiple rows may be considered together as one claim, especially when multiple values correspond to a single entity (e.g., BP or ABG).
+  -> In addition, for entities such as BP or ABG that consist of multiple values, each value does not necessarily need to exist on the same date and time, nor within the same table. As long as the relevant item and value are present in any table within the given date range, it should be considered Consistent.
+2. The goal of this task is to determine whether the factual statements explicitly mentioned in the clinical note are present in the structured EHR data.
+Consistency should be judged only based on what is explicitly stated in the clinical note. Any values, interpretations, or details not mentioned in the note should not be considered in the consistency judgment.
+3. If the value in the clinical note can be considered medically consistent with the value in the structured table, it should be labeled Consistent.
+- A note stating "Ext: 2+ pulses" is considered consistent with the table entry "Easily Palpable".
+- Similarly, if the note specifies "right wrist" but the table records "right arm", they are semantically equivalent in this context and should be judged Consistent.
+4. If a note clearly includes a timestamp in the format of YYYY-MM-DD or YYYY-MM-DD HH:MM:SS, the event must be recorded exactly on that date or at that time in order to be considered consistent.
+5. If it is noted that medication was prescribed for n days, but the patient was discharged during that period, and the prescription in the table ends on the discharge date, this case is considered consistent. (+ You can ignore "Disp" information and frequencies like TID, q48h or q8h, since they are not included in the table.)
+
+For each claim, provide the following items (the first is required only for multi-fact clinical notes):
+1. Single Fact (required for multi-fact clinical notes): For clinical notes with multiple facts, clearly state the individual factual claim being evaluated in this block.
+2. Consistency status (Consistent / Inconsistent): Determine whether the claim is clinically consistent with the structured EHR data.
+3. Reason: Provide a clinical explanation of why the claim is labeled Consistent or Inconsistent.
+4. Evidence index:
+- For Consistent or Contradictory Inconsistent claims: specify the row index(or indices) from the EHR table that support or contradict the claim.
+- For Inconsistent claims due to missing information (NEI): if the structured table contains no relevant data at all for the claim, leave the Evidence index blank.
+
+Two types of Inconsistent judgments:
+1. Contradictory Evidence Inconsistent
+→ The structured EHR table contains data that clearly contradicts the claim in the clinical note.
+→ Example: The note states "sensitive," but the table shows "resistant."
+2. Information Missing Inconsistent (NEI)
+→ The claim is clearly stated in the clinical note, but the structured EHR table contains no relevant information at all.
+→ This situation should still be labeled Inconsistent, and the Evidence index should be left blank.
+
+Example 1:
+Clinical Note: "Sputum was tested and Mycobacterium tuberculosis was found, so rifampin were administered."
+EHR Table:
+     interpretation      SPEC_TYPE       AB_NAME                     ORG_NAME
+0         Resistant         Sputum      rifampin   Mycobacterium tuberculosis
+1         Sensitive          URINE     isoniazid             Escherichia coli
+Output:
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The clinical note states that sputum was tested, Mycobacterium tuberculosis was found, and rifampin was administered. In the EHR table, row 0 shows that rifampin was tested on a sputum sample and that the organism identified was Mycobacterium tuberculosis. This directly supports the claim made in the clinical note, as both the sample type and organism match, and the antibiotic mentioned (rifampin) is included. The interpretation ("Resistant") is not relevant here, as the claim does not specify the sensitivity result.
+Evidence index: 0
+
+Example 2:
+Clinical Note:"ABD: Soft, non-distended."
+EHR Table:
+        CHARTTIME                   VALUE                      LABEL
+  0     2022-02-02                   Soft       Abdominal Assessment
+  1     2022-02-02      Soft and distended      Abdominal Assessment
+  2     2022-02-07      Soft and distended      Abdominal Assessment
+  3     2022-02-09                   Soft       Abdominal Assessment
+
+Single Fact1: "ABD: Soft"
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The clinical note states that the abdomen was soft. This is directly supported by EHR entries on 2022-02-02 and 2022-02-09, which document "Soft" in the abdominal assessment. Although other entries mention "Soft and distended", the presence of "Soft" in multiple assessments confirms the consistency of this claim.
+Evidence index: 0,3
+Single Fact2: "ABD: non-distended"
+Consistency status (Consistent/Inconsistent): Inconsistent
+Reason: The clinical note states the abdomen was non-distended, indicating that no abdominal distension was observed. However, EHR entries at multiple time points (rows 1 and 2) include the term "distended" ("Soft and distended"), which contradicts the "non-distended" claim. Therefore, this claim is inconsistent with the structured data due to contradictory evidence.
+Evidence index: 1,2
+
+Example 3:
+Clinical Note:"HEENT: anicteric sclera."
+EHR Table:
+               LABEL    VALUE
+0   Bilirubin, Total      0.8
+1   Bilirubin, Total      0.8
+Output:
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The clinical note states "HEENT: anicteric sclera," indicating there are no signs of jaundice in the sclera. The structured EHR data shows total bilirubin levels of 0.8 mg/dL on two occasions, which falls within the normal reference range (typically ≤1.2 mg/dL). Normal bilirubin levels support the absence of jaundice, making the claim in the note clinically consistent with the lab results.
+Evidence index: 0,1
+
+Example 4:
+Clinical Note: "Lansoprazole 15 mg Tablet,Rapid Dissolve, DR [**Last Name (STitle) **]: Two (2) Tablet,Rapid Dissolve, DR [**Last Name (STitle) **] DAILY (Daily)."
+EHR Table:
+                                   DRUG   PROD_STRENGTH   DOSE_VAL_RX    DOSE_UNIT_RX   FORM_VAL_DISP        FORM_UNIT_DISP
+0  Lansoprazole Oral Disintegrating Tab    30mg SoluTab            30             mg                1                   TAB
+Output:
+Consistency status (Consistent/Inconsistent): Inconsistent
+Reason: The clinical note states 15 mg Tablet, but the table shows 30 mg SoluTab, so the dose does not match and is inconsistent.
+Evidence index: 0
+
+Example 5:
+Clinical Note: "BP 101/30"
+EHR Table:
+        CHARTTIME      VALUE   VALUENUM                LABEL
+  0     2024-07-03       120        120        NBP[Systolic]
+  1     2024-07-03       101        101        NBP[Systolic]
+Output:
+Single Fact: "BP 101"
+Consistency status (Consistent/Inconsistent): Consistent
+Reason: The note states BP 101/30. Since the EHR contains only information about the systolic pressure, the single fact becomes "BP 101", and this aligns with the information in row 1 of the EHR, so it is considered consistent.
+Evidence index: 1
+
+Example 6:
+Clinical Note: "BP 101/30"
+EHR Table:
+        CHARTTIME      VALUE   VALUENUM                LABEL
+  0     2025-11-29       31        120        NBP[Diastolic]
+  1     2025-11-29       50        101        NBP[Diastolic]
+Output:
+Single Fact: "BP 30"
+Consistency status (Consistent/Inconsistent): Inconsistent
+Reason: The note states BP 101/30. Since the EHR contains only information about the diastolic pressure, the single fact becomes "BP 30", and this not aligns with the information in the EHR, so it is considered inconsistent.
+Evidence index: 0,1
+
+Example 7:
+Clinical Note: "[2022-02-02 04:36:00] WBC 10.0"
+EHR Table:
+              CHARTTIME         VALUE   VALUENUM        LABEL
+  0     2022-02-02 03:36:00       10        10        WBC count
+  1     2022-02-02 10:00:00       12        12        WBC count
+Output:
+Single Fact: "[2022-02-02 04:36:00] WBC 10.0"
+Consistency status (Consistent/Inconsistent): Inconsistent
+Reason: The note states that the WBC was 10.0 at 4:36 AM on February 2nd, but the EHR table records the time as 3:36 AM, making it inconsistent. The recorded time should exactly match the time written in the note, but there was a one-hour discrepancy.
+Evidence index: 0

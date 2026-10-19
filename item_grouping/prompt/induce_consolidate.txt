@@ -1,0 +1,19 @@
+Task: Clean up a clinical ontology that was grown incrementally. Below is the current list of <<<LEVEL>>> categories for the items recorded in the MIMIC-III database.
+
+<<<SCOPE>>>
+
+Current <<<LEVEL>>> categories:
+<<<CATEGORIES>>>
+
+Guidelines:
+1. Merge categories that mean the same thing or that no competent annotator could reliably tell apart.
+2. Merge a category into a broader one when it is too narrow to stand on its own.
+3. Keep the result at or below <<<TARGET_MAX>>> categories.
+4. Keep exactly one catch-all category for administrative, ambiguous, or uninterpretable items.
+5. Prefer the clearer of two names when merging. Do not invent categories that are not in the list above.
+
+Output Format:
+Return one line per merge, in this exact format and nothing else. Output NONE if no merges are warranted.
+- category to remove => category to keep
+
+Output:

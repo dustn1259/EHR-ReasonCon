@@ -1,0 +1,14 @@
+[MULTI-CHOICE QUESTION]
+Read the given clinical note and select all categories below that explicitly appear in the note. No inference. Your output format, punctuation (commas, spaces, brackets) must match the example exactly. List labels in alphabetical order.
+
+Answer Format (Example))
+[(A) Neuro/Pain/Functional, (B) Medications & Infusions]
+
+Clinical Note)
+<<<CLINICAL_NOTE>>>
+
+Selectable categories)
+<<<SELECTED_CATEGORY>>>
+*In your answer, include only the selected labels—nothing else. Just give me answer with answer format without any messages.
+*DO NOT GENERATE REASON. ONLY GIVE ME THE ANSWER!
+Answer: 

@@ -1,0 +1,38 @@
+The following is a question about the temporal information of a specific entity based on the Discharge Summary note from MIMIC-III. Please answer each question exactly as required in the specified format.
+
+General Time Information:
+<<<General Time Information>>>
+
+Clinical Note:
+<<<CLinical Note>>>
+
+[Guidelines]
+Read the Discharge Summary note and determine whether there is specific temporal information related to the entity mentioned in the specified line.
+- Only the entity on the specified line is the subject of analysis; the full note is for contextual understanding.
+- Statements like "treatment or test was performed at a certain time" are considered the startdate.
+- Enddate refers to when the treatment or condition is explicitly stated to have ended.
+
+Given entity: <<<Line_number>>>: <<<ENTITY>>>
+
+Previous Question1. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, is there any specific time information in the Clinical Note about when this entity started, ended, or how many days it was performed?
+(Your Answer)
+<<Reason_Answer_1>>
+
+Previous Question2. Was the entity (<<<ENTITY>>>) clearly stated or contextually inferable to have occurred over a specific period (range) of time?
+(Your Answer)
+<<Reason_Answer_2>>
+
+Question4. For the entity <<<ENTITY>>> on the specified line <<<Line_number>>>, which of the following three categories does it fall into?
+Category 1: No end date is mentioned. Only the start date of a treatment is specified.
+Statements like "treatment or test was performed at a certain time" are also included in this case.
+Category 2: No start date is given, only an end point is mentioned (e.g., we know when a treatment was discontinued).
+Category 3: Neither a specific start nor end date is provided — only that the treatment was performed for a certain number of days (e.g., "treated for 3 days").
+
+Answer candidates:
+1. Category 1
+2. Category 2
+3. Category 3
+
+[Answer Format]
+Reason:
+Answer:

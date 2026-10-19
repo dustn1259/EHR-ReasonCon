@@ -1,0 +1,97 @@
+🔧 Task Description:
+You are given a clinical summary from a patient’s hospital stay.
+Your task is to extract only those clinical events that serve as temporal anchors, which can be used to infer the dates of other events.
+
+📌 Instructions:
+1. If there are events described with relative time expressions (e.g., “a few days later,” “on the nth day,” “the next day”),
+extract only the anchor event(s) that allow these events to be assigned an exact date.
+2. Criteria for events to be extracted:
+- The event must serve as a practical anchor for determining the timing of another event.
+- Include Admission and Discharge if they are used to infer other event dates.
+3. Output format
+yyyy-mm-dd - Event description  
+yyyy-mm-dd - Event description
+4. The following should be excluded from the output:
+- Events described only with relative expressions such as “3 days later” or “the next day”
+- Events that have a clear date but are not used to infer the date of any other events
+
+Example 1
+🟩 Clinical Note:
+The patient was admitted on 2171-06-01 with confusion and fever. Blood cultures were taken on the admission day.
+On 2171-06-05, MSSA was confirmed and vancomycin was started.
+The fever resolved two days after starting the antibiotics.
+The patient was discharged on 2171-06-10. Acetaminophen was prescribed at discharge.
+
+🟦 Output:
+2171-06-01 - Admission  
+2171-06-05 - vancomycin was started 
+2171-06-10 - Discharge
+
+📝 Explanation:
+1. 2171-06-01 - Admission:
+Events like the blood culture are described as occurring "on admission day", not with a specific date.
+The admission date is needed to calculate that date → included as anchor.
+
+2. 2171-06-05 - vancomycin was started:
+Fever resolution is described as “2 days after antibiotics began”, making this an anchor → included.
+
+3. 2171-06-10 - Discharge:
+“At discharge” acetaminophen was prescribed → the discharge date anchors that → included.
+
+4. Blood culture:
+Even though linked to admission day, it's not itself used as an anchor → excluded.
+
+5. MSSA confirmation:
+The event has a clear date but is not used to calculate the timing of other events → excluded.
+
+6. Acetaminophen prescription:
+Occurs “at discharge”, which relies on the discharge date; not itself an anchor → excluded.
+
+Example 2
+🟩 Clinical Note:
+The patient was admitted on 2173-02-20 with a stroke.
+On Feb 22, a dysphagia assessment confirmed a high aspiration risk, and NPO status was initiated the same day.
+Two days after NPO was initiated (Feb 24), the family decided not to insert a feeding tube.
+PEG surgery was performed.
+
+On the second day post-op, vitals were stable, and the surgical site was clean.
+
+🟦 Output:
+2173-02-22 - NPO was initiated  
+unknown - PEG surgery
+
+📝 Explanation:
+1. 2173-02-22 - NPO was initiated:
+Later event (“2 days after NPO”) requires this as an anchor → included.
+
+2 PEG surgery:
+Not dated, but used as an anchor for the “second post-op day” → include with unknown.
+
+3. 2173-02-20 - Admission:
+Other events have specific dates, so this admission date is not used as an anchor → excluded.
+
+4. Dysphagia assessment, vitals monitoring:
+Not used to determine the date of any other events → excluded.
+
+[Summary of Task]
+Event Type	Include as Anchor?	Reason	Example Sentence
+Specific date + used to calculate other dates	✅ Yes	Used as reference for relatively-timed events	“Fever resolved 2 days after antibiotics started”
+Specific date + not linked to other events	❌ No	Stands alone and not used to infer any other dates	“MSSA confirmed on 2171-06-05”
+Events described only in relative terms	❌ No	Cannot assign a date without an anchor event	“Vitals stable on post-op day 2”
+Admission/Discharge	⭕ Conditionally	Include only if other events are dated relative to them	“Blood cultures on admission day” → need admission date
+No date + must be used to infer others	✅ Yes (use unknown)	Essential for interpreting other relative events, but no date provided → mark as unknown	“Second post-op day” → need PEG surgery date
+
+Let's extract only those clinical events that serve as temporal anchors, which can be used to infer the dates of other events.
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+Output should strictly follow the specified format and must not include any explanation or other message.
+Output format
+yyyy-mm-dd - Event description (Please preserve the original phrasing from the clinical note as much as possible.)  
+yyyy-mm-dd - Event description (Please preserve the original phrasing from the clinical note as much as possible.)  
+
+🛠 Guidelines for event description (very important):
+1. The description must refer precisely to the moment that serves as the anchor.
+2. Do not include lengthy clinical procedure details unless they are necessary to identify the anchor.
+3. Always choose the triggering action or decision point (e.g., “the patient was taken to the Operating Room”) rather than the full medical intervention (e.g., full description of bypass surgery).
+4. Your description should be brief but precise, so that any events described as “post-op day 3,” “after tracheostomy,” or “at discharge” can be mapped accurately back to this anchor point.

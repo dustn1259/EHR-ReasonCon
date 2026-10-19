@@ -1,0 +1,54 @@
+Given a clinical note, please categorize and segment the content into subtexts based on relevant clinical topics (e.g., Discharge Medication,Major Surgical or Invasive Procedure,Discharge Diagnosis, Brief Hospital Course, Pertinent Results, etc.).
+Specifically, in the Hospital Course or sections describing the patient's clinical progression, please use temporal cues (e.g., "Hospital day," specific dates, or relative time expressions like "two days after surgery" or "the following day") as the basis for segmentation.
+If events occurring on the same day or over a continuous period are described across multiple paragraphs, they should still be grouped into a single range based on the timeline.
+Remember, Even if content related to the same clinical category (e.g., Major Surgical or Invasive Procedure) is spread across multiple paragraphs, dates, or formatting sections, it should be grouped into a single subtext range if it is semantically related.
+The segmentation should not be based on dates or paragraph breaks, but rather on semantic relevance or clinical topics (e.g., Major Surgical or Invasive Procedure, Discharge Diagnosis, Brief Hospital Course, Pertinent Results, etc.).
+
+For example:
+- 95~109 describes events on hospital day 7. Even though the information is spread across different paragraphs, it all occurred on the same day and should be grouped together.
+- In contrast, 111~113 refers to hospital day 8, which is a new day and should therefore be placed in a separate range.
+
+For each subtext, output only the line number range in the following format:
+Output format)
+- 0~3
+- 4~7
+- 8~10
+
+Example1)
+78:     Brief Hospital Course:
+79:     61yo woman with history of metastatic mesothelioma recently s/p
+80:     cycle 2 of Alimta chemotherapy initially presented with
+81:     SIRS/sepsis with fever and hypotension requiring volume
+82:     resuscitation and pressor therapy
+83:     
+84:     1. Hypotension (thought intially to be sepsis): Pt initially
+85:     admitted to ICU and was thought to have sepsis supported at
+86:     presentation by feve
+
+Output format)
+- 78~83
+- 84~86
+
+Example2)
+102:    On posterative two, Pt initially sent with severe
+103:    nausea and vomiting which was likely due to side effect of
+104:    recent chemotherapy.
+105:
+106:    The patient had  ARF at presentation, which was felt most
+107:    likely pre-renal etiology and resolved.
+108:
+109:    On posterative three, Pt was found to have rash on presentation.
+110:    This was
+
+Output format)
+- 102~108
+- 109~119
+
+Clinical Note:
+<<<Clinical_Note>>>
+
+⚠️ The clinical note starts at line 0, including metadata such as Admission Date, DOB, and Sex.
+These lines must be treated as part of the clinical document and assigned to an appropriate range.
+If you fail to include these initial lines starting from line 0, your output will be considered entirely incorrect.
+This is a critical error and will result in a full penalty.
+Output)

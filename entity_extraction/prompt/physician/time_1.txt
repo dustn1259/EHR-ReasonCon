@@ -1,0 +1,17 @@
+Is the exact time the entity occurred clearly written in the note in a structured format, such as "[yyyy-mm-dd] hh:mm:ss,", "[yyyy-mm-dd] hh:mm AM/PM,", "hh:mm AM/PM" or "[yyyy-mm-dd]"? 
+Please answer with only "yes" or "no" and provide no other response.
+
+Example of yes:
+URINE CULTURE - At [**2167-4-5**] 04:32 AM
+Entity: URINE
+Output: yes
+
+Let's do it!!
+Is the exact time the entity "<<<ENTITY>>>" occurred clearly written in the note in a structured format, such as "[yyyy-mm-dd] hh:mm:ss,", "hh:mm AM/PM" , "[yyyy-mm-dd] hh:mm AM/PM," or "[yyyy-mm-dd]"? 
+Please answer with only "yes" or "no" and provide no other response.
+
+Entity: <<<ENTITY>>>
+Clinicl Note:
+<<<CLINICAL_NOTE>>>
+
+Output:

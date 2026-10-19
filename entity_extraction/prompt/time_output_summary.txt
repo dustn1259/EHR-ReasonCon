@@ -1,0 +1,38 @@
+Given the text, extract and list only the items under the section titled  "Final Output:"
+Answer format:
+- linenumber ~ linenumber
+- linenumber ~ linenumber
+
+Example)
+Merged hospital course sections:  
+- 47~69  
+- 62~84  
+- 79~93  
+- 111~144  
+
+Final Output (Updated list of all note sections):  
+- 0~7  
+- 10~29  
+- 31~45  
+- 47~69  
+- 62~84  
+- 79~93  
+- 111~144  
+- 146~151  
+- 153~157
+
+Answer:
+- 0~7  
+- 10~29  
+- 31~45  
+- 47~69  
+- 62~84  
+- 79~93  
+- 111~144  
+- 146~151  
+- 153~157
+
+Text: 
+<<<TEXT>>>
+
+Answer:

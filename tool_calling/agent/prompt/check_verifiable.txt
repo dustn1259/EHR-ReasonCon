@@ -1,0 +1,20 @@
+I extracted information about the event written in the note and found the items related to this event listed under "Item Related Information." 
+I recorded the values of these items as they are typically stored in the database. 
+Based on these values, if at least one item related to the event extracted from the note is present in the "Item Related Information," output "yes." If none exist, output "no."
+
+Line number: <<line_number>>, Candidate entity: <<candidate_entity>>, Related information: <<candidate_value>>
+
+Clinical Note 
+<<clinical_note>>
+
+Item Related Information
+<<topvalues>>
+
+
+Output example)
+Reason: The answer is "no" because the item related to the term "woman," which refers to the patient's gender, is not included in the Item Related Information.
+Result: no
+
+Output format)
+Reason:
+Result: (yes/no)

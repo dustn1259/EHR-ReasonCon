@@ -1,0 +1,35 @@
+When did the entity occur? Combine the given clinical note and time expression to write it in yyyy-mm-dd format.
+- Note 1: If there is no time expression like hh:mm:ss or hh:mm PM/AM, write the time expression in the yyyy-mm-dd format.
+- Note 2: If there is a time expression like hh:mm:ss or hh:mm PM/AM, you must write the time expression in the yyyy-mm-dd hh:mm:ss (24hr) format.
+- Note 3: If there is no specific mention of a date, assume it occurred today.
+
+
+[Example1]
+Admission date: 2020-11-11
+Today's date: 2020-11-15
+
+Clinical Note:
+EKG - At [**2197-5-9**] 06:00 PM
+
+Q. When did the entity "EKG" occur?
+A. 2197-05-09 18:00:00
+
+[Example2]
+Admission date: 2031-06-20 
+Today's date: 2031-06-22 
+
+Clinical Note:
+Temp 101.0 at 7:30 this AM
+
+Q. When did the entity "Temp" occur?
+A. 2031-06-22 7:30:00
+
+Let's do the task
+Admission date: <<<ADM_DATE>>>
+Today's date: <<<CHART_DATE>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+Q. When did the entity "<<<ENTITY>>>" occur?
+A. 

@@ -1,0 +1,18 @@
+Read the given clinical note and identify the section corresponding to the "Hospital Course."
+Use the provided line number blocks (under "reference") to determine the correct range.
+
+Your answer must only include the start and end line numbers based on the reference blocks, in the following format:
+Start line number:
+End line number:
+
+Do not include any other text. Any additional message will make the answer completely invalid.
+
+Reference line blocks (for your use):
+<<<REFERENCE_BLOCK>>>
+
+Clinical Note:
+<<<CLINICAL_NOTE>>>
+
+Note: Any message other than the start and end line numbers will make the answer completely invalid.
+Start line number: [Provide the start line number]
+End line number: [Provide the start line number]

@@ -1,0 +1,38 @@
+Given a clinical note, please categorize and segment the content into subtexts based on relevant clinical topics (e.g., Other ICU medications, Assessment and Plan, Total In out).
+If events occurring on the same day or over a continuous period are described across multiple paragraphs, they should still be grouped into a single range based on the timeline.
+Remember, Even if content related to the same clinical category is spread across multiple paragraphs, dates, or formatting sections, it should be grouped into a single subtext range if it is semantically related.
+The segmentation should not be based on dates or paragraph breaks, but rather on semantic relevance or clinical topics.
+
+For each subtext, output only the line number range in the following format:
+Output format)
+- 0~3
+- 4~7
+- 8~10
+
+Clinical Note:
+<<<Clinical_Note>>>
+
+* The clinical note starts at line 0.
+These lines must be treated as part of the clinical document and assigned to an appropriate range.
+If you fail to include these initial lines starting from line 0, your output will be considered entirely incorrect.
+This is a critical error and will result in a full penalty.
+
+Also, Split the text into segments based on meaning, but ensure each segment’s start and end line numbers are always continuous.
+There must be no missing line numbers between segments. 
+
+Desired output:
+- 0~3
+- 4~7
+- 8~10
+- 11~13
+
+Wrong output:
+- 0~3
+- 7~10 (-> missing line error! where is 4-6? )
+- 11 (-> where is end? you must write a~b(a<b))
+
+Required: Combine <<<SCOPE1>>> into one subtext, and combine <<<SCOPE2>>> into another subtext. Produce the output in the specified output format.
+No matter what, you must absolutely and without exception make <<<SCOPE1>>> one subtext and <<<SCOPE2>>> another subtext.
+!Please make "Assessment and Plan" section as a single subtext!! 
+!Please make "Total In out" section as a single subtext!! 
+Output)

@@ -1,0 +1,40 @@
+Task: Extract clinical terms (names of lab tests, drug, AdministeredItem, outputs, procedures, microbiology findings, and physical exam findings such as pupils and temperature) from the sentence.
+Remember, The clinical term must indicate that an observation or measurement was actually performed.
+
+Extract Format:
+{Extracted Entitiy: name of entity, Associated Value: value}
+
+Extraction Rules:
+1. If the target sentence contains a clinical term but no value.
+Example) 
+Line 11: ...vital signs: Tylenol is
+Line 11: treated.
+
+⟶ {Temperature:}
+
+✅ 2. If the clinical term has a value
+Use the value as-is, whether numeric or descriptive
+
+If there are multiple values, extract each separately
+
+Example 1 – Numeric:
+"BP 110/70" ⟶ {BP: 110}, {BP: 70}
+
+Example 2 – Descriptive:
+"blood pressure improved" ⟶ {blood pressure: improved}
+"Vancomycin was treated" ⟶ {Vancomycin: treated}
+
+Example 3 – range:
+"BP 110-120" ⟶ {BP: 110-120}
+
+✅ 3. If the target sentence contains no clinical term and no value
+Extract nothing: use {:}
+Example)
+Treatment for three days ⟶ {:}: There is no clinical terms (names of lab tests, drug, AdministeredItem, outputs, procedures, microbiology findings, and physical exam findings such as pupils and temperature).
+
+Even if the context includes values, if the target sentence does not include the term, do not extract
+
+Example
+Line 10: Physical Exam:
+(Context has no findings)
+⟶ {:}

@@ -1,0 +1,81 @@
+The task is to check whether a given text follows the following format.
+If it does, answer yes, otherwise answer no.
+
+The format is as follows:
+Text structured with a [Date] Time format, followed by a list of lab tests and their corresponding values.
+
+Format Example:
+[**2192-9-17**] 12:50 PM
+[**2192-9-17**] 09:08 PM
+[**2192-9-18**] 05:03 AM
+WBC
+14.4
+Plt
+326
+314
+
+Example1)
+Pt admitted for pneumonia, presenting with fever and productive cough.
+Initial lab showed leukocytosis with a WBC of 18.5.
+Patient responded well to antibiotics, with with WBC count decreasing.
+
+Output: NO
+Reason: The text does not contain any [Date] Time format or a structured list of lab results; it is written only as a general clinical narrative.
+
+Example2)
+[image002.jpg]
+[**2192-9-17**] 12:50 PM
+[**2192-9-17**] 09:08 PM
+[**2192-9-18**] 05:03 AM
+WBC
+14.4
+Plt
+326
+314
+
+Output: Yes
+Reason: The text includes entries like [**2192-9-17**] 12:50 PM in the [Date] Time format, followed by lab names (WBC, Plt) and their values, which matches the required format.
+
+Example3)
+[image002.jpg]
+[**2167-3-27**] 02:32 AM
+[**2167-3-30**] 02:35 AM
+[**2167-3-29**] 03:47 PM
+WBC
+16.8
+11.1
+6.6
+8.1
+Hct 
+[**Telephone/Fax (3) 8135**]67
+Cr
+3.8
+
+Output: Yes
+Reason: Multiple [Date] Time entries such as [**2167-3-27**] 02:32 AM are present, followed by lab names (WBC, Hct, Cr) and their values. Even though there is some irregular text, the overall structure still fits the required format.
+
+Example4)
+Labs / Radiology
+7.2 g/dL
+320 K/uL
+114 mg/dL
+3.4 mg/dL
+
+Output: No
+Reason: The text contains only lab values without any [Date] Time entries or lab test names, so it does not meet the required format.
+
+Example5)
+Vt (Spontaneous): 508 (353 - 508) mL
+RR (Spontaneous): 23
+Head, Ears, Nose, Throat: Normocephalic
+Pantoprazole (Protonix) - [**2167-4-4**] 10:00 AM
+
+Output: No
+Reason: Although a [Date] Time entry appears, it is used only for documenting a medication administration, and no structured list of lab results follows. Therefore, it does not meet the required format.
+
+Let's do it now!
+
+Clinical note:
+<<<CLINICAL_NOTE>>>
+
+Output: [Provide only 'yes' or 'no' as your answer.]

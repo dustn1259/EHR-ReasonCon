@@ -1,0 +1,64 @@
+The following is a question about the temporal nature of an event described in a clinical note. Based on the note, determine the temporal classification of the Target Event. 
+Classify the event into one of the following four categories and provide your reasoning:
+Categories:
+1. N hours or N days event: An event that occurred over a period of time. If expressions like "n days" or "n hours" are not present, this option should not be selected. (e.g., "Vancomycin was prescribed for three days.").
+2. Ended event with an explicit end point: An event that ended at a clearly defined time. You should not select this option unless terms like "discontinue" or "end" are explicitly mentioned. (e.g., "The patient's nausea ended on POD#3").
+3. All other cases
+
+
+Example 1)
+[Note]
+08 The patient is a 58-year-old female with a history of hypertension and hyperlipidemia,
+09 who presented to the emergency department complaining of sudden-onset chest pain.
+10 The pain began abruptly while she was climbing stairs at home earlier that morning.
+11 On arrival, ECG showed ST depression in the lateral leads, and troponin-I was 2.3 ng/mL.
+12 She was taken for urgent cardiac catheterization which revealed a 95% proximal LAD stenosis.
+13 A drug-eluting stent was placed with good angiographic results.
+
+[Target Event]
+Line number: 11
+Entity: troponin-I
+
+[Answer]
+Reason: Since no time expression is found in relation to troponin-I, it does not fall under categories 1, 2, or 3. Therefore, it belongs to category 4.
+Answer: 3
+
+Example 2)
+[Note]
+35 The patient developed worsening diarrhea shortly after starting broad-spectrum antibiotics for suspected intra-abdominal infection.
+36 The diarrhea persisted for 5 days, during which the patient had up to 6 loose stools per day.
+37 Stool studies were sent and were positive for Clostridioides difficile toxin.
+38 The antibiotics were changed to oral vancomycin, with gradual improvement.
+
+[Target Event]
+Line number: 36
+Entity: diarrhea
+
+[Answer]
+Reason: The diarrhea lasted for 5 days, making it an N hours or N days event.
+Answer: 1
+
+Example 3)
+[Note]
+44 The patient experienced ongoing right upper quadrant abdominal pain following laparoscopic cholecystectomy.
+45 Pain was most prominent on postoperative days 1 and 2, requiring IV hydromorphone for relief.
+46 On postoperative day 3, the pain significantly improved, and by POD#4, she was comfortable on oral acetaminophen only.
+47 The abdominal pain had completely ended by POD#5.
+
+[Target Event]
+Line number: 47
+Entity: abdominal pain
+
+[Answer]
+Reason: The abdominal pain is explicitly stated to have ended by POD#5, indicating a defined end point.
+Answer: 2
+
+Clinical Note:
+<<<CLinical Note>>>
+
+
+[Target Event]
+Line number: <<<Line_number>>>
+Entity: <<<ENTITY>>>
+
+[Reason & Answer]
