@@ -124,9 +124,14 @@ Agreement.
 > Requires a credentialed PhysioNet account, the CITI "Data or Specimens Only Research"
 > training, and the signed DUA for this project.
 
-**Download it yourself** from the project page (log in → *Files* → the ZIP, or the `wget`
-command PhysioNet shows there), then unpack it and place the folder that contains
-`discharge/ physician/ nursing/ patient_data/ resources/` at **`<release>/EHR_ReasonCon/`**:
+**Download it yourself** from the project page: log in → *Files* → `EHR_ReasonCon.zip`
+(≈0.5 GB; `LICENSE.txt` and `SHA256SUMS.txt` sit next to it). Verify the download, unpack it,
+and place the resulting `EHR_ReasonCon/` folder at **`<release>/EHR_ReasonCon/`**:
+
+```bash
+sha256sum EHR_ReasonCon.zip   # b29efe69218e73d563b65a94a41141b0945ed9e5fa79633ec7f93bd4ad2a0c1b
+unzip EHR_ReasonCon.zip -d <release>/
+```
 
 ```
 release/
@@ -139,8 +144,8 @@ release/
     └── annotations.csv  README.md  …
 ```
 
-Watch out for a double folder after unzipping (`EHR_ReasonCon/EHR_ReasonCon/…` or
-`ehr-reasoncon-1.0.0/…`): the five sub-folders must sit *directly* inside `EHR_ReasonCon/`.
+Watch out for a double folder after unzipping (`EHR_ReasonCon/EHR_ReasonCon/…`): the five
+sub-folders must sit *directly* inside `EHR_ReasonCon/`.
 If you keep the dataset elsewhere (e.g. shared storage), either symlink it to that path or
 export `EHR_REASONCON_DIR=/path/to/EHR_ReasonCon` before running any stage.
 
@@ -313,9 +318,8 @@ calls Gemini with the same credentials as the rest of the repo. See `item_groupi
 archive as the single distribution, every file family inside it (notes, annotation JSONs,
 `annotations.csv`, the 12 per-admission tables, item dictionaries), and a record set with
 typed fields for each table. It is generated from the published bundle's own headers and
-counts. The data itself is **not** in this repo; `contentUrl` points at PhysioNet, where
-credentialed access applies. After downloading the archive, fill in its checksum with
-`sha256sum ehr-reasoncon-1.0.0.zip` (the placeholder is all zeros). Validate with
+counts. The data itself is **not** in this repo; `contentUrl` points at the archive on
+PhysioNet (`EHR_ReasonCon.zip`, credentialed access) and carries its published sha256. Validate with
 `pip install mlcroissant && python -c "import mlcroissant as mlc; mlc.Dataset('croissant.json')"`.
 
 ## Data use

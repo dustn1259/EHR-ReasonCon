@@ -6,9 +6,10 @@ Get the data yourself from PhysioNet (credentialed access required):
 
     https://physionet.org/content/ehr-reasoncon/1.0.0/      DOI 10.13026/7m91-3010
 
-Download the ZIP from the project page (or mirror the files with wget as PhysioNet
-describes), unpack it, and put the folder that contains  discharge/  physician/
-nursing/  patient_data/  resources/  at
+Download EHR_ReasonCon.zip from the project's Files section (sha256
+b29efe69218e73d563b65a94a41141b0945ed9e5fa79633ec7f93bd4ad2a0c1b), unpack it, and put
+the resulting EHR_ReasonCon/ folder (containing  discharge/  physician/  nursing/
+patient_data/  resources/) at
 
     <release>/EHR_ReasonCon/            (default; nothing else to configure)
 

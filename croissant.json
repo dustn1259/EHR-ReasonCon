@@ -165,11 +165,20 @@
     {
       "@type": "cr:FileObject",
       "@id": "physionet-archive",
-      "name": "ehr-reasoncon-1.0.0.zip",
-      "description": "Complete dataset archive served by PhysioNet. Access requires a credentialed PhysioNet account, completion of the CITI 'Data or Specimens Only Research' course, and signing the project's Data Use Agreement. The archive unpacks into ehr-reasoncon-1.0.0/. Replace the sha256 below with `sha256sum ehr-reasoncon-1.0.0.zip` of your download.",
-      "contentUrl": "https://physionet.org/content/ehr-reasoncon/get-zip/1.0.0/",
+      "name": "EHR_ReasonCon.zip",
+      "description": "The complete dataset as published in the PhysioNet project's Files section. Access requires a credentialed PhysioNet account, completion of the CITI 'Data or Specimens Only Research' course, and signing the project's Data Use Agreement. The archive unpacks into EHR_ReasonCon/. sha256 as listed in the project's SHA256SUMS.txt.",
+      "contentUrl": "https://physionet.org/files/ehr-reasoncon/1.0.0/EHR_ReasonCon.zip",
       "encodingFormat": "application/zip",
-      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      "sha256": "b29efe69218e73d563b65a94a41141b0945ed9e5fa79633ec7f93bd4ad2a0c1b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "physionet-license",
+      "name": "LICENSE.txt",
+      "description": "PhysioNet Credentialed Health Data License 1.5.0 text, as published next to the archive.",
+      "contentUrl": "https://physionet.org/files/ehr-reasoncon/1.0.0/LICENSE.txt",
+      "encodingFormat": "text/plain",
+      "sha256": "60f826ec54111bd7ab8ba9a04771b92fe60cc92d306137bb61fd1dd46080caa0"
     },
     {
       "@type": "cr:FileObject",
@@ -179,7 +188,7 @@
       "containedIn": {
         "@id": "physionet-archive"
       },
-      "contentUrl": "ehr-reasoncon-1.0.0/annotations.csv",
+      "contentUrl": "EHR_ReasonCon/annotations.csv",
       "encodingFormat": "text/csv"
     },
     {
@@ -192,12 +201,18 @@
       },
       "encodingFormat": "text/csv",
       "includes": [
-        "ehr-reasoncon-1.0.0/discharge/test/discharge_test.csv",
-        "ehr-reasoncon-1.0.0/discharge/valid/discharge_val.csv",
-        "ehr-reasoncon-1.0.0/physician/test/physician_test.csv",
-        "ehr-reasoncon-1.0.0/physician/valid/physician_val.csv",
-        "ehr-reasoncon-1.0.0/nursing/test/nursing_test.csv",
-        "ehr-reasoncon-1.0.0/nursing/valid/nursing_val.csv"
+        "EHR_ReasonCon/discharge/test/discharge_test.csv",
+        "EHR_ReasonCon/discharge/valid/discharge_val.csv",
+        "EHR_ReasonCon/physician/test/physician_test.csv",
+        "EHR_ReasonCon/physician/valid/physician_val.csv",
+        "EHR_ReasonCon/nursing/test/nursing_test.csv",
+        "EHR_ReasonCon/nursing/valid/nursing_val.csv",
+        "discharge/test/discharge_test.csv",
+        "discharge/valid/discharge_val.csv",
+        "physician/test/physician_test.csv",
+        "physician/valid/physician_val.csv",
+        "nursing/test/nursing_test.csv",
+        "nursing/valid/nursing_val.csv"
       ]
     },
     {
@@ -210,12 +225,18 @@
       },
       "encodingFormat": "application/json",
       "includes": [
-        "ehr-reasoncon-1.0.0/discharge/test/EHRReasonCon_*_data.json",
-        "ehr-reasoncon-1.0.0/discharge/valid/EHRReasonCon_*_data.json",
-        "ehr-reasoncon-1.0.0/physician/test/EHRReasonCon_*_data.json",
-        "ehr-reasoncon-1.0.0/physician/valid/EHRReasonCon_*_data.json",
-        "ehr-reasoncon-1.0.0/nursing/test/EHRReasonCon_*_data.json",
-        "ehr-reasoncon-1.0.0/nursing/valid/EHRReasonCon_*_data.json"
+        "EHR_ReasonCon/discharge/test/EHRReasonCon_*_data.json",
+        "EHR_ReasonCon/discharge/valid/EHRReasonCon_*_data.json",
+        "EHR_ReasonCon/physician/test/EHRReasonCon_*_data.json",
+        "EHR_ReasonCon/physician/valid/EHRReasonCon_*_data.json",
+        "EHR_ReasonCon/nursing/test/EHRReasonCon_*_data.json",
+        "EHR_ReasonCon/nursing/valid/EHRReasonCon_*_data.json",
+        "discharge/test/EHRReasonCon_*_data.json",
+        "discharge/valid/EHRReasonCon_*_data.json",
+        "physician/test/EHRReasonCon_*_data.json",
+        "physician/valid/EHRReasonCon_*_data.json",
+        "nursing/test/EHRReasonCon_*_data.json",
+        "nursing/valid/EHRReasonCon_*_data.json"
       ]
     },
     {
@@ -227,7 +248,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/chartevents.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/chartevents.csv",
+        "patient_data/*/chartevents.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -238,7 +262,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/labevents.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/labevents.csv",
+        "patient_data/*/labevents.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -249,7 +276,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/prescriptions.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/prescriptions.csv",
+        "patient_data/*/prescriptions.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -260,7 +290,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/inputevents_cv.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/inputevents_cv.csv",
+        "patient_data/*/inputevents_cv.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -271,7 +304,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/inputevents_mv.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/inputevents_mv.csv",
+        "patient_data/*/inputevents_mv.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -282,7 +318,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/outputevents.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/outputevents.csv",
+        "patient_data/*/outputevents.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -293,7 +332,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/procedureevents_mv.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/procedureevents_mv.csv",
+        "patient_data/*/procedureevents_mv.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -304,7 +346,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/microbiologyevents.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/microbiologyevents.csv",
+        "patient_data/*/microbiologyevents.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -315,7 +360,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/diagnosis_icd.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/diagnosis_icd.csv",
+        "patient_data/*/diagnosis_icd.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -326,7 +374,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/procedure_icd.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/procedure_icd.csv",
+        "patient_data/*/procedure_icd.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -337,7 +388,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/patient_records.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/patient_records.csv",
+        "patient_data/*/patient_records.csv"
+      ]
     },
     {
       "@type": "cr:FileSet",
@@ -348,7 +402,10 @@
         "@id": "physionet-archive"
       },
       "encodingFormat": "text/csv",
-      "includes": "ehr-reasoncon-1.0.0/patient_data/*/catalog_items.csv"
+      "includes": [
+        "EHR_ReasonCon/patient_data/*/catalog_items.csv",
+        "patient_data/*/catalog_items.csv"
+      ]
     },
     {
       "@type": "cr:FileObject",
@@ -358,7 +415,7 @@
       "containedIn": {
         "@id": "physionet-archive"
       },
-      "contentUrl": "ehr-reasoncon-1.0.0/resources/preprocessed_d_items.csv",
+      "contentUrl": "EHR_ReasonCon/resources/preprocessed_d_items.csv",
       "encodingFormat": "text/csv"
     },
     {
@@ -369,7 +426,7 @@
       "containedIn": {
         "@id": "physionet-archive"
       },
-      "contentUrl": "ehr-reasoncon-1.0.0/resources/d_labitems.csv",
+      "contentUrl": "EHR_ReasonCon/resources/d_labitems.csv",
       "encodingFormat": "text/csv"
     },
     {
@@ -380,7 +437,7 @@
       "containedIn": {
         "@id": "physionet-archive"
       },
-      "contentUrl": "ehr-reasoncon-1.0.0/resources/top_values.json",
+      "contentUrl": "EHR_ReasonCon/resources/top_values.json",
       "encodingFormat": "application/json"
     },
     {
@@ -391,7 +448,7 @@
       "containedIn": {
         "@id": "physionet-archive"
       },
-      "contentUrl": "ehr-reasoncon-1.0.0/README.md",
+      "contentUrl": "EHR_ReasonCon/README.md",
       "encodingFormat": "text/markdown"
     }
   ],
