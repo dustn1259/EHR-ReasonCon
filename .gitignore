@@ -3,6 +3,7 @@
 *.json
 !entity_extraction/utils/asset/*.yaml
 !tool_calling/predefined_mapping.json
+!croissant.json
 
 # runtime-generated intermediates / outputs
 entity_extraction/output/*

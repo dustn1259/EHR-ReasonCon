@@ -12,7 +12,7 @@ open-source, and the tool-removal ablations) are intentionally excluded.
 
 ```
 release/
-├── README.md · CITATION.cff · requirements.txt · .env.example · .gitignore
+├── README.md · CITATION.cff · croissant.json · requirements.txt · .env.example · .gitignore
 ├── smoke_test.py                    # credential-free checks (compile / secrets / dataset layout)
 ├── check_dataset.py                 # verify the downloaded EHR-ReasonCon bundle is complete and in place
 ├── build_patient_data.py            # (maintainers) assemble patient_data/ from the raw source dirs
@@ -305,6 +305,18 @@ calls Gemini with the same credentials as the rest of the repo. See `item_groupi
 - Baseline / ablation scripts, notebooks, scratch/`old_*` dirs.
 - Large regenerable artifacts: per-patient SQLite DBs (auto-built on first use),
   eval logs, raw annotator label dirs (`v2_labeling_*`).
+
+## Dataset metadata (Croissant)
+
+`croissant.json` describes the EHR-ReasonCon dataset in the
+[MLCommons Croissant 1.0](https://mlcommons.org/croissant/) format (JSON-LD): the PhysioNet
+archive as the single distribution, every file family inside it (notes, annotation JSONs,
+`annotations.csv`, the 12 per-admission tables, item dictionaries), and a record set with
+typed fields for each table. It is generated from the published bundle's own headers and
+counts. The data itself is **not** in this repo; `contentUrl` points at PhysioNet, where
+credentialed access applies. After downloading the archive, fill in its checksum with
+`sha256sum ehr-reasoncon-1.0.0.zip` (the placeholder is all zeros). Validate with
+`pip install mlcroissant && python -c "import mlcroissant as mlc; mlc.Dataset('croissant.json')"`.
 
 ## Data use
 

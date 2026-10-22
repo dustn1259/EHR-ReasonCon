@@ -1,0 +1,3752 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "samplingRate": "cr:samplingRate",
+    "equivalentProperty": "cr:equivalentProperty"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "EHR-ReasonCon",
+  "alternateName": "EHR-ReasonCon: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records",
+  "version": "1.0.0",
+  "datePublished": "2026-09-15",
+  "description": "EHR-ReasonCon is a reasoning-intensive benchmark for verifying consistency between unstructured clinical notes and structured tables in Electronic Health Records. Built on MIMIC-III with expert-guided annotation, it contains 8,042 anchor entities from 105 clinical notes (38 discharge summaries, 33 physician notes, 34 nursing notes), each labeled CONSISTENT or INCONSISTENT against the patient's structured records, together with the per-admission tables (14 MIMIC-III tables) needed to reproduce every judgment. Each note belongs to a distinct hospital admission of a distinct patient. The data is distributed exclusively through PhysioNet under the PhysioNet Credentialed Health Data Use Agreement; it is not mirrored in this repository.",
+  "url": "https://physionet.org/content/ehr-reasoncon/1.0.0/",
+  "sameAs": [
+    "https://doi.org/10.13026/7m91-3010",
+    "https://arxiv.org/abs/2605.26463",
+    "https://github.com/dustn1259/EHR-ReasonCon"
+  ],
+  "license": "https://physionet.org/content/ehr-reasoncon/view-license/1.0.0/",
+  "conditionsOfAccess": "Restricted (credentialed) access via PhysioNet: credentialed PhysioNet account, CITI 'Data or Specimens Only Research' training, and the signed Data Use Agreement for this project. The underlying MIMIC-III v1.4 tables used by the accompanying code are a separate credentialed PhysioNet dataset (https://physionet.org/content/mimiciii/1.4/).",
+  "isAccessibleForFree": true,
+  "isLiveDataset": false,
+  "inLanguage": "en",
+  "keywords": [
+    "electronic health records",
+    "clinical notes",
+    "consistency verification",
+    "fact verification",
+    "MIMIC-III",
+    "benchmark",
+    "clinical NLP",
+    "LLM agents",
+    "temporal reasoning"
+  ],
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "name": "Yeonsu Kwon",
+      "givenName": "Yeonsu",
+      "familyName": "Kwon"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Jiho Kim",
+      "givenName": "Jiho",
+      "familyName": "Kim"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Junseong Choi",
+      "givenName": "Junseong",
+      "familyName": "Choi"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Paloma Rabaey",
+      "givenName": "Paloma",
+      "familyName": "Rabaey"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Minseo Kim",
+      "givenName": "Minseo",
+      "familyName": "Kim"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Sujeong Im",
+      "givenName": "Sujeong",
+      "familyName": "Im"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Jeewon Yang",
+      "givenName": "Jeewon",
+      "familyName": "Yang"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Jun-Min Lee",
+      "givenName": "Jun-Min",
+      "familyName": "Lee"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Sangji Lee",
+      "givenName": "Sangji",
+      "familyName": "Lee"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Jiwon Kim",
+      "givenName": "Jiwon",
+      "familyName": "Kim"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Hangyul Yoon",
+      "givenName": "Hangyul",
+      "familyName": "Yoon"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Hyunwook Kwon",
+      "givenName": "Hyunwook",
+      "familyName": "Kwon"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Edward Choi",
+      "givenName": "Edward",
+      "familyName": "Choi"
+    }
+  ],
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "PhysioNet",
+    "url": "https://physionet.org/"
+  },
+  "citeAs": "@misc{kwon2026ehrreasoncon_physionet, title={EHR-ReasonCon: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records (version 1.0.0)}, author={Kwon, Yeonsu and Kim, Jiho and Choi, Junseong and Rabaey, Paloma and Kim, Minseo and Im, Sujeong and Yang, Jeewon and Lee, Jun-Min and Lee, Sangji and Kim, Jiwon and Yoon, Hangyul and Kwon, Hyunwook and Choi, Edward}, year={2026}, publisher={PhysioNet}, doi={10.13026/7m91-3010}, url={https://physionet.org/content/ehr-reasoncon/1.0.0/}}  Paper: Kwon et al. (2026). Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records. arXiv:2605.26463.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "physionet-archive",
+      "name": "ehr-reasoncon-1.0.0.zip",
+      "description": "Complete dataset archive served by PhysioNet. Access requires a credentialed PhysioNet account, completion of the CITI 'Data or Specimens Only Research' course, and signing the project's Data Use Agreement. The archive unpacks into ehr-reasoncon-1.0.0/. Replace the sha256 below with `sha256sum ehr-reasoncon-1.0.0.zip` of your download.",
+      "contentUrl": "https://physionet.org/content/ehr-reasoncon/get-zip/1.0.0/",
+      "encodingFormat": "application/zip",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotations-csv",
+      "name": "annotations.csv",
+      "description": "All 8,042 annotations flattened into one table (one row per annotated entity).",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "contentUrl": "ehr-reasoncon-1.0.0/annotations.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "note-csvs",
+      "name": "note-csvs",
+      "description": "Clinical notes, one CSV per note type and split (MIMIC-III NOTEEVENTS columns plus ADMITTIME).",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": [
+        "ehr-reasoncon-1.0.0/discharge/test/discharge_test.csv",
+        "ehr-reasoncon-1.0.0/discharge/valid/discharge_val.csv",
+        "ehr-reasoncon-1.0.0/physician/test/physician_test.csv",
+        "ehr-reasoncon-1.0.0/physician/valid/physician_val.csv",
+        "ehr-reasoncon-1.0.0/nursing/test/nursing_test.csv",
+        "ehr-reasoncon-1.0.0/nursing/valid/nursing_val.csv"
+      ]
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "annotation-jsons",
+      "name": "annotation-jsons",
+      "description": "Per-note gold annotations: EHRReasonCon_{HADM_ID}_data.json, keyed by the note's ROW_ID; the value is the list of annotated entities (see annotations.csv for the flat view).",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "application/json",
+      "includes": [
+        "ehr-reasoncon-1.0.0/discharge/test/EHRReasonCon_*_data.json",
+        "ehr-reasoncon-1.0.0/discharge/valid/EHRReasonCon_*_data.json",
+        "ehr-reasoncon-1.0.0/physician/test/EHRReasonCon_*_data.json",
+        "ehr-reasoncon-1.0.0/physician/valid/EHRReasonCon_*_data.json",
+        "ehr-reasoncon-1.0.0/nursing/test/EHRReasonCon_*_data.json",
+        "ehr-reasoncon-1.0.0/nursing/valid/EHRReasonCon_*_data.json"
+      ]
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-chartevents",
+      "name": "patient-chartevents",
+      "description": "Bedside charted observations (vitals, assessments, device settings); one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/chartevents.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-labevents",
+      "name": "patient-labevents",
+      "description": "Laboratory measurements; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/labevents.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-prescriptions",
+      "name": "patient-prescriptions",
+      "description": "Medication orders; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/prescriptions.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-inputevents_cv",
+      "name": "patient-inputevents_cv",
+      "description": "Fluid/medication inputs (CareVue); one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/inputevents_cv.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-inputevents_mv",
+      "name": "patient-inputevents_mv",
+      "description": "Fluid/medication inputs (MetaVision); one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/inputevents_mv.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-outputevents",
+      "name": "patient-outputevents",
+      "description": "Fluid outputs; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/outputevents.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-procedureevents_mv",
+      "name": "patient-procedureevents_mv",
+      "description": "Procedures (MetaVision); one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/procedureevents_mv.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-microbiologyevents",
+      "name": "patient-microbiologyevents",
+      "description": "Microbiology cultures and sensitivities; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/microbiologyevents.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-diagnosis_icd",
+      "name": "patient-diagnosis_icd",
+      "description": "ICD-9 diagnosis codes for the admission, pre-joined with their titles; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/diagnosis_icd.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-procedure_icd",
+      "name": "patient-procedure_icd",
+      "description": "ICD-9 procedure codes for the admission, pre-joined with their titles; one file per admission with the original MIMIC-III columns.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/procedure_icd.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-patient_records",
+      "name": "patient-patient_records",
+      "description": "Items (chartevents/labevents/prescriptions/...) that DO occur in the admission",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/patient_records.csv"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "patient-catalog_items",
+      "name": "patient-catalog_items",
+      "description": "Items that do NOT occur in the admission (the complement of patient_records)",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "encodingFormat": "text/csv",
+      "includes": "ehr-reasoncon-1.0.0/patient_data/*/catalog_items.csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "d-items",
+      "name": "preprocessed_d_items.csv",
+      "description": "MIMIC-III D_ITEMS dictionary (chartevents / inputevents / outputevents / procedureevents / microbiology ITEMIDs).",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "contentUrl": "ehr-reasoncon-1.0.0/resources/preprocessed_d_items.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "d-labitems",
+      "name": "d_labitems.csv",
+      "description": "MIMIC-III D_LABITEMS dictionary for labevents ITEMIDs.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "contentUrl": "ehr-reasoncon-1.0.0/resources/d_labitems.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "top-values",
+      "name": "top_values.json",
+      "description": "Corpus-wide most frequent values per item: {table: {item_label: [value, ...]}} for chartevents, labevents, prescriptions, outputevents.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "contentUrl": "ehr-reasoncon-1.0.0/resources/top_values.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "dataset-readme",
+      "name": "README.md",
+      "description": "File guide inside the archive: folder hierarchy, how files relate, annotation format, loading examples.",
+      "containedIn": {
+        "@id": "physionet-archive"
+      },
+      "contentUrl": "ehr-reasoncon-1.0.0/README.md",
+      "encodingFormat": "text/markdown"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "notes",
+      "name": "notes",
+      "description": "The 105 clinical notes (83 test / 22 valid): one row per note.",
+      "key": {
+        "@id": "notes/ROW_ID"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "notes/ROW_ID",
+          "name": "notes/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          },
+          "description": "NOTEEVENTS row id; the key of the note's annotation JSON"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/SUBJECT_ID",
+          "name": "notes/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/HADM_ID",
+          "name": "notes/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "description": "Hospital admission id (float as stored; patient_data folders use the integer form)"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/CHARTDATE",
+          "name": "notes/CHARTDATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "CHARTDATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/CHARTTIME",
+          "name": "notes/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/STORETIME",
+          "name": "notes/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/CATEGORY",
+          "name": "notes/CATEGORY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "CATEGORY"
+            }
+          },
+          "description": "Note type: Discharge summary, Physician, or Nursing"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/DESCRIPTION",
+          "name": "notes/DESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "DESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/CGID",
+          "name": "notes/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/ISERROR",
+          "name": "notes/ISERROR",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "ISERROR"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/TEXT",
+          "name": "notes/TEXT",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "TEXT"
+            }
+          },
+          "description": "Note body, restricted to the current hospitalization; annotation 'position' indexes TEXT.split('\\n')"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "notes/ADMITTIME",
+          "name": "notes/ADMITTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "note-csvs"
+            },
+            "extract": {
+              "column": "ADMITTIME"
+            }
+          },
+          "description": "Admission timestamp from ADMISSIONS (resolves relative time expressions)"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "annotations",
+      "name": "annotations",
+      "description": "8,042 expert annotations: 5,847 consistent, 2,195 inconsistent.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/note_type",
+          "name": "annotations/note_type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "note_type"
+            }
+          },
+          "description": "discharge | physician | nursing"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/split",
+          "name": "annotations/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "split"
+            }
+          },
+          "description": "test | valid"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/hadm_id",
+          "name": "annotations/hadm_id",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "hadm_id"
+            }
+          },
+          "description": "Admission id of the note"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/row_id",
+          "name": "annotations/row_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "row_id"
+            }
+          },
+          "description": "ROW_ID of the note (joins notes/ROW_ID)",
+          "references": {
+            "field": {
+              "@id": "notes/ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/entity_index",
+          "name": "annotations/entity_index",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "entity_index"
+            }
+          },
+          "description": "Position of the entity within the note's annotation list"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/entity",
+          "name": "annotations/entity",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "entity"
+            }
+          },
+          "description": "Anchor entity text as written in the note"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/data",
+          "name": "annotations/data",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "data"
+            }
+          },
+          "description": "JSON list of {table: {column: value}} mapping the note-side value(s) onto table columns"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/label",
+          "name": "annotations/label",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "label"
+            }
+          },
+          "description": "consistent | inconsistent"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/entity_type",
+          "name": "annotations/entity_type",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "entity_type"
+            }
+          },
+          "description": "1 = numerical value, 2 = existence-verifiable event, 3 = string / categorical value"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/position",
+          "name": "annotations/position",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "position"
+            }
+          },
+          "description": "0-based line index of the entity in the note body"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/table",
+          "name": "annotations/table",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "table"
+            }
+          },
+          "description": "Primary evidence table (e.g. chartevents)"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/evidence_row_ids",
+          "name": "annotations/evidence_row_ids",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "evidence_row_ids"
+            }
+          },
+          "description": "ROW_IDs of the supporting rows in that table"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/consistency_check_path",
+          "name": "annotations/consistency_check_path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "consistency_check_path"
+            }
+          },
+          "description": "Coded trace of the tool-exploration path the annotator followed"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/inconsistent_columns",
+          "name": "annotations/inconsistent_columns",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "inconsistent_columns"
+            }
+          },
+          "description": "For inconsistent entities, the column(s) where the discrepancy occurs"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/almost_consistent",
+          "name": "annotations/almost_consistent",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "almost_consistent"
+            }
+          },
+          "description": "Yes/No: values differ only negligibly"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/commonsense_medical_none",
+          "name": "annotations/commonsense_medical_none",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "commonsense_medical_none"
+            }
+          },
+          "description": "c = commonsense reasoning, m = medical knowledge, n = neither"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/medical_knowledge_source",
+          "name": "annotations/medical_knowledge_source",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "medical_knowledge_source"
+            }
+          },
+          "description": "URL of the clinical reference consulted, when applicable"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/check_db",
+          "name": "annotations/check_db",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "check_db"
+            }
+          },
+          "description": "Database or guideline consultation was required to reach the label"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotations/abnormal_case",
+          "name": "annotations/abnormal_case",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "annotations-csv"
+            },
+            "extract": {
+              "column": "abnormal_case"
+            }
+          },
+          "description": "Marks an atypical or edge case flagged during annotation"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_chartevents",
+      "name": "patient_chartevents",
+      "description": "Bedside charted observations (vitals, assessments, device settings). Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/ROW_ID",
+          "name": "patient_chartevents/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/SUBJECT_ID",
+          "name": "patient_chartevents/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/HADM_ID",
+          "name": "patient_chartevents/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/ICUSTAY_ID",
+          "name": "patient_chartevents/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/ITEMID",
+          "name": "patient_chartevents/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/CHARTTIME",
+          "name": "patient_chartevents/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/STORETIME",
+          "name": "patient_chartevents/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/CGID",
+          "name": "patient_chartevents/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/VALUE",
+          "name": "patient_chartevents/VALUE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "VALUE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/VALUENUM",
+          "name": "patient_chartevents/VALUENUM",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "VALUENUM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/VALUEUOM",
+          "name": "patient_chartevents/VALUEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "VALUEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/WARNING",
+          "name": "patient_chartevents/WARNING",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "WARNING"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/ERROR",
+          "name": "patient_chartevents/ERROR",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "ERROR"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/RESULTSTATUS",
+          "name": "patient_chartevents/RESULTSTATUS",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "RESULTSTATUS"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_chartevents/STOPPED",
+          "name": "patient_chartevents/STOPPED",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-chartevents"
+            },
+            "extract": {
+              "column": "STOPPED"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_labevents",
+      "name": "patient_labevents",
+      "description": "Laboratory measurements. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/ROW_ID",
+          "name": "patient_labevents/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/SUBJECT_ID",
+          "name": "patient_labevents/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/HADM_ID",
+          "name": "patient_labevents/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/ITEMID",
+          "name": "patient_labevents/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/CHARTTIME",
+          "name": "patient_labevents/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/VALUE",
+          "name": "patient_labevents/VALUE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "VALUE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/VALUENUM",
+          "name": "patient_labevents/VALUENUM",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "VALUENUM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/VALUEUOM",
+          "name": "patient_labevents/VALUEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "VALUEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_labevents/FLAG",
+          "name": "patient_labevents/FLAG",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-labevents"
+            },
+            "extract": {
+              "column": "FLAG"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_prescriptions",
+      "name": "patient_prescriptions",
+      "description": "Medication orders. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/ROW_ID",
+          "name": "patient_prescriptions/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/SUBJECT_ID",
+          "name": "patient_prescriptions/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/HADM_ID",
+          "name": "patient_prescriptions/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/ICUSTAY_ID",
+          "name": "patient_prescriptions/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/STARTDATE",
+          "name": "patient_prescriptions/STARTDATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "STARTDATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/ENDDATE",
+          "name": "patient_prescriptions/ENDDATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "ENDDATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DRUG_TYPE",
+          "name": "patient_prescriptions/DRUG_TYPE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DRUG_TYPE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DRUG",
+          "name": "patient_prescriptions/DRUG",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DRUG"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DRUG_NAME_POE",
+          "name": "patient_prescriptions/DRUG_NAME_POE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DRUG_NAME_POE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DRUG_NAME_GENERIC",
+          "name": "patient_prescriptions/DRUG_NAME_GENERIC",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DRUG_NAME_GENERIC"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/FORMULARY_DRUG_CD",
+          "name": "patient_prescriptions/FORMULARY_DRUG_CD",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "FORMULARY_DRUG_CD"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/GSN",
+          "name": "patient_prescriptions/GSN",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "GSN"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/NDC",
+          "name": "patient_prescriptions/NDC",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "NDC"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/PROD_STRENGTH",
+          "name": "patient_prescriptions/PROD_STRENGTH",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "PROD_STRENGTH"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DOSE_VAL_RX",
+          "name": "patient_prescriptions/DOSE_VAL_RX",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DOSE_VAL_RX"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/DOSE_UNIT_RX",
+          "name": "patient_prescriptions/DOSE_UNIT_RX",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "DOSE_UNIT_RX"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/FORM_VAL_DISP",
+          "name": "patient_prescriptions/FORM_VAL_DISP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "FORM_VAL_DISP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/FORM_UNIT_DISP",
+          "name": "patient_prescriptions/FORM_UNIT_DISP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "FORM_UNIT_DISP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_prescriptions/ROUTE",
+          "name": "patient_prescriptions/ROUTE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-prescriptions"
+            },
+            "extract": {
+              "column": "ROUTE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_inputevents_cv",
+      "name": "patient_inputevents_cv",
+      "description": "Fluid/medication inputs (CareVue). Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ROW_ID",
+          "name": "patient_inputevents_cv/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/SUBJECT_ID",
+          "name": "patient_inputevents_cv/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/HADM_ID",
+          "name": "patient_inputevents_cv/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ICUSTAY_ID",
+          "name": "patient_inputevents_cv/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/CHARTTIME",
+          "name": "patient_inputevents_cv/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ITEMID",
+          "name": "patient_inputevents_cv/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/AMOUNT",
+          "name": "patient_inputevents_cv/AMOUNT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "AMOUNT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/AMOUNTUOM",
+          "name": "patient_inputevents_cv/AMOUNTUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "AMOUNTUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/RATE",
+          "name": "patient_inputevents_cv/RATE",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "RATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/RATEUOM",
+          "name": "patient_inputevents_cv/RATEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "RATEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/STORETIME",
+          "name": "patient_inputevents_cv/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/CGID",
+          "name": "patient_inputevents_cv/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORDERID",
+          "name": "patient_inputevents_cv/ORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/LINKORDERID",
+          "name": "patient_inputevents_cv/LINKORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "LINKORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/STOPPED",
+          "name": "patient_inputevents_cv/STOPPED",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "STOPPED"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/NEWBOTTLE",
+          "name": "patient_inputevents_cv/NEWBOTTLE",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "NEWBOTTLE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALAMOUNT",
+          "name": "patient_inputevents_cv/ORIGINALAMOUNT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALAMOUNT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALAMOUNTUOM",
+          "name": "patient_inputevents_cv/ORIGINALAMOUNTUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALAMOUNTUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALROUTE",
+          "name": "patient_inputevents_cv/ORIGINALROUTE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALROUTE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALRATE",
+          "name": "patient_inputevents_cv/ORIGINALRATE",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALRATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALRATEUOM",
+          "name": "patient_inputevents_cv/ORIGINALRATEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALRATEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_cv/ORIGINALSITE",
+          "name": "patient_inputevents_cv/ORIGINALSITE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_cv"
+            },
+            "extract": {
+              "column": "ORIGINALSITE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_inputevents_mv",
+      "name": "patient_inputevents_mv",
+      "description": "Fluid/medication inputs (MetaVision). Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ROW_ID",
+          "name": "patient_inputevents_mv/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/SUBJECT_ID",
+          "name": "patient_inputevents_mv/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/HADM_ID",
+          "name": "patient_inputevents_mv/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ICUSTAY_ID",
+          "name": "patient_inputevents_mv/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/STARTTIME",
+          "name": "patient_inputevents_mv/STARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "STARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ENDTIME",
+          "name": "patient_inputevents_mv/ENDTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ENDTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ITEMID",
+          "name": "patient_inputevents_mv/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/AMOUNT",
+          "name": "patient_inputevents_mv/AMOUNT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "AMOUNT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/AMOUNTUOM",
+          "name": "patient_inputevents_mv/AMOUNTUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "AMOUNTUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/RATE",
+          "name": "patient_inputevents_mv/RATE",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "RATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/RATEUOM",
+          "name": "patient_inputevents_mv/RATEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "RATEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/STORETIME",
+          "name": "patient_inputevents_mv/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/CGID",
+          "name": "patient_inputevents_mv/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORDERID",
+          "name": "patient_inputevents_mv/ORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/LINKORDERID",
+          "name": "patient_inputevents_mv/LINKORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "LINKORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORDERCATEGORYNAME",
+          "name": "patient_inputevents_mv/ORDERCATEGORYNAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORDERCATEGORYNAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/SECONDARYORDERCATEGORYNAME",
+          "name": "patient_inputevents_mv/SECONDARYORDERCATEGORYNAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "SECONDARYORDERCATEGORYNAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORDERCOMPONENTTYPEDESCRIPTION",
+          "name": "patient_inputevents_mv/ORDERCOMPONENTTYPEDESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORDERCOMPONENTTYPEDESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORDERCATEGORYDESCRIPTION",
+          "name": "patient_inputevents_mv/ORDERCATEGORYDESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORDERCATEGORYDESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/PATIENTWEIGHT",
+          "name": "patient_inputevents_mv/PATIENTWEIGHT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "PATIENTWEIGHT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/TOTALAMOUNT",
+          "name": "patient_inputevents_mv/TOTALAMOUNT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "TOTALAMOUNT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/TOTALAMOUNTUOM",
+          "name": "patient_inputevents_mv/TOTALAMOUNTUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "TOTALAMOUNTUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ISOPENBAG",
+          "name": "patient_inputevents_mv/ISOPENBAG",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ISOPENBAG"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/CONTINUEINNEXTDEPT",
+          "name": "patient_inputevents_mv/CONTINUEINNEXTDEPT",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "CONTINUEINNEXTDEPT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/CANCELREASON",
+          "name": "patient_inputevents_mv/CANCELREASON",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "CANCELREASON"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/STATUSDESCRIPTION",
+          "name": "patient_inputevents_mv/STATUSDESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "STATUSDESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/COMMENTS_EDITEDBY",
+          "name": "patient_inputevents_mv/COMMENTS_EDITEDBY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_EDITEDBY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/COMMENTS_CANCELEDBY",
+          "name": "patient_inputevents_mv/COMMENTS_CANCELEDBY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_CANCELEDBY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/COMMENTS_DATE",
+          "name": "patient_inputevents_mv/COMMENTS_DATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_DATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORIGINALAMOUNT",
+          "name": "patient_inputevents_mv/ORIGINALAMOUNT",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORIGINALAMOUNT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_inputevents_mv/ORIGINALRATE",
+          "name": "patient_inputevents_mv/ORIGINALRATE",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-inputevents_mv"
+            },
+            "extract": {
+              "column": "ORIGINALRATE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_outputevents",
+      "name": "patient_outputevents",
+      "description": "Fluid outputs. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/ROW_ID",
+          "name": "patient_outputevents/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/SUBJECT_ID",
+          "name": "patient_outputevents/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/HADM_ID",
+          "name": "patient_outputevents/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/ICUSTAY_ID",
+          "name": "patient_outputevents/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/CHARTTIME",
+          "name": "patient_outputevents/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/ITEMID",
+          "name": "patient_outputevents/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/VALUE",
+          "name": "patient_outputevents/VALUE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "VALUE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/VALUEUOM",
+          "name": "patient_outputevents/VALUEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "VALUEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/STORETIME",
+          "name": "patient_outputevents/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/CGID",
+          "name": "patient_outputevents/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/STOPPED",
+          "name": "patient_outputevents/STOPPED",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "STOPPED"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/NEWBOTTLE",
+          "name": "patient_outputevents/NEWBOTTLE",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "NEWBOTTLE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_outputevents/ISERROR",
+          "name": "patient_outputevents/ISERROR",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-outputevents"
+            },
+            "extract": {
+              "column": "ISERROR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_procedureevents_mv",
+      "name": "patient_procedureevents_mv",
+      "description": "Procedures (MetaVision). Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ROW_ID",
+          "name": "patient_procedureevents_mv/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/SUBJECT_ID",
+          "name": "patient_procedureevents_mv/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/HADM_ID",
+          "name": "patient_procedureevents_mv/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ICUSTAY_ID",
+          "name": "patient_procedureevents_mv/ICUSTAY_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ICUSTAY_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/STARTTIME",
+          "name": "patient_procedureevents_mv/STARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "STARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ENDTIME",
+          "name": "patient_procedureevents_mv/ENDTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ENDTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ITEMID",
+          "name": "patient_procedureevents_mv/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/VALUE",
+          "name": "patient_procedureevents_mv/VALUE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "VALUE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/VALUEUOM",
+          "name": "patient_procedureevents_mv/VALUEUOM",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "VALUEUOM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/LOCATION",
+          "name": "patient_procedureevents_mv/LOCATION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "LOCATION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/LOCATIONCATEGORY",
+          "name": "patient_procedureevents_mv/LOCATIONCATEGORY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "LOCATIONCATEGORY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/STORETIME",
+          "name": "patient_procedureevents_mv/STORETIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "STORETIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/CGID",
+          "name": "patient_procedureevents_mv/CGID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "CGID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ORDERID",
+          "name": "patient_procedureevents_mv/ORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/LINKORDERID",
+          "name": "patient_procedureevents_mv/LINKORDERID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "LINKORDERID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ORDERCATEGORYNAME",
+          "name": "patient_procedureevents_mv/ORDERCATEGORYNAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ORDERCATEGORYNAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/SECONDARYORDERCATEGORYNAME",
+          "name": "patient_procedureevents_mv/SECONDARYORDERCATEGORYNAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "SECONDARYORDERCATEGORYNAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ORDERCATEGORYDESCRIPTION",
+          "name": "patient_procedureevents_mv/ORDERCATEGORYDESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ORDERCATEGORYDESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/ISOPENBAG",
+          "name": "patient_procedureevents_mv/ISOPENBAG",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "ISOPENBAG"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/CONTINUEINNEXTDEPT",
+          "name": "patient_procedureevents_mv/CONTINUEINNEXTDEPT",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "CONTINUEINNEXTDEPT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/CANCELREASON",
+          "name": "patient_procedureevents_mv/CANCELREASON",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "CANCELREASON"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/STATUSDESCRIPTION",
+          "name": "patient_procedureevents_mv/STATUSDESCRIPTION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "STATUSDESCRIPTION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/COMMENTS_EDITEDBY",
+          "name": "patient_procedureevents_mv/COMMENTS_EDITEDBY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_EDITEDBY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/COMMENTS_CANCELEDBY",
+          "name": "patient_procedureevents_mv/COMMENTS_CANCELEDBY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_CANCELEDBY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedureevents_mv/COMMENTS_DATE",
+          "name": "patient_procedureevents_mv/COMMENTS_DATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedureevents_mv"
+            },
+            "extract": {
+              "column": "COMMENTS_DATE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_microbiologyevents",
+      "name": "patient_microbiologyevents",
+      "description": "Microbiology cultures and sensitivities. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/ROW_ID",
+          "name": "patient_microbiologyevents/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/SUBJECT_ID",
+          "name": "patient_microbiologyevents/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/HADM_ID",
+          "name": "patient_microbiologyevents/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/CHARTDATE",
+          "name": "patient_microbiologyevents/CHARTDATE",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "CHARTDATE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/CHARTTIME",
+          "name": "patient_microbiologyevents/CHARTTIME",
+          "dataType": "sc:Date",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "CHARTTIME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/SPEC_ITEMID",
+          "name": "patient_microbiologyevents/SPEC_ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "SPEC_ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/SPEC_TYPE_DESC",
+          "name": "patient_microbiologyevents/SPEC_TYPE_DESC",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "SPEC_TYPE_DESC"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/ORG_ITEMID",
+          "name": "patient_microbiologyevents/ORG_ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "ORG_ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/ORG_NAME",
+          "name": "patient_microbiologyevents/ORG_NAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "ORG_NAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/ISOLATE_NUM",
+          "name": "patient_microbiologyevents/ISOLATE_NUM",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "ISOLATE_NUM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/AB_ITEMID",
+          "name": "patient_microbiologyevents/AB_ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "AB_ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/AB_NAME",
+          "name": "patient_microbiologyevents/AB_NAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "AB_NAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/DILUTION_TEXT",
+          "name": "patient_microbiologyevents/DILUTION_TEXT",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "DILUTION_TEXT"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/DILUTION_COMPARISON",
+          "name": "patient_microbiologyevents/DILUTION_COMPARISON",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "DILUTION_COMPARISON"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/DILUTION_VALUE",
+          "name": "patient_microbiologyevents/DILUTION_VALUE",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "DILUTION_VALUE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_microbiologyevents/INTERPRETATION",
+          "name": "patient_microbiologyevents/INTERPRETATION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-microbiologyevents"
+            },
+            "extract": {
+              "column": "INTERPRETATION"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_diagnosis_icd",
+      "name": "patient_diagnosis_icd",
+      "description": "ICD-9 diagnosis codes for the admission, pre-joined with their titles. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/ROW_ID",
+          "name": "patient_diagnosis_icd/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/SUBJECT_ID",
+          "name": "patient_diagnosis_icd/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/HADM_ID",
+          "name": "patient_diagnosis_icd/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/SEQ_NUM",
+          "name": "patient_diagnosis_icd/SEQ_NUM",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "SEQ_NUM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/ICD9_CODE",
+          "name": "patient_diagnosis_icd/ICD9_CODE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "ICD9_CODE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/SHORT_TITLE",
+          "name": "patient_diagnosis_icd/SHORT_TITLE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "SHORT_TITLE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_diagnosis_icd/LONG_TITLE",
+          "name": "patient_diagnosis_icd/LONG_TITLE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-diagnosis_icd"
+            },
+            "extract": {
+              "column": "LONG_TITLE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_procedure_icd",
+      "name": "patient_procedure_icd",
+      "description": "ICD-9 procedure codes for the admission, pre-joined with their titles. Rows from all 105 admissions; HADM_ID joins notes/HADM_ID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/ROW_ID",
+          "name": "patient_procedure_icd/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/SUBJECT_ID",
+          "name": "patient_procedure_icd/SUBJECT_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "SUBJECT_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/HADM_ID",
+          "name": "patient_procedure_icd/HADM_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "HADM_ID"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "notes/HADM_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/SEQ_NUM",
+          "name": "patient_procedure_icd/SEQ_NUM",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "SEQ_NUM"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/ICD9_CODE",
+          "name": "patient_procedure_icd/ICD9_CODE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "ICD9_CODE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/SHORT_TITLE",
+          "name": "patient_procedure_icd/SHORT_TITLE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "SHORT_TITLE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_procedure_icd/LONG_TITLE",
+          "name": "patient_procedure_icd/LONG_TITLE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-procedure_icd"
+            },
+            "extract": {
+              "column": "LONG_TITLE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_patient_records",
+      "name": "patient_patient_records",
+      "description": "Items present in the admission: LABEL with its TOP_VALUES, SUBGROUP/GROUP taxonomy, source table (LINKSTO) and ITEMID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/LABEL",
+          "name": "patient_patient_records/LABEL",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "LABEL"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/TOP_VALUES",
+          "name": "patient_patient_records/TOP_VALUES",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "TOP_VALUES"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/SUBGROUP",
+          "name": "patient_patient_records/SUBGROUP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "SUBGROUP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/GROUP",
+          "name": "patient_patient_records/GROUP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "GROUP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/LINKSTO",
+          "name": "patient_patient_records/LINKSTO",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "LINKSTO"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_patient_records/ITEMID",
+          "name": "patient_patient_records/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-patient_records"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "patient_catalog_items",
+      "name": "patient_catalog_items",
+      "description": "Items absent in the admission: LABEL with its TOP_VALUES, SUBGROUP/GROUP taxonomy, source table (LINKSTO) and ITEMID.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/LABEL",
+          "name": "patient_catalog_items/LABEL",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "LABEL"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/TOP_VALUES",
+          "name": "patient_catalog_items/TOP_VALUES",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "TOP_VALUES"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/SUBGROUP",
+          "name": "patient_catalog_items/SUBGROUP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "SUBGROUP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/GROUP",
+          "name": "patient_catalog_items/GROUP",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "GROUP"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/LINKSTO",
+          "name": "patient_catalog_items/LINKSTO",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "LINKSTO"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "patient_catalog_items/ITEMID",
+          "name": "patient_catalog_items/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "patient-catalog_items"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "d_items",
+      "name": "d_items",
+      "description": "Item dictionary (resources/preprocessed_d_items.csv).",
+      "key": {
+        "@id": "d_items/ITEMID"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/ROW_ID",
+          "name": "d_items/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/ITEMID",
+          "name": "d_items/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/LABEL",
+          "name": "d_items/LABEL",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "LABEL"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/ABBREVIATION",
+          "name": "d_items/ABBREVIATION",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "ABBREVIATION"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/DBSOURCE",
+          "name": "d_items/DBSOURCE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "DBSOURCE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/LINKSTO",
+          "name": "d_items/LINKSTO",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "LINKSTO"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/CATEGORY",
+          "name": "d_items/CATEGORY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "CATEGORY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/UNITNAME",
+          "name": "d_items/UNITNAME",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "UNITNAME"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/PARAM_TYPE",
+          "name": "d_items/PARAM_TYPE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "PARAM_TYPE"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/CONCEPTID",
+          "name": "d_items/CONCEPTID",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "CONCEPTID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_items/NUMERIC_VALUE",
+          "name": "d_items/NUMERIC_VALUE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-items"
+            },
+            "extract": {
+              "column": "NUMERIC_VALUE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "d_labitems",
+      "name": "d_labitems",
+      "description": "Item dictionary (resources/d_labitems.csv).",
+      "key": {
+        "@id": "d_labitems/ITEMID"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/ROW_ID",
+          "name": "d_labitems/ROW_ID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "ROW_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/ITEMID",
+          "name": "d_labitems/ITEMID",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "ITEMID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/LABEL",
+          "name": "d_labitems/LABEL",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "LABEL"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/FLUID",
+          "name": "d_labitems/FLUID",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "FLUID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/CATEGORY",
+          "name": "d_labitems/CATEGORY",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "CATEGORY"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "d_labitems/LOINC_CODE",
+          "name": "d_labitems/LOINC_CODE",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "d-labitems"
+            },
+            "extract": {
+              "column": "LOINC_CODE"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
