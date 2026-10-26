@@ -100,10 +100,9 @@ paths are gitignored). Supply your own keys — no credentials are included in t
 | Variable | Used for | Required |
 |---|---|---|
 | `GOOGLE_APPLICATION_CREDENTIALS`, `PROJECT_ID`, `LOCATION` | Gemini via Vertex AI | yes |
-| `AZURE_API_KEY`, `AZURE_API_VERSION`, `AZURE_ENDPOINT`, `AZURE_DEPLOYMENT` | Azure OpenAI (only the GPT judge / summary paths) | optional |
-| `OPENAI_API_KEY` | `item_search_tool` ChatGPT helpers | optional |
+| `AZURE_API_KEY`, `AZURE_API_VERSION`, `AZURE_ENDPOINT`, `AZURE_DEPLOYMENT` | Azure OpenAI — the temporal summary step of Stage 1 for discharge notes (`ner_discharge.py`) | discharge notes only |
 | `EHR_REASONCON_DIR` | EHR-ReasonCon bundle location (all stages, `smoke_test.py`) | optional — defaults to `<release>/EHR_ReasonCon` |
-| `MIMIC_DIR` | MIMIC-III v1.4 CSV folder (Stage 1 discharge & Stage 2) | optional — defaults to `<release>/mimiciii` |
+| `MIMIC_DIR` | MIMIC-III v1.4 CSV folder (Stage 2) | optional — defaults to `<release>/mimiciii` |
 | `EHRCON_DATASET_ROOT`, `EHRCON_PATIENT_DATA_ROOT` | only `build_patient_data.py` (raw source dirs) | not needed at run time |
 
 ### 2. Data — two PhysioNet downloads
@@ -116,7 +115,7 @@ Only Research" training, and the signed DUA of each project.
 | | Dataset | Put it at | Override |
 |---|---|---|---|
 | 2a | **EHR-ReasonCon v1.0.0** — notes, gold labels, per-admission tables | `<release>/EHR_ReasonCon/` | `EHR_REASONCON_DIR` |
-| 2b | **MIMIC-III v1.4** — 8 corpus-wide dictionary / ICD tables | `<release>/mimiciii/` | `MIMIC_DIR` |
+| 2b | **MIMIC-III v1.4** — 6 corpus-wide dictionary / ICD tables | `<release>/mimiciii/` | `MIMIC_DIR` |
 
 #### 2a. EHR-ReasonCon (the benchmark bundle)
 
@@ -172,27 +171,29 @@ redistribute, so download them from the MIMIC-III project yourself:
 > **Dataset:** MIMIC-III Clinical Database v1.4 — https://physionet.org/content/mimiciii/1.4/
 > (credentialed; separate DUA from EHR-ReasonCon)
 
-Only these **8 tables** are read. On PhysioNet they are gzipped (`*.csv.gz`); the code opens
+Only these **6 tables** are read. On PhysioNet they are gzipped (`*.csv.gz`); the code opens
 plain `*.csv`, so gunzip them and place them at **`<release>/mimiciii/`**:
 
 ```
 release/
 └── mimiciii/
     ├── ADMISSIONS.csv          ├── D_ICD_DIAGNOSES.csv
-    ├── D_ITEMS.csv             ├── D_ICD_PROCEDURES.csv
-    ├── D_LABITEMS.csv          ├── DIAGNOSES_ICD.csv
-    └── PRESCRIPTIONS.csv       └── PROCEDURES_ICD.csv
+    ├── D_ITEMS.csv             └── D_ICD_PROCEDURES.csv
+    ├── D_LABITEMS.csv
+    └── PRESCRIPTIONS.csv
 ```
 
 ```bash
-# e.g. from the PhysioNet "Files" page, download just these 8 *.csv.gz into release/mimiciii/, then
+# e.g. from the PhysioNet "Files" page, download just these 6 *.csv.gz into release/mimiciii/, then
 cd mimiciii && gunzip *.csv.gz
 ```
 
 | Table | Used by |
 |---|---|
-| `D_ICD_DIAGNOSES.csv`, `D_ICD_PROCEDURES.csv`, `DIAGNOSES_ICD.csv`, `PROCEDURES_ICD.csv` | Stage 1 (`ner_discharge.py`), Stage 2 |
+| `D_ICD_DIAGNOSES.csv`, `D_ICD_PROCEDURES.csv` | Stage 2 — ICD title lookup (the per-admission ICD codes themselves ship in the bundle) |
 | `D_LABITEMS.csv`, `D_ITEMS.csv`, `PRESCRIPTIONS.csv`, `ADMISSIONS.csv` | Stage 2 (`item_search_tool.py`, `tool_env.py`) |
+
+Stage 1 reads no MIMIC-III tables; the catalog slices it needs are part of the bundle.
 
 If you already have a full MIMIC-III v1.4 CSV folder elsewhere, do not copy it — export
 `MIMIC_DIR=/path/to/mimiciii` instead (the other tables in it are simply ignored).
@@ -226,8 +227,8 @@ Set them once with `export`, then run the stages in order.
 | `TEST_VAL` | split: `val` or `test` | `val` | Stage 1, Stage 2, Eval |
 | `NOTE_TYPE` | `discharge` / `physician` / `nursing` | `discharge` | Stage 2, Eval |
 | `NER_METHOD` | Entity-extraction tag used in Stage-1/2 output file names | `cluster` | Stage 2, Eval |
-| `MODEL_NAME` | LLM backbone tag | `gemini` | Stage 2, Eval |
-| `DATA_VERSION` | dataset version tag | `v2` | Stage 2, Eval |
+| `MODEL_NAME` | backbone tag in the Stage-1/2 file names; Stage 1 always writes `gemini`, so keep the default | `gemini` | Stage 2, Eval |
+| `DATA_VERSION` | version tag in the Stage-2 output name; Stage-1 files are always `_v2_`, so keep the default | `v2` | Stage 2, Eval |
 | `EVAL_MODE` | judge strictness: `harsh` or `lenient` | `harsh` | Eval |
 | `VERIFICATION_RETRIES` | extra attempts for the final verification call when its answer is unparsable; after that the entity is recorded as `verification failed` | `2` | Stage 2 |
 | `ITEM_SEARCH_ABSENT_LIMIT` | max "not in patient record" candidates shown by `Item_Search` | `100` | Stage 2 |
@@ -283,13 +284,12 @@ python ner_nursing.py utils/asset/config_nursing.yaml           # Stage 1
 ```
 
 **Stage-to-stage naming must line up.** Stage 2 loads Stage-1 outputs by exact filename:
-`{NER_METHOD}ner_time_result_{NOTE_TYPE}_{TEST_VAL}_{id}_{DATA_VERSION}_{MODEL_NAME}_2.pkl`
+`{NER_METHOD}ner_time_result_{NOTE_TYPE}_{TEST_VAL}_{id}_v2_{MODEL_NAME}_2.pkl`
 and `subtext_divided_{NOTE_TYPE}_{TEST_VAL}_{id}_{MODEL_NAME}_2.pkl` — so the `NOTE_TYPE` /
 `TEST_VAL` / `NER_METHOD` / `MODEL_NAME` env vars must be identical across the stages (and the
 Stage-1 script must match `NOTE_TYPE`). A mismatch is silently skipped. The config `.yaml`
-passed to Stage 1 now only carries prompt locations — it no longer selects the note, and MIMIC-III
-tables are located via the `MIMIC_DIR` env var. (the discharge pipeline produces no `d_p_concheck` file
-— Stage 2 handles that as an empty dict.)
+passed to Stage 1 only carries prompt locations; it does not select the note. (No Stage-1 script
+writes a `d_p_concheck` file; Stage 2 treats it as empty.)
 
 ## Optional: rebuilding the item catalog (`item_grouping/`)
 
@@ -305,7 +305,7 @@ who wants to re-derive or extend the taxonomy:
   labels alone;
 - `build_item_catalog.py patient-catalog` re-splits a catalog into the two per-admission files.
 
-It reads the full MIMIC-III event tables from `MIMIC_DIR` (not just the 8 tables above) and
+It reads the full MIMIC-III event tables from `MIMIC_DIR` (not just the 6 tables above) and
 calls Gemini with the same credentials as the rest of the repo. See `item_grouping/README.md`.
 
 ## Not included in this repository

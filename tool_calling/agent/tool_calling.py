@@ -696,6 +696,7 @@ if __name__ == '__main__':
                     tool_select_prompt = init_tool_select_prompt(line_num, ent, val, new_note, time_)
                     gemini_model_name = 'gemini-2.5-flash'
 
+                    tool = None
                     for tn in range(10):
                         gemini_response, tool_select_prompt_ = gemini_inference(vertex_model, gemini_model_name, init_system_prompt, tool_select_prompt)
                         try:
@@ -706,6 +707,10 @@ if __name__ == '__main__':
                         if 'error' not in tool.lower():
                             tool_select_prompt = tool_select_prompt_
                             break
+                    if not tool or 'error' in tool.lower():
+                        print(f'Tool selection failed for entity {ent!r} after 10 attempts; recorded as "tool selection failed"')
+                        consistency_result[line_num].append({'entity': ent, 'consistency': 'tool selection failed', 'tool_call_process': tool_select_prompt})
+                        continue
 
                     for _ in range(10):
                         tool_select_prompt_, cond_dict = make_prompt_entries(tool_select_prompt, tool, available_cats)
@@ -721,7 +726,9 @@ if __name__ == '__main__':
                                 if col in val_fill:
                                     if col+':' in val_fill:
                                         proc_val = val_fill.split(col+':')[1].strip()
-                                    
+                                    else:
+                                        continue
+
                                     if '<=' in proc_val:
                                         proc_val = proc_val.replace('<=', '<')
 

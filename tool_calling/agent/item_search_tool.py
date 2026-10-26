@@ -20,7 +20,6 @@ from itertools import product
 import warnings
 from google import genai
 from google.genai import types
-from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -118,30 +117,19 @@ def create_dicts(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedur
                 pass
 
 
+    # ICD titles -> codes. A title that is missing (NaN) is skipped rather than crashing the
+    # whole Item_Search call (whose caller swallows exceptions and returns an empty result).
     for i in range(len(d_icd_diagnoses)):
         icd_code = d_icd_diagnoses['ICD9_CODE'][i]
-        try:
-            d_icd_diag_lower_label_itemid_dict[d_icd_diagnoses['SHORT_TITLE'][i].lower()].append(icd_code)
-        except:
-            d_icd_diag_lower_label_itemid_dict[d_icd_diagnoses['SHORT_TITLE'][i].lower()] = [icd_code]
-
-        try:
-            d_icd_diag_lower_label_itemid_dict[d_icd_diagnoses['LONG_TITLE'][i].lower()].append(icd_code)
-        except:
-            d_icd_diag_lower_label_itemid_dict[d_icd_diagnoses['LONG_TITLE'][i].lower()] = [icd_code]
-
+        for title in (d_icd_diagnoses['SHORT_TITLE'][i], d_icd_diagnoses['LONG_TITLE'][i]):
+            if isinstance(title, str) and title.strip():
+                d_icd_diag_lower_label_itemid_dict.setdefault(title.lower(), []).append(icd_code)
 
     for i in range(len(d_icd_procedures)):
         icd_code = d_icd_procedures['ICD9_CODE'][i]
-        try:
-            d_icd_proc_lower_label_itemid_dict[d_icd_procedures['SHORT_TITLE'][i].lower()].append(icd_code)
-        except:
-            d_icd_proc_lower_label_itemid_dict[d_icd_procedures['SHORT_TITLE'][i].lower()] = [icd_code]
-
-        try:
-            d_icd_proc_lower_label_itemid_dict[d_icd_procedures['LONG_TITLE'][i].lower()].append(icd_code)
-        except:
-            d_icd_proc_lower_label_itemid_dict[d_icd_procedures['LONG_TITLE'][i].lower()] = [icd_code]
+        for title in (d_icd_procedures['SHORT_TITLE'][i], d_icd_procedures['LONG_TITLE'][i]):
+            if isinstance(title, str) and title.strip():
+                d_icd_proc_lower_label_itemid_dict.setdefault(title.lower(), []).append(icd_code)
 
     label_keys = list(lower_label_itemid_dict.keys())
     d_item_label_keys = list(d_item_lower_label_itemid_dict.keys())
@@ -479,10 +467,11 @@ def total_checker(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedu
     
     itemid=from_d_lab_items['LABEL']
     itemid_list=list(itemid)
+    # The per-patient DB keeps the MIMIC-III spelling (mixed case), so compare case-insensitively.
     for idx,lab_entity in enumerate(itemid_list):
         if not filter_entity(entity_name, lab_entity):
             continue
-        sql_query = f"SELECT COUNT(*) FROM labevents AS l JOIN d_labitems AS d ON l.itemid = d.itemid WHERE l.hadm_id = {hadm_id} AND date(l.charttime) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND d.label = '{lab_entity.lower()}'"
+        sql_query = f"SELECT COUNT(*) FROM labevents AS l JOIN d_labitems AS d ON l.itemid = d.itemid WHERE l.hadm_id = {hadm_id} AND date(l.charttime) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND lower(d.label) = '{lab_entity.lower()}'"
         cursor.execute(sql_query)
         results = cursor.fetchall()
         all_answer.append([lab_entity,'labevents'])
@@ -506,7 +495,7 @@ def total_checker(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedu
         table_name = dtable_list[idx2]
         all_answer.append([entity,table_name])
         if table_name == 'microbiologyevents':
-            sql_query = f"SELECT COUNT(*) FROM microbiologyevents AS t JOIN d_items AS d ON (d.itemid = t.spec_itemid OR d.itemid = t.org_itemid) WHERE t.hadm_id = {hadm_id} AND date(t.chartdate) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND (t.spec_type_desc = '{entity.lower()}' OR t.org_name = '{entity.lower()}')"
+            sql_query = f"SELECT COUNT(*) FROM microbiologyevents AS t JOIN d_items AS d ON (d.itemid = t.spec_itemid OR d.itemid = t.org_itemid) WHERE t.hadm_id = {hadm_id} AND date(t.chartdate) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND (lower(t.spec_type_desc) = '{entity.lower()}' OR lower(t.org_name) = '{entity.lower()}')"
             cursor.execute(sql_query)
             results = cursor.fetchall()
             if results[0][0] > 0:    
@@ -514,7 +503,7 @@ def total_checker(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedu
                     final_answer.append([entity,table_name])
                     continue
         elif table_name == 'inputevents_mv' or table_name == 'procedureevents_mv':
-            sql_query = f"SELECT COUNT(*) FROM {table_name} AS t JOIN d_items AS d ON t.itemid = d.itemid WHERE t.hadm_id = {hadm_id} AND d.label = '{entity.lower()}'"
+            sql_query = f"SELECT COUNT(*) FROM {table_name} AS t JOIN d_items AS d ON t.itemid = d.itemid WHERE t.hadm_id = {hadm_id} AND lower(d.label) = '{entity.lower()}'"
             cursor.execute(sql_query)
             results = cursor.fetchall()
             if results[0][0] > 0:    
@@ -523,7 +512,7 @@ def total_checker(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedu
                     continue
         else:
             try:
-                sql_query = f"SELECT COUNT(*) FROM {table_name} AS t JOIN d_items AS d ON t.itemid = d.itemid WHERE t.hadm_id = {hadm_id} AND date(t.charttime) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND d.label = '{entity.lower()}'"
+                sql_query = f"SELECT COUNT(*) FROM {table_name} AS t JOIN d_items AS d ON t.itemid = d.itemid WHERE t.hadm_id = {hadm_id} AND date(t.charttime) BETWEEN date('{admission_str}', '-1 day') AND date('{charttime_str}', '+1 day') AND lower(d.label) = '{entity.lower()}'"
                 cursor.execute(sql_query)
                 results = cursor.fetchall()
                 if results[0][0] > 0:    
@@ -533,7 +522,7 @@ def total_checker(lab_id, d_items, prescriptions, d_icd_diagnoses, d_icd_procedu
             except:
                 continue
     for idx3,drug in enumerate(from_prescription):
-        sql_query = f"SELECT COUNT(*) FROM prescriptions AS p WHERE p.hadm_id = {hadm_id} and p.drug = '{drug.lower()}'"
+        sql_query = f"SELECT COUNT(*) FROM prescriptions AS p WHERE p.hadm_id = {hadm_id} and lower(p.drug) = '{drug.lower()}'"
         cursor.execute(sql_query)
         results = cursor.fetchall()
         all_answer.append([drug,'prescriptions'])
@@ -645,58 +634,6 @@ def search_tool(entity, pre_dict, lab_id, d_items, prescriptions, d_icd_diagnose
             
     except KeyboardInterrupt:
         print()
-
-def ChatGPT_request(prompt): 
-  """
-  Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
-  server and returns the response. 
-  ARGS:
-    prompt: a str prompt
-    gpt_parameter: a python dictionary with the keys indicating the names of  
-                   the parameter and the values indicating the parameter 
-                   values.   
-  RETURNS: 
-    a str of GPT-3's response. 
-  """
-  client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-  try:
-    completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": prompt}],
-    temperature= 0.1
-    )
-    return completion.choices[0].message.content
-  
-  except: 
-    print ("ChatGPT ERROR")
-    return "ChatGPT ERROR"
-
-
-def ChatGPT_request(prompt): 
-  """
-  Given a prompt and a dictionary of GPT parameters, make a request to OpenAI
-  server and returns the response. 
-  ARGS:
-    prompt: a str prompt
-    gpt_parameter: a python dictionary with the keys indicating the names of  
-                   the parameter and the values indicating the parameter 
-                   values.   
-  RETURNS: 
-    a str of GPT-3's response. 
-  """
-  client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-  try:
-    completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": prompt}],
-    temperature= 0.1
-    )
-    return completion.choices[0].message.content
-  
-  except: 
-    print ("ChatGPT ERROR")
-    return "ChatGPT ERROR"
-
 
 def gemini_inference_for_search(prompt, model):
     gemini_response = model.models.generate_content(model="gemini-2.5-flash", 

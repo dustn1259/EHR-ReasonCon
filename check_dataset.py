@@ -22,7 +22,7 @@ It cross-checks notes CSV <-> gold-label JSON <-> patient_data/{hadm}/ (12 table
 the three resources/ files, and prints exactly what is missing if anything is.
 
 It also checks MIMIC-III v1.4 (a separate credentialed PhysioNet dataset,
-https://physionet.org/content/mimiciii/1.4/): the eight tables Stage 1/2 read must be
+https://physionet.org/content/mimiciii/1.4/): the six tables Stage 2 reads must be
 present, gunzipped, at  <release>/mimiciii/  or at $MIMIC_DIR.
 """
 import argparse
@@ -37,7 +37,7 @@ PHYSIONET_PAGE_URL = "https://physionet.org/content/ehr-reasoncon/1.0.0/"
 DEFAULT_MIMIC_DIR = os.path.join(RELEASE_ROOT, "mimiciii")
 MIMIC_PAGE_URL = "https://physionet.org/content/mimiciii/1.4/"
 MIMIC_TABLES = ["D_LABITEMS.csv", "D_ITEMS.csv", "PRESCRIPTIONS.csv", "D_ICD_DIAGNOSES.csv",
-                "D_ICD_PROCEDURES.csv", "DIAGNOSES_ICD.csv", "PROCEDURES_ICD.csv", "ADMISSIONS.csv"]
+                "D_ICD_PROCEDURES.csv", "ADMISSIONS.csv"]
 
 NOTE_TYPES = ["discharge", "physician", "nursing"]
 SPLITS = [("valid", "val"), ("test", "test")]

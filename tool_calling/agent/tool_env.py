@@ -341,8 +341,7 @@ class TerminalSearchTool:
         # Load data
         self.dfs = self.load_sample_data(hadm_id)
         if self.dfs is None:
-            print("Failed to load data. Exiting.")
-            return
+            raise SystemExit(f"Failed to load patient data for HADM_ID {hadm_id} (see the error above).")
         # Try to load top values dictionary
         try:
             with open(f'{EHR_REASONCON_DIR}/resources/top_values.json', 'r', encoding='utf-8') as f:

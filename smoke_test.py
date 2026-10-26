@@ -10,7 +10,7 @@ Verifies the parts that do NOT need Vertex/Azure keys or MIMIC-III:
       Location: $EHR_REASONCON_DIR, else <release>/EHR_ReasonCon
       (download it yourself from https://physionet.org/content/ehr-reasoncon/1.0.0/ and
        place it there — see README "Setup > 2. Data")
-  T3. the eight MIMIC-III v1.4 tables Stage 1/2 read are at <release>/mimiciii (or $MIMIC_DIR)
+  T3. the six MIMIC-III v1.4 tables Stage 2 reads are at <release>/mimiciii (or $MIMIC_DIR)
       (reported as WARN, not FAIL — the bundle alone is enough for T2)
 """
 import os, sys, glob, py_compile, re
@@ -53,7 +53,7 @@ fail += validate_dataset(EHR_REASONCON)   # prints its own [OK]/[FAIL] lines, wi
 
 print("T3. MIMIC-III v1.4 tables (needed at run time; download from https://physionet.org/content/mimiciii/1.4/)")
 if validate_mimic(mimic_dir(), printer=lambda m: print(m.replace("[FAIL]", "[WARN]"))):
-    print("      ^ not required for this test, but Stage 1 (discharge) and Stage 2 will not run without them")
+    print("      ^ not required for this test, but Stage 2 will not run without them")
 
 print(f"\n=== {'ALL PASS' if fail == 0 else str(fail) + ' FAIL'} ===")
 sys.exit(1 if fail else 0)

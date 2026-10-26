@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 import os
 from google.genai import types
-from models import init_vertex_model, init_azure_client, get_azure_response
+from models import init_vertex_model, get_azure_response
 from collections import deque
 import time
 
@@ -57,7 +57,7 @@ def organized_preds(pred_result_name, model, model_name):
     skipped_line_to_pred = {}
     for id_, val in sorted_dict.items():
         for data_point in val:
-            if data_point['consistency'] in ('outside the scope', 'verification failed'):
+            if data_point['consistency'] in ('outside the scope', 'verification failed', 'tool selection failed'):
                 # 'verification failed' = Stage 2 gave up after VERIFICATION_RETRIES; there is no
                 # verdict to judge, so it counts as no prediction (a recall miss), never as precision
                 continue
@@ -356,12 +356,11 @@ if __name__ == "__main__":
         pred_result_name = f"./result/concheck_result_{str(i)}_{_nt}_{_tv}_{_nm}_{_dv}_2.json"
         dataver = 'v2'
         vertex_model = init_vertex_model()
-        azure_client = init_azure_client()
-        deployment = os.getenv("AZURE_DEPLOYMENT")
         try:
             pred_result_name, pred_json, skipped_line_to_pred, line_to_pred = organized_preds(pred_result_name, vertex_model, 'gemini-2.5-flash')
             data_line_to_labeled = labeled_res(pred_result_name, dataver)
-        except:
+        except Exception as e:
+            print(f'[skip] note {i}: no usable prediction/label files ({type(e).__name__}: {e})')
             continue
 
         # gemini inference
@@ -376,6 +375,7 @@ if __name__ == "__main__":
             print(pred_result_name)
             print('RECALL:', recall_value, recall_)
             print('PRECISION:', precision_value, precision_)
-        except:
+        except Exception as e:
+            print(f'[error] judging note {i} failed ({type(e).__name__}: {e})')
             print('RECALL:', 0)
             print('PRECISION:', 0)

@@ -559,13 +559,6 @@ def main():
     note_type = "discharge"                    # fixed per script
     testval = os.getenv("TEST_VAL", "val")     # {"val", "test"}
     test_val_dir = 'valid' if testval == 'val' else testval
-    # MIMIC-III source tables (ICD diagnosis/procedure dictionaries + per-admission codes);
-    # location is set by the MIMIC_DIR env var, matching Stage 2 (tool_env.py).
-    mimic_dir = os.getenv("MIMIC_DIR", os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "mimiciii"))).rstrip("/")
-    diagnosis_item = pd.read_csv(f'{mimic_dir}/D_ICD_DIAGNOSES.csv')
-    procedure_item = pd.read_csv(f'{mimic_dir}/D_ICD_PROCEDURES.csv')
-    diagnosis_data = pd.read_csv(f'{mimic_dir}/DIAGNOSES_ICD.csv')
-    procedure_data = pd.read_csv(f'{mimic_dir}/PROCEDURES_ICD.csv')
     model_name_file = 'gemini'
 
     df = pd.read_csv(f'{EHR_REASONCON_DIR}/{note_type}/{test_val_dir}/{note_type}_{testval}.csv')
@@ -581,14 +574,6 @@ def main():
         adm_time=df['ADMITTIME'][idx]
         chart_time=df['CHARTDATE'][idx]
         hadmid = df['HADM_ID'][idx]
-        try:
-            with open(f'{EHR_REASONCON_DIR}/{note_type}/{test_val_dir}/EHRReasonCon_{hadmid}_data.json', 'r', encoding='utf-8') as f:
-                revise = json.load(f)
-        except FileNotFoundError:
-            with open(f'{EHR_REASONCON_DIR}/{note_type}/{test_val_dir}/EHRReasonCon_{hadmid}.0_data.json', 'r', encoding='utf-8') as f:
-                revise = json.load(f)
-        output_list_1 = extract_data_info_final(revise)
-        output_list_sort = sorted(output_list_1, key=lambda x: int(x[1])) ## sort in order
         with open("../tool_calling/current_hadm_id.txt", "w", encoding="utf-8") as f:
             f.write(f"{note_type}, {testval}, {hadmid}")
 
@@ -602,34 +587,10 @@ def main():
         remain_data_df = pd.read_csv(f'{EHR_REASONCON_DIR}/patient_data/{target_hadm_id}/catalog_items.csv')
         remain_data_df['TOP_VALUES'] = remain_data_df['TOP_VALUES'].str[:-1] + ", 'NaN']"
 
-        filtered_diagnosis = diagnosis_data[diagnosis_data['HADM_ID'] == target_hadm_id]
-        merged_diagnosis = pd.merge(filtered_diagnosis,diagnosis_item,on='ICD9_CODE',how='left')
-        merged_diagnosis = merged_diagnosis.drop(['ROW_ID_x', 'SUBJECT_ID', 'HADM_ID', 'SEQ_NUM','ROW_ID_y'], axis=1)
-        filtered_procedure = procedure_data[procedure_data['HADM_ID'] == target_hadm_id]
-        merged_procdure = pd.merge(filtered_procedure,procedure_item,on='ICD9_CODE',how='left')
-        merged_procdure = merged_procdure.drop(['ROW_ID_x', 'SUBJECT_ID', 'HADM_ID','ROW_ID_y'], axis=1)
-
         numbered_note = add_line_numbers(note)
         subtext_prompt = open_file("./prompt/ner_v2/extract_subtext.txt").replace("<<<Clinical_Note>>>", numbered_note)
         gemini_response = gemini_inference(vertex_model, "gemini-2.5-flash", subtext_prompt)
-        bhc_line=open_file('./prompt/bhc.txt').replace("<<<REFERENCE_BLOCK>>>",gemini_response).replace("<<<CLINICAL_NOTE>>>",numbered_note)
-        bhc = gemini_inference(vertex_model, "gemini-2.5-flash", bhc_line)
-
-        print(bhc)
-        print("###")
         print(gemini_response)
-        try: 
-            filtered = filter_line_ranges(bhc, gemini_response)
-        except:
-            input_text = re.sub(r":\n\s*([^\n]+)", r": \1", bhc)
-            print(input_text)
-            print("##!")
-            filtered = filter_line_ranges(input_text, gemini_response)
-
-        extended = extend_ranges(filtered)
-        final_time_result=merge_with_unfiltered(bhc, gemini_response, extended, filtered)
-        final_time_sum='- ' + '\n- '.join(final_time_result)
-        sub_time = extract_subtext(numbered_note, final_time_sum)
 
         ner_time_result = []
 

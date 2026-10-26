@@ -813,9 +813,7 @@ def main():
     test_val_dir = 'valid' if testval == 'val' else testval
     df = pd.read_csv(f'{EHR_REASONCON_DIR}/{note_type}/{test_val_dir}/{note_type}_{testval}.csv')
     vertex_model = init_vertex_model()
-    azure_client = init_azure_client()
     model_name_file = 'gemini'
-    deployment = os.getenv("AZURE_DEPLOYMENT")
     NOTE_IDX = os.getenv("NOTE_IDX")  # e.g. NOTE_IDX=6 to run one note; unset = run all
     for idx, note in enumerate(df["TEXT"]):
         if NOTE_IDX is not None and idx != int(NOTE_IDX):
