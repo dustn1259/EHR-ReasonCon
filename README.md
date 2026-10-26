@@ -1,12 +1,18 @@
-# EHR-INSPECTOR — Minimal Release
+# EHR-INSPECTOR
 
-Minimal, runnable subset of the code for **EHR-ReasonCon / EHR-INSPECTOR**
-(paper: *Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification
-Between Clinical Notes and Structured Tables in EHRs*).
+Official code for **EHR-INSPECTOR**, the consistency-verification framework introduced in
+*Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification Between Clinical Notes
+and Structured Tables in Electronic Health Records*
+([arXiv:2605.26463](https://arxiv.org/abs/2605.26463)), together with the tooling needed to
+run it on the **EHR-ReasonCon** benchmark
+([PhysioNet](https://physionet.org/content/ehr-reasoncon/1.0.0/)).
 
-This release keeps only the **main "cluster" method** — the paper's baseline and
-ablation variants (bert / trained-NER / gold / checkehr / no-filter / no-seg /
-open-source, and the tool-removal ablations) are intentionally excluded.
+The repository contains the full three-stage EHR-INSPECTOR pipeline (anchor-entity and
+temporal extraction, tool-assisted table exploration, consistency verification) and the
+LLM-as-a-judge evaluation, using the paper's main **"cluster"** entity-extraction method.
+The baseline and ablation variants reported in the paper (bert / trained-NER / gold /
+checkehr / no-filter / no-seg / open-source, and the tool-removal ablations) are not part
+of this repository.
 
 ## Layout
 
@@ -91,7 +97,7 @@ python smoke_test.py          # T0 compile · T1 secret scan · T2 EHR-ReasonCon
 `tool_calling/agent/`) and fill in the values. `GOOGLE_APPLICATION_CREDENTIALS`
 is resolved **relative to the run dir**, so place the service-account JSON at
 `entity_extraction/utils/asset/…json` and `tool_calling/agent/…json` (both
-paths are gitignored). Supply your own keys — no credentials are included in this release.
+paths are gitignored). Supply your own keys — no credentials are included in this repository.
 
 | Variable | Used for | Required |
 |---|---|---|
@@ -221,7 +227,7 @@ Set them once with `export`, then run the stages in order.
 | `NOTE_IDX` | note index within the split; **unset = all notes** | (all) | Stage 1, Stage 2, Eval |
 | `TEST_VAL` | split: `val` or `test` | `val` | Stage 1, Stage 2, Eval |
 | `NOTE_TYPE` | `discharge` / `physician` / `nursing` | `discharge` | Stage 2, Eval |
-| `NER_METHOD` | NER method (this release: `cluster`) | `cluster` | Stage 2, Eval |
+| `NER_METHOD` | NER method (this repository ships `cluster`) | `cluster` | Stage 2, Eval |
 | `MODEL_NAME` | LLM backbone tag | `gemini` | Stage 2, Eval |
 | `DATA_VERSION` | dataset version tag | `v2` | Stage 2, Eval |
 | `EVAL_MODE` | judge strictness: `harsh` or `lenient` | `harsh` | Eval |
@@ -304,7 +310,7 @@ who wants to re-derive or extend the taxonomy:
 It reads the full MIMIC-III event tables from `MIMIC_DIR` (not just the 8 tables above) and
 calls Gemini with the same credentials as the rest of the repo. See `item_grouping/README.md`.
 
-## Excluded from this release
+## Not included in this repository
 
 - **All credential JSON files** (service-account keys, API keys).
 - Baseline / ablation scripts, notebooks, scratch/`old_*` dirs.
