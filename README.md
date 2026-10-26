@@ -9,10 +9,8 @@ run it on the **EHR-ReasonCon** benchmark
 
 The repository contains the full three-stage EHR-INSPECTOR pipeline (anchor-entity and
 temporal extraction, tool-assisted table exploration, consistency verification) and the
-LLM-as-a-judge evaluation, using the paper's main **"cluster"** entity-extraction method.
-The baseline and ablation variants reported in the paper (bert / trained-NER / gold /
-checkehr / no-filter / no-seg / open-source, and the tool-removal ablations) are not part
-of this repository.
+LLM-as-a-judge evaluation. The baseline and ablation variants reported in the paper are
+not part of this repository.
 
 ## Layout
 
@@ -159,7 +157,7 @@ What the pipeline reads from the bundle (`EHR_ReasonCon/README.md` inside it doc
 
 - `{note_type}/{split}/` — notes (`{note_type}_{val,test}.csv`) + gold labels (`EHRReasonCon_{hadm}.0_data.json`)
 - `patient_data/{hadm}/` — per-patient EHR (`{hadm}` = **integer** id):
-  `patient_records.csv`, `catalog_items.csv` (Stage-1 cluster NER),
+  `patient_records.csv`, `catalog_items.csv` (Stage-1 entity extraction),
   `chartevents.csv`, `labevents.csv`, `prescriptions.csv`, … (Stage-2 event tables; also the
   source for the auto-built per-patient SQLite DBs below)
 - `resources/` — Stage-2 tool assets: `preprocessed_d_items.csv` (D_ITEMS item dictionary),
@@ -227,7 +225,7 @@ Set them once with `export`, then run the stages in order.
 | `NOTE_IDX` | note index within the split; **unset = all notes** | (all) | Stage 1, Stage 2, Eval |
 | `TEST_VAL` | split: `val` or `test` | `val` | Stage 1, Stage 2, Eval |
 | `NOTE_TYPE` | `discharge` / `physician` / `nursing` | `discharge` | Stage 2, Eval |
-| `NER_METHOD` | NER method (this repository ships `cluster`) | `cluster` | Stage 2, Eval |
+| `NER_METHOD` | Entity-extraction tag used in Stage-1/2 output file names | `cluster` | Stage 2, Eval |
 | `MODEL_NAME` | LLM backbone tag | `gemini` | Stage 2, Eval |
 | `DATA_VERSION` | dataset version tag | `v2` | Stage 2, Eval |
 | `EVAL_MODE` | judge strictness: `harsh` or `lenient` | `harsh` | Eval |
@@ -290,12 +288,12 @@ and `subtext_divided_{NOTE_TYPE}_{TEST_VAL}_{id}_{MODEL_NAME}_2.pkl` — so the 
 `TEST_VAL` / `NER_METHOD` / `MODEL_NAME` env vars must be identical across the stages (and the
 Stage-1 script must match `NOTE_TYPE`). A mismatch is silently skipped. The config `.yaml`
 passed to Stage 1 now only carries prompt locations — it no longer selects the note, and MIMIC-III
-tables are located via the `MIMIC_DIR` env var. (discharge cluster produces no `d_p_concheck` file
+tables are located via the `MIMIC_DIR` env var. (the discharge pipeline produces no `d_p_concheck` file
 — Stage 2 handles that as an empty dict.)
 
 ## Optional: rebuilding the item catalog (`item_grouping/`)
 
-Stage 1's `cluster` NER method browses a GROUP → SUBGROUP catalog of MIMIC-III items; the
+Stage 1 browses a GROUP → SUBGROUP catalog of MIMIC-III items; the
 per-admission slices of that catalog (`patient_records.csv` / `catalog_items.csv`) already
 ship inside the PhysioNet bundle, so **nothing here is needed to run the pipeline**.
 `item_grouping/` is the tooling that produced them, kept for transparency and for anyone
